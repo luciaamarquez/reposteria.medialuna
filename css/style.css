@@ -1,0 +1,157 @@
+/* ===========================
+   RESET
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+
+    background:#FFF8F3;
+
+    color:#333;
+
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+header{
+
+    width:100%;
+
+    background:#ffffff;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+}
+
+.contenedor{
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 15px 0;
+}
+
+.logo{
+
+    color:#7A3E1D;
+
+    font-size:34px;
+
+    font-weight:bold;
+
+}
+
+nav ul{
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+nav a{
+
+    text-decoration:none;
+
+    color:#333;
+
+    font-weight:600;
+
+}
+
+nav a:hover{
+
+    color:#B76E4D;
+
+}
+
+.btn-ingresar{
+
+    background:#B76E4D;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:12px 28px;
+
+    border-radius:30px;
+
+    transition:.3s;
+
+}
+
+.btn-ingresar:hover{
+
+    background:#9C573B;
+
+}
+
+/* ===========================
+   BANNER
+=========================== */
+
+.banner{
+    width:90%;
+    max-width:1200px;
+    margin:60px auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
+}
+
+.banner-texto{
+    flex:1;
+}
+
+.banner-texto h2{
+    font-size:60px;
+    color:#7A3E1D;
+    line-height:1.1;
+    margin-bottom:25px;
+}
+
+.banner-texto p{
+    font-size:18px;
+    color:#555;
+    margin-bottom:35px;
+    line-height:1.6;
+}
+
+.btn-banner{
+    display:inline-block;
+    background:#B76E4D;
+    color:white;
+    text-decoration:none;
+    padding:15px 35px;
+    border-radius:40px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn-banner:hover{
+    background:#9C573B;
+}
+
+.banner-imagen{
+    flex:1;
+    display:flex;
+    justify-content:center;
+}
+
+.banner-imagen img{
+    width:100%;
+    max-width:500px;
+}
