@@ -155,3 +155,251 @@ nav a:hover{
     width:100%;
     max-width:500px;
 }
+
+/*==========================
+    CATEGORÍAS
+==========================*/
+
+.categorias{
+
+    width:90%;
+    max-width:1200px;
+    margin:80px auto;
+
+}
+
+.categorias h2{
+
+    text-align:center;
+    color:#7A3E1D;
+    font-size:38px;
+    margin-bottom:50px;
+
+}
+
+.contenedor-categorias{
+
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+
+}
+
+.categoria{
+
+    width:200px;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    transition:.3s;
+    cursor:pointer;
+
+}
+
+.categoria:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.categoria img{
+
+    width:100%;
+    height:170px;
+    object-fit:cover;
+
+}
+
+.categoria h3{
+
+    text-align:center;
+    padding:20px;
+    color:#7A3E1D;
+
+}
+
+/*==========================
+    SOBRE NOSOTROS
+==========================*/
+
+.nosotros{
+
+    width:90%;
+    max-width:1200px;
+    margin:100px auto;
+
+}
+
+.nosotros h2{
+
+    text-align:center;
+    font-size:60px;
+    color:#6A1234;   /* parecido al prototipo */
+    margin-bottom:70px;
+    font-weight:700;
+
+}
+
+.contenedor-nosotros{
+
+    display:flex;
+    justify-content:space-between;
+    gap:40px;
+    flex-wrap:wrap;
+
+}
+
+.nosotros-card{
+
+    flex:1;
+    min-width:280px;
+    max-width:340px;
+
+    background:#DFC5B5;
+
+    border-radius:35px;
+
+    padding:45px 30px;
+
+    text-align:center;
+
+    box-shadow:12px 14px 20px rgba(0,0,0,.18);
+
+}
+
+.icono{
+
+    font-size:60px;
+    color:white;
+
+    margin-bottom:25px;
+
+}
+
+.nosotros-card h3{
+
+    font-size:34px;
+
+    color:#5A2035;
+
+    margin-bottom:20px;
+
+}
+
+.nosotros-card p{
+
+    font-size:18px;
+
+    color:#6A3B56;
+
+    line-height:1.5;
+
+}
+
+/*==========================
+        FOOTER
+==========================*/
+
+footer{
+
+    background:#7A3E1D;
+
+    color:white;
+
+    margin-top:100px;
+
+}
+
+.footer-contenedor{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:60px 0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:50px;
+
+    flex-wrap:wrap;
+
+}
+
+.footer-columna{
+
+    flex:1;
+
+    min-width:250px;
+
+}
+
+.footer-columna h2{
+
+    margin-bottom:20px;
+
+}
+
+.footer-columna h3{
+
+    margin-bottom:20px;
+
+}
+
+.footer-columna p{
+
+    margin-bottom:12px;
+
+    line-height:1.7;
+
+}
+
+.footer-columna ul{
+
+    list-style:none;
+
+}
+
+.footer-columna ul li{
+
+    margin-bottom:12px;
+
+}
+
+.footer-columna a{
+
+    color:white;
+
+    text-decoration:none;
+
+}
+
+.footer-columna a:hover{
+
+    text-decoration:underline;
+
+}
+
+footer hr{
+
+    border:none;
+
+    border-top:1px solid rgba(255,255,255,.2);
+
+}
+
+.copyright{
+
+    text-align:center;
+
+    padding:20px;
+
+    font-size:15px;
+
+}
