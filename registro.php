@@ -6,8 +6,7 @@
 
         <h2>Crear cuenta</h2>
 
-        <form action="#" method="POST">
-
+<form action="registrar.php" method="POST">
             <div class="fila-form">
 
                 <input type="text" name="nombre" placeholder="Nombre *" required>
@@ -28,7 +27,7 @@
 
             <div class="fila-form">
 
-                <input type="password" name="password" placeholder="Contraseña *" required>
+                <input type="password" name="password" placeholder="password *" required>
 
                 <input type="password" name="confirmar" placeholder="Confirmar Contraseña *" required>
 

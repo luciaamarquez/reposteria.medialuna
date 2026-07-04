@@ -6,8 +6,7 @@
 
         <h2>Iniciar sesión</h2>
 
-        <form action="#" method="POST">
-
+<form action="login_usuarios.php" method="POST">
             <input
                 type="email"
                 name="email"
