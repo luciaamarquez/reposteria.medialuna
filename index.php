@@ -4,66 +4,87 @@ include("includes/header.php");
 
 <main>
 
-    <section class="banner">
+<section class="banner">
 
-        <div class="banner-texto">
+<div class="banner-texto">
 
-            <h2>Endulzá tus<br>momentos especiales</h2>
+    <h2>
+        Endulzá tus <br>
+        momentos especiales
+    </h2>
 
-            <p>
-                Descubrí nuestras deliciosas creaciones artesanales
-                de pastelería y repostería, hechas con amor y los
-                mejores ingredientes.
-            </p>
+    <p>
+        Descubrí nuestras deliciosas creaciones artesanales de
+        pastelería y repostería, hechas con amor y los mejores
+        ingredientes.
+    </p>
 
-            <a href="productos.php" class="btn-banner">
-                VER TODOS LOS PRODUCTOS
-            </a>
+    <div class="botones-banner">
 
-        </div>
+        <a href="productos.php" class="btn-principal">
+            Ver Productos
+        </a>
 
-        <div class="banner-imagen">
+        <a href="recetas.php" class="btn-secundario">
+            Ver Recetas
+        </a>
 
-            <img src="img/banner/banner.jfif" alt="Pastelería">
+    </div>
 
-        </div>
+</div>
 
-    </section>
+<div class="banner-imagen">
 
-     <!-- PRODUCTOS -->
+    <img src="img/banner/banner.png" alt="Banner">
 
-     <section class="categorias">
+</div>
+
+</section>
+
+
+
+    <!-- CATEGORÍAS -->
+
+<section class="categorias">
 
 <h2>Nuestra variedad de productos</h2>
 
-<div class="contenedor-categorias">
+<div class="fila">
 
     <div class="categoria">
         <img src="img/productos/donuts.jpg" alt="Donuts">
-        <h3>Donuts</h3>
+        <p>Donuts</p>
     </div>
 
     <div class="categoria">
         <img src="img/productos/budines.jpg" alt="Budines">
-        <h3>Budines</h3>
+        <p>Budines</p>
     </div>
 
     <div class="categoria">
         <img src="img/productos/muffins.jpg" alt="Muffins">
-        <h3>Muffins</h3>
+        <p>Muffins</p>
     </div>
+
+</div>
+
+<div class="fila">
 
     <div class="categoria">
         <img src="img/productos/tortas.jpg" alt="Tortas">
-        <h3>Tortas</h3>
+        <p>Tortas</p>
     </div>
 
     <div class="categoria">
         <img src="img/productos/cookies.jpg" alt="Cookies">
-        <h3>Cookies</h3>
+        <p>Cookies</p>
     </div>
 
 </div>
+
+<a href="productos.php" class="btn-productos">
+    VER TODOS LOS PRODUCTOS
+</a>
 
 </section>
 
@@ -77,7 +98,9 @@ include("includes/header.php");
 
         <div class="nosotros-card">
 
-            <div class="icono">❤</div>
+            <div class="icono">
+                <i class="fa-solid fa-heart"></i>
+            </div>
 
             <h3>Pasión</h3>
 
@@ -90,7 +113,9 @@ include("includes/header.php");
 
         <div class="nosotros-card">
 
-            <div class="icono">🚚</div>
+            <div class="icono">
+                <i class="fa-solid fa-truck"></i>
+            </div>
 
             <h3>Compromiso</h3>
 
@@ -103,8 +128,10 @@ include("includes/header.php");
 
         <div class="nosotros-card">
 
-            <div class="icono">★</div>
-
+            <div class="icono">
+                <i class="fa-solid fa-star"></i>
+            </div>
+            
             <h3>Calidad</h3>
 
             <p>

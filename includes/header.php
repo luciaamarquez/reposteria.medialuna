@@ -11,9 +11,11 @@
     <title>Medialuna</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -22,33 +24,47 @@
 
 <header>
 
-    <div class="contenedor">
+    <div class="header-contenedor">
 
-        <h1 class="logo">
-            MEDIALUNA
-        </h1>
+        <div class="logo">
+
+            <img src="img/logo/logo.png" alt="Logo">
+
+            <h1>MEDIALUNA</h1>
+
+        </div>
 
         <nav>
 
             <ul>
 
-                <li><a href="index.php">Inicio</a></li>
+                <li><a href="index.php">INICIO</a></li>
 
-                <li><a href="#">Nosotros</a></li>
+                <li><a href="#">NOSOTROS</a></li>
 
-                <li><a href="#">Productos</a></li>
+                <li><a href="productos.php">PRODUCTOS</a></li>
 
-                <li><a href="#">Recetas</a></li>
+                <li><a href="recetas.php">RECETAS</a></li>
 
-                <li><a href="#">Contacto</a></li>
+                <li><a href="#">CONTACTO</a></li>
 
             </ul>
 
         </nav>
 
-        <a href="login.php" class="btn-ingresar">
-            Ingresar
-        </a>
+        <div class="header-derecha">
+
+            <a href="carrito.php" class="carrito">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+            
+            <a href="login.php" class="btn-ingresar">
+
+                INGRESAR
+
+            </a>
+
+        </div>
 
     </div>
 
