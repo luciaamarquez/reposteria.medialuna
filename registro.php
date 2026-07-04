@@ -1,55 +1,55 @@
-<?php
-include("includes/header.php");
-?>
+<?php include("includes/header.php"); ?>
 
-<main>
+<main class="registro">
 
-    <section class="registro">
+    <div class="registro-contenedor">
 
-        <div class="registro-contenedor">
+        <h2>Crear cuenta</h2>
 
-            <h2>Crear Cuenta</h2>
+        <form action="#" method="POST">
 
-            <form action="" method="POST">
+            <div class="fila-form">
 
-                <label>Nombre</label>
-                <input type="text" name="nombre" required>
+                <input type="text" name="nombre" placeholder="Nombre *" required>
 
-                <label>Apellido</label>
-                <input type="text" name="apellido" required>
+                <input type="text" name="apellido" placeholder="Apellido *" required>
 
-                <label>Email</label>
-                <input type="email" name="email" required>
+            </div>
 
-                <label>Teléfono</label>
-                <input type="text" name="telefono">
+            <input type="email" name="email" placeholder="Email *" required>
 
-                <label>Dirección</label>
-                <input type="text" name="direccion">
+            <div class="fila-form">
 
-                <label>Contraseña</label>
-                <input type="password" name="password" required>
+                <input type="text" name="telefono" placeholder="Teléfono">
 
-                <label>Confirmar contraseña</label>
-                <input type="password" name="confirmar" required>
+                <input type="text" name="direccion" placeholder="Dirección">
 
-                <button type="submit">
-                    CREAR CUENTA
-                </button>
+            </div>
 
-            </form>
+            <div class="fila-form">
 
-            <p>
-                ¿Ya tenés una cuenta?
-                <a href="login.php">Iniciá sesión</a>
-            </p>
+                <input type="password" name="password" placeholder="Contraseña *" required>
 
-        </div>
+                <input type="password" name="confirmar" placeholder="Confirmar Contraseña *" required>
 
-    </section>
+            </div>
+
+            <button type="submit">
+                CREAR CUENTA
+            </button>
+
+        </form>
+
+        <p class="registro-login">
+
+            ¿Ya tenés cuenta?
+
+            <a href="login.php">Iniciá sesión acá</a>
+
+        </p>
+
+    </div>
 
 </main>
 
-<?php
-include("includes/footer.php");
-?>
+<?php include("includes/footer.php"); ?>

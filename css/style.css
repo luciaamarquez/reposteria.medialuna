@@ -588,18 +588,18 @@ footer hr{
 }
 
 /*==========================
-        LOGIN
+            LOGIN
 ==========================*/
 
 .login{
-
-    min-height:75vh;
 
     display:flex;
 
     justify-content:center;
 
     align-items:center;
+
+    padding:90px 20px;
 
 }
 
@@ -609,11 +609,13 @@ footer hr{
 
     background:white;
 
+    border:1px solid #d4d4d4;
+
+    border-radius:22px;
+
     padding:40px;
 
-    border-radius:20px;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
+    box-shadow:10px 12px 20px rgba(0,0,0,.25);
 
 }
 
@@ -621,9 +623,11 @@ footer hr{
 
     text-align:center;
 
-    color:#6A1234;
+    color:#6E0B35;
 
-    margin-bottom:30px;
+    font-size:42px;
+
+    margin-bottom:40px;
 
 }
 
@@ -635,65 +639,83 @@ footer hr{
 
 }
 
-.login label{
+.login input{
 
-    margin-top:15px;
+    padding:15px;
 
-    margin-bottom:8px;
+    margin-bottom:25px;
 
-    font-weight:600;
+    border:2px solid #E8CDBD;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    outline:none;
 
 }
 
-.login input{
+.login input:focus{
 
-    padding:14px;
-
-    border:1px solid #ccc;
-
-    border-radius:10px;
-
-    font-size:16px;
+    border-color:#6E0B35;
 
 }
 
 .login button{
 
-    margin-top:30px;
-
-    padding:15px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#8B4513;
+    background:#6E0B35;
 
     color:white;
 
-    font-size:17px;
+    border:none;
+
+    padding:16px;
+
+    border-radius:6px;
+
+    font-size:18px;
+
+    font-weight:600;
 
     cursor:pointer;
+
+    margin-bottom:22px;
 
 }
 
 .login button:hover{
 
-    background:#6A3410;
+    background:#5A082C;
 
 }
 
-.login a{
-
-    display:block;
+.registro{
 
     text-align:center;
 
+    font-size:15px;
+
+}
+
+.registro a{
+
+    color:#6E0B35;
+
+    font-weight:600;
+
+}
+
+.olvide{
+
+    display:block;
+
     margin-top:18px;
 
-    color:#6A1234;
+    text-align:center;
 
-    text-decoration:none;
+    font-size:14px;
+
+    color:#6E0B35;
 
 }
 
@@ -704,106 +726,356 @@ footer hr{
 .registro{
 
     display:flex;
+
     justify-content:center;
-    align-items:center;
-    padding:70px 20px;
+
+    padding:80px 20px;
 
 }
 
 .registro-contenedor{
 
-    width:550px;
+    width:900px;
 
-    background:#fff;
+    background:white;
+
+    border-radius:22px;
 
     padding:40px;
 
-    border-radius:20px;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    box-shadow:10px 10px 20px rgba(0,0,0,.25);
 
 }
 
-.registro h2{
+.registro-contenedor h2{
 
     text-align:center;
 
-    color:#6A1234;
+    color:#6E0B35;
 
-    margin-bottom:30px;
+    font-size:46px;
+
+    margin-bottom:35px;
 
 }
 
-.registro form{
+.fila-form{
 
     display:flex;
 
-    flex-direction:column;
+    gap:15px;
+
+    margin-bottom:18px;
 
 }
 
-.registro label{
+.fila-form input{
 
-    margin-top:15px;
-
-    margin-bottom:5px;
-
-    font-weight:600;
+    flex:1;
 
 }
 
 .registro input{
 
-    padding:13px;
+    width:100%;
 
-    border:1px solid #ccc;
+    padding:14px;
 
-    border-radius:10px;
+    border:2px solid #E7CCBD;
+
+    border-radius:8px;
 
     font-size:16px;
+
+    margin-bottom:18px;
+
+    box-sizing:border-box;
+
+}
+
+.registro input:focus{
+
+    outline:none;
+
+    border-color:#6E0B35;
 
 }
 
 .registro button{
 
-    margin-top:30px;
+    display:block;
+
+    width:270px;
+
+    margin:20px auto;
 
     padding:15px;
 
-    border:none;
-
-    border-radius:10px;
-
-    background:#8B4513;
+    background:#6E0B35;
 
     color:white;
 
-    cursor:pointer;
+    border:none;
+
+    border-radius:6px;
 
     font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
 
 }
 
 .registro button:hover{
 
-    background:#6F360E;
+    background:#560628;
 
 }
 
-.registro p{
+.registro-login{
 
     text-align:center;
 
-    margin-top:25px;
+    margin-top:20px;
 
 }
 
-.registro a{
+.registro-login a{
 
-    color:#6A1234;
-
-    text-decoration:none;
+    color:#6E0B35;
 
     font-weight:600;
+
+}
+
+/*==========================
+    RECUPERAR CONTRASEÑA
+==========================*/
+
+.recuperar{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:25px;
+
+    padding:70px 20px;
+
+}
+
+.recuperar-contenedor,
+.codigo-contenedor{
+
+    width:420px;
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:35px;
+
+    box-shadow:10px 10px 20px rgba(0,0,0,.25);
+
+    text-align:center;
+
+}
+
+.recuperar-contenedor h2{
+
+    color:#6E0B35;
+
+    font-size:40px;
+
+    margin-bottom:30px;
+
+}
+
+.recuperar input{
+
+    width:100%;
+
+    padding:14px;
+
+    border:2px solid #E7CCBD;
+
+    border-radius:8px;
+
+    margin-bottom:25px;
+
+    box-sizing:border-box;
+
+}
+
+.recuperar button{
+
+    width:100%;
+
+    padding:14px;
+
+    background:#6E0B35;
+
+    color:white;
+
+    border:none;
+
+    border-radius:6px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+.codigo-contenedor p{
+
+    color:#6E0B35;
+
+    margin-bottom:30px;
+
+}
+
+.codigo-inputs{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:18px;
+
+    margin-bottom:30px;
+
+}
+
+.codigo-inputs input{
+
+    width:42px;
+
+    height:60px;
+
+    text-align:center;
+
+    font-size:22px;
+
+    border:2px solid #E7CCBD;
+
+    border-radius:8px;
+
+}
+
+/*==========================
+    NUEVA CONTRASEÑA
+==========================*/
+
+.nueva-password{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:25px;
+
+    padding:70px 20px;
+
+}
+
+.verificado{
+
+    width:420px;
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:45px;
+
+    text-align:center;
+
+    box-shadow:10px 10px 20px rgba(0,0,0,.25);
+
+}
+
+.verificado p{
+
+    color:#6E0B35;
+
+    font-size:24px;
+
+    margin-bottom:25px;
+
+}
+
+.verificado i{
+
+    font-size:70px;
+
+    color:#6E0B35;
+
+}
+
+.nueva-password-contenedor{
+
+    width:420px;
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:35px;
+
+    box-shadow:10px 10px 20px rgba(0,0,0,.25);
+
+}
+
+.nueva-password-contenedor h2{
+
+    text-align:center;
+
+    color:#6E0B35;
+
+    margin-bottom:30px;
+
+    font-size:36px;
+
+}
+
+.nueva-password-contenedor input{
+
+    width:100%;
+
+    padding:15px;
+
+    border:2px solid #E7CCBD;
+
+    border-radius:8px;
+
+    margin-bottom:25px;
+
+    box-sizing:border-box;
+
+}
+
+.nueva-password-contenedor button{
+
+    width:100%;
+
+    padding:15px;
+
+    background:#6E0B35;
+
+    color:white;
+
+    border:none;
+
+    border-radius:6px;
+
+    font-weight:600;
+
+    cursor:pointer;
 
 }
