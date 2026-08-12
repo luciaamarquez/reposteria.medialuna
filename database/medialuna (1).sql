@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-07-2026 a las 18:45:20
+-- Tiempo de generación: 08-08-2026 a las 01:40:53
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -100,6 +100,13 @@ CREATE TABLE `productos` (
   `stock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `precio`, `imagen`, `id_categoria`, `stock`) VALUES
+(1, 'Red velvet', 'Torta con remolacha', 75000.00, 'torta.jpg', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -127,9 +134,17 @@ CREATE TABLE `usuarios` (
   `email` varchar(100) NOT NULL,
   `telefono` varchar(20) NOT NULL,
   `direccion` varchar(100) NOT NULL,
-  `contraseña` varchar(30) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `rol` enum('admin','cliente') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `telefono`, `direccion`, `password`, `rol`) VALUES
+(5, 'Lucia', 'Marquez', 'LuciaMarquez@gmai.com', '299 123 1235', 'Calle 1234', '$2y$10$ODebtRuf5Bm5o6W3xHZMtOeUAalwJ.XzV7wIYeNsbVS5lFDWpNIUG', 'cliente'),
+(6, 'Natanael', 'Meza', 'NatanaelMeza@gmail.com', '299 123 1234', 'Calle 1234', '$2y$10$YYGnqE3K1UXRS0RsqTaDM.kdFvN9biY.dBFaMBteweXe4JMLzcQzi', 'admin');
 
 --
 -- Índices para tablas volcadas
@@ -210,7 +225,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `recetas`
@@ -222,7 +237,7 @@ ALTER TABLE `recetas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -38,15 +38,15 @@
 
             <ul>
 
-                <li><a href="index.php">INICIO</a></li>
+                <li><a href="index.php#inicio">INICIO</a></li>
 
-                <li><a href="#">NOSOTROS</a></li>
+                <li><a href="index.php#nosotros">NOSOTROS</a></li>
 
-                <li><a href="productos.php">PRODUCTOS</a></li>
+                <li><a href="index.php#productos">PRODUCTOS</a></li>
 
-                <li><a href="recetas.php">RECETAS</a></li>
+                <li><a href="index.php#recetas">RECETAS</a></li>
 
-                <li><a href="#">CONTACTO</a></li>
+                <li><a href="index.php#contacto">CONTACTO</a></li>
 
             </ul>
 

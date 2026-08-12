@@ -20,10 +20,10 @@
             <ul>
 
                 <li><a href="index.php">Inicio</a></li>
-                <li><a href="#">Nosotros</a></li>
-                <li><a href="productos.php">Productos</a></li>
-                <li><a href="recetas.php">Recetas</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="index.php#nosotros">Nosotros</a></li>
+                <li><a href="index.php#productos">Productos</a></li>
+                <li><a href="index.php#recetas">Recetas</a></li>
+                <li><a href="index.php#contacto">Contacto</a></li>
 
             </ul>
 
