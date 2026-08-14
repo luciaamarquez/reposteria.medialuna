@@ -1,5 +1,24 @@
 <?php
+session_start();
 include("includes/header.php");
+
+// Si es admin, mostrar panel de administración
+if (isset($_SESSION["rol"]) && $_SESSION["rol"] == "admin") {
+    ?>
+    <main>
+        <h1>Panel de Administración</h1>
+        <p>Bienvenido, <?php echo $_SESSION["nombre"]; ?>.</p>
+        <hr>
+        <ul>
+            <li><a href="admin/productos.php">Gestionar productos</a></li>
+            <li><a href="admin/recetas.php">Gestionar recetas</a></li>
+            <li><a href="logout.php">Cerrar sesión</a></li>
+        </ul>
+    </main>
+    <?php
+    include("includes/footer.php");
+    exit();
+}
 ?>
 
 <main>

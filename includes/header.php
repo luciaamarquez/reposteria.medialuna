@@ -54,15 +54,24 @@
 
         <div class="header-derecha">
 
-            <a href="carrito.php" class="carrito">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </a>
-            
-            <a href="login.php" class="btn-ingresar">
-
-                INGRESAR
-
-            </a>
+            <?php if (isset($_SESSION["id"])): ?>
+                <a href="carrito.php" class="carrito">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+                <span style="color: white; margin-right: 15px;">
+                    <?php echo $_SESSION["nombre"]; ?>
+                </span>
+                <a href="logout.php" class="btn-ingresar">
+                    CERRAR SESIÓN
+                </a>
+            <?php else: ?>
+                <a href="carrito.php" class="carrito">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+                <a href="login.php" class="btn-ingresar">
+                    INGRESAR
+                </a>
+            <?php endif; ?>
 
         </div>
 
