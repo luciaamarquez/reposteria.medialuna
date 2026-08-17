@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 if (!isset($_SESSION["rol"]) || $_SESSION["rol"] != "admin") {
@@ -6,61 +7,144 @@ if (!isset($_SESSION["rol"]) || $_SESSION["rol"] != "admin") {
     exit();
 }
 
-require_once "../conexion.php";
+include("../conexion.php");
+include("../includes/header.php");
 
-$sql = "SELECT p.*, c.nombre AS categoria
-        FROM productos p
-        INNER JOIN categoria c
-        ON p.id_categoria = c.id";
+
+// OBTENER PRODUCTOS DE LA BASE DE DATOS
+
+$sql = "SELECT * FROM productos ORDER BY id DESC";
 $resultado = $conexion->query($sql);
+
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Administración de Productos</title>
-</head>
-<body>
+<main class="admin-contenedor">
 
-<h1>Administración de Productos</h1>
+    <div class="admin-titulo">
 
-<p>Bienvenido, <?php echo $_SESSION["nombre"]; ?></p>
+        <h1>Productos</h1>
 
-<a href="agregarProducto.php">➕ Agregar producto</a>
+        <a href="agregar_producto.php" class="btn-agregar">
+            <i class="fa-solid fa-plus"></i>
+            AGREGAR PRODUCTO
+        </a>
 
-<br><br>
+    </div>
 
-<table border="1" cellpadding="10">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Precio</th>
-        <th>Stock</th>
-        <th>Categoría</th>
-        <th>Acciones</th>
-    </tr>
 
-    <?php while($producto = $resultado->fetch_assoc()) { ?>
+    <div class="tabla-contenedor">
 
-    <tr>
-        <td><?php echo $producto["id"]; ?></td>
-        <td><?php echo $producto["nombre"]; ?></td>
-        <td>$<?php echo $producto["precio"]; ?></td>
-        <td><?php echo $producto["stock"]; ?></td>
-        <td><?php echo $producto["categoria"]; ?></td>
-        <td>
-            <a href="editarProducto.php?id=<?php echo $producto["id"]; ?>">Editar</a>
-            <a href="eliminarProducto.php?id=<?php echo $producto["id"]; ?>"
-            onclick="return confirm('¿Estás seguro de que querés eliminar este producto?');">
-                Eliminar
-            </a>       
-         </td>
-    </tr>
+        <table class="tabla-admin">
 
-    <?php } ?>
+            <thead>
 
-</table>
+                <tr>
 
-</body>
-</html>
+                    <th>ID</th>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <?php while ($producto = $resultado->fetch_assoc()): ?>
+
+                    <tr>
+
+                        <td>
+                            <?php echo $producto["id"]; ?>
+                        </td>
+
+
+                        <td>
+
+                            <?php if (!empty($producto["imagen"])): ?>
+
+                                <img
+                                    src="../img/productos/<?php echo htmlspecialchars($producto["imagen"]); ?>"
+                                    class="imagen-producto-admin"
+                                    alt="Producto"
+                                >
+
+                            <?php else: ?>
+
+                                <span>Sin imagen</span>
+
+                            <?php endif; ?>
+
+                        </td>
+
+
+                        <td>
+                            <?php echo htmlspecialchars($producto["nombre"]); ?>
+                        </td>
+
+
+                        <td>
+                            <?php echo htmlspecialchars($producto["descripcion"]); ?>
+                        </td>
+
+
+                        <td>
+                            <?php echo $producto["id_categoria"]; ?>
+                        </td>
+
+
+                        <td>
+                            $<?php echo number_format($producto["precio"], 2, ',', '.'); ?>
+                        </td>
+
+
+                        <td>
+                            <?php echo $producto["stock"]; ?>
+                        </td>
+
+
+                        <td class="acciones">
+
+                            <a
+                                href="editar_producto.php?id=<?php echo $producto["id"]; ?>"
+                                class="btn-editar"
+                                title="Editar"
+                            >
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+
+
+                            <a
+                                href="eliminar_producto.php?id=<?php echo $producto["id"]; ?>"
+                                class="btn-eliminar"
+                                title="Eliminar"
+                                onclick="return confirm('¿Seguro que querés eliminar este producto?');"
+                            >
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                <?php endwhile; ?>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</main>
+
+
+<?php
+
+include("../includes/footer.php");
+
+?>

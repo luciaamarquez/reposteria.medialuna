@@ -1,41 +1,20 @@
 <?php
 session_start();
 include("includes/header.php");
-
-// Si es admin, mostrar panel de administración
-if (isset($_SESSION["rol"]) && $_SESSION["rol"] == "admin") {
-    ?>
-    <main>
-        <h1>Panel de Administración</h1>
-        <p>Bienvenido, <?php echo $_SESSION["nombre"]; ?>.</p>
-        <hr>
-        <ul>
-            <li><a href="admin/productos.php">Gestionar productos</a></li>
-            <li><a href="admin/recetas.php">Gestionar recetas</a></li>
-            <li><a href="logout.php">Cerrar sesión</a></li>
-        </ul>
-    </main>
-    <?php
-    include("includes/footer.php");
-    exit();
-}
 ?>
 
 <a href="#inicio" id="btnSubir">
     <i class="fa-solid fa-arrow-up"></i>
 </a>
 <script>
-    const btnSubir = document.getElementById("btnSubir");
-
-window.addEventListener("scroll", () => {
-
-    if(window.scrollY > 400){
-        btnSubir.classList.add("mostrar");
-    }else{
-        btnSubir.classList.remove("mostrar");
-    }
-
-});
+        const btnSubir = document.getElementById("btnSubir");
+        window.addEventListener("scroll", () => {
+            if(window.scrollY > 400){
+                btnSubir.classList.add("mostrar");
+            }else{
+                btnSubir.classList.remove("mostrar");
+            }
+        });
 </script>
 
 <main>
@@ -121,31 +100,22 @@ window.addEventListener("scroll", () => {
             </div>
             <p>Cookies</p>
         </div>
-
         </div>
-
         <a href="productos.php" class="btn-productos">VER TODOS LOS PRODUCTOS</a>
 
         <script>
-
             const categorias = document.querySelectorAll(".categoria");
-
             const observer = new IntersectionObserver((entries) => {
-
                 entries.forEach((entry) => {
 
                     if(entry.isIntersecting){
                         entry.target.classList.add("mostrar");
                     }
-
                 });
-
             });
-
             categorias.forEach((categoria)=>{
                 observer.observe(categoria);
             });
-
         </script>
     </section>
 
@@ -187,13 +157,9 @@ window.addEventListener("scroll", () => {
                     para garantizar el mejor sabor y textura.
                 </p>
             </div>
-
         </div>
-
         <script>
-
             const cards = document.querySelectorAll(".nosotros-card");
-
             const observerNosotros = new IntersectionObserver((entries) => {
 
                 if (entries[0].isIntersecting) {
@@ -205,37 +171,30 @@ window.addEventListener("scroll", () => {
                         }, index * 350);
 
                     });
-
                     observerNosotros.disconnect();
                 }
-
             },{
                 threshold:0.4
             });
-
             observerNosotros.observe(document.querySelector(".contenedor-nosotros"));
         </script>
     </section>
 
 <!-- RECETAS (vista previa) -->
 <section class="recetas" id="recetas">
+    <div class="recetas-contenedor">
+        <div class="recetas-img">
+            <img src="img/recetas/imgR1.jpg" class="slide activo">
+            <img src="img/recetas/imgR2.jpg" class="slide">
+            <img src="img/recetas/imgR3.jpg" class="slide">
+            <img src="img/recetas/imgR4.jpg" class="slide">
+            <img src="img/recetas/imgR5.jpg" class="slide">
+            <img src="img/recetas/imgR6.jpg" class="slide">
+            <img src="img/recetas/imgR7.jpg" class="slide">
+            <img src="img/recetas/imgR8.jpg" class="slide">
+        </div>
 
-<div class="recetas-contenedor">
-
-    <div class="recetas-img">
-
-        <img src="img/recetas/imgR1.jpg" class="slide activo">
-        <img src="img/recetas/imgR2.jpg" class="slide">
-        <img src="img/recetas/imgR3.jpg" class="slide">
-        <img src="img/recetas/imgR4.jpg" class="slide">
-        <img src="img/recetas/imgR5.jpg" class="slide">
-        <img src="img/recetas/imgR6.jpg" class="slide">
-        <img src="img/recetas/imgR7.jpg" class="slide">
-        <img src="img/recetas/imgR8.jpg" class="slide">
-    </div>
-
-    <div class="recetas-texto">
-
+        <div class="recetas-texto">
         <h2>Recetas</h2>
 
         <p class="descripcion">
@@ -245,62 +204,56 @@ window.addEventListener("scroll", () => {
         </p>
 
         <div class="linea"></div>
-
-        <blockquote class="frase" id="frase"></blockquote>
-
-        <a href="recetas.php" class="btn-productos">
-            VER TODAS LAS RECETAS
-        </a>
-
+            <blockquote class="frase" id="frase"></blockquote>
+            <a href="recetas.php" class="btn-productos">
+                VER TODAS LAS RECETAS
+            </a>
+        </div>
     </div>
+        <script>
 
-</div>
+        const slides = document.querySelectorAll(".slide");
+        let actual = 0;
 
-<script>
+        setInterval(() => {
 
-const slides = document.querySelectorAll(".slide");
-let actual = 0;
+            slides[actual].classList.remove("activo");
 
-setInterval(() => {
+            actual++;
 
-    slides[actual].classList.remove("activo");
+            if(actual >= slides.length){
+                actual = 0;
+            }
 
-    actual++;
+            slides[actual].classList.add("activo");
 
-    if(actual >= slides.length){
-        actual = 0;
-    }
+        }, 3000);
 
-    slides[actual].classList.add("activo");
+        const texto = "Cada receta guarda una historia, cada aroma crea un recuerdo.";
+        const frase = document.getElementById("frase");
 
-}, 3000);
+        let i = 0;
 
-const texto = "Cada receta guarda una historia, cada aroma crea un recuerdo.";
-const frase = document.getElementById("frase");
+        function escribir() {
+            if (i < texto.length) {
+                frase.textContent += texto.charAt(i);
+                i++;
+                setTimeout(escribir, 50); // velocidad
+            }
+        }
 
-let i = 0;
+        const observerFrase = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                escribir();
+                observerFrase.disconnect();
+            }
+        }, {
+            threshold: 0.5
+        });
 
-function escribir() {
-    if (i < texto.length) {
-        frase.textContent += texto.charAt(i);
-        i++;
-        setTimeout(escribir, 50); // velocidad
-    }
-}
-
-const observerFrase = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-        escribir();
-        observerFrase.disconnect();
-    }
-}, {
-    threshold: 0.5
-});
-
-observerFrase.observe(frase);
-</script>
-
-</section>
+        observerFrase.observe(frase);
+        </script>
+    </section>
 </main>
 
 <?php

@@ -4,11 +4,13 @@ require_once "conexion.php";
 $sql = "SELECT * FROM recetas";
 $resultado = $conexion->query($sql);
 ?>
-
+<head>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
 <section class="recetas">
 
-    <h2>Nuestras recetas</h2>
-    <p class="subtitulo">
+    <h2 class="tituloNR">Nuestras recetas</h2>
+    <p class="subtitulo-recetas">
         Aprendé a preparar deliciosos postres con nuestras recetas.
     </p>
 
