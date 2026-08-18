@@ -1,4 +1,11 @@
-<?php include("includes/header.php"); ?>
+<?php
+session_start();
+require_once "conexion.php";
+include("includes/header.php");
+
+// Obtener todos los productos
+$consulta = $conexion->query("SELECT * FROM productos ORDER BY id DESC");
+?>
 
 <main>
 
@@ -26,165 +33,96 @@
 
     <section class="productos-grid">
 
-    <div class="card-producto">
+        <?php while ($producto = $consulta->fetch_assoc()): ?>
 
-        <a href="producto.php">
-            <img src="img/productos/producto.jpg" alt="Producto">
-        </a>
+            <?php if ($producto['stock'] > 0): ?>
 
-        <div class="info-producto">
+                <div class="card-producto">
 
-            <div>
+                    <a href="producto.php?id=<?= $producto['id'] ?>">
+                        <img
+                            src="img/productos/<?= htmlspecialchars($producto['imagen']) ?>"
+                            alt="<?= htmlspecialchars($producto['nombre']) ?>"
+                        >
+                    </a>
 
-                <h3>Nombre</h3>
+                    <div class="info-producto">
 
-                <p>Descripción</p>
+                        <div>
 
-                <span>$7.000</span>
+                            <h3>
+                                <?= htmlspecialchars($producto['nombre']) ?>
+                            </h3>
 
-            </div>
+                            <p>
+                                <?= htmlspecialchars($producto['descripcion']) ?>
+                            </p>
 
-            <button>
-                <i class="fa-solid fa-cart-shopping"></i>
-            </button>
+                            <span>
+                                $<?= number_format($producto['precio'], 2, ',', '.') ?>
+                            </span>
 
-        </div>
+                        </div>
 
-    </div>
+                        <form action="agregar_carrito.php" method="POST">
 
-    <div class="card-producto">
+                            <input
+                                type="hidden"
+                                name="id_producto"
+                                value="<?= $producto['id'] ?>"
+                            >
 
-        <a href="producto.php">
-            <img src="img/productos/producto.jpg" alt="Producto">
-        </a>
+                            <button type="submit">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </button>
 
-        <div class="info-producto">
+                        </form>
 
-            <div>
+                    </div>
 
-                <h3>Nombre</h3>
+                </div>
 
-                <p>Descripción</p>
+            <?php else: ?>
 
-                <span>$7.000</span>
+                <!-- Producto agotado -->
 
-            </div>
+                <div class="card-producto agotado">
 
-            <button>
-                <i class="fa-solid fa-cart-shopping"></i>
-            </button>
+                    <div class="imagen-agotada">
+                        No disponible
+                    </div>
 
-        </div>
+                    <div class="info-producto">
 
-    </div>
+                        <div>
 
-    <div class="card-producto">
+                            <h3>
+                                <?= htmlspecialchars($producto['nombre']) ?>
+                            </h3>
 
-        <a href="producto.php">
-            <img src="img/productos/producto.jpg" alt="Producto">
-        </a>
+                            <p>
+                                <?= htmlspecialchars($producto['descripcion']) ?>
+                            </p>
 
-        <div class="info-producto">
+                            <span>
+                                AGOTADO
+                            </span>
 
-            <div>
+                        </div>
 
-                <h3>Nombre</h3>
+                        <button type="button" disabled>
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </button>
 
-                <p>Descripción</p>
+                    </div>
 
-                <span>$7.000</span>
+                </div>
 
-            </div>
+            <?php endif; ?>
 
-            <button>
-                <i class="fa-solid fa-cart-shopping"></i>
-            </button>
+        <?php endwhile; ?>
 
-        </div>
-
-    </div>
-
-    <!-- Producto agotado -->
-
-    <div class="card-producto agotado">
-
-        <div class="imagen-agotada">
-            No disponible
-        </div>
-
-        <div class="info-producto">
-
-            <div>
-
-                <h3>Nombre</h3>
-
-                <p>Descripción</p>
-
-                <span>$ -----</span>
-
-            </div>
-
-            <button>
-                <i class="fa-solid fa-cart-shopping"></i>
-            </button>
-
-        </div>
-
-    </div>
-
-    <div class="card-producto">
-
-        <a href="producto.php">
-            <img src="img/productos/producto.jpg" alt="Producto">
-        </a>
-
-        <div class="info-producto">
-
-            <div>
-
-                <h3>Nombre</h3>
-
-                <p>Descripción</p>
-
-                <span>$7.000</span>
-
-            </div>
-
-            <button>
-                <i class="fa-solid fa-cart-shopping"></i>
-            </button>
-
-        </div>
-
-    </div>
-
-    <div class="card-producto">
-
-        <a href="producto.php">
-            <img src="img/productos/producto.jpg" alt="Producto">
-        </a>
-
-        <div class="info-producto">
-
-            <div>
-
-                <h3>Nombre</h3>
-
-                <p>Descripción</p>
-
-                <span>$7.000</span>
-
-            </div>
-
-            <button>
-                <i class="fa-solid fa-cart-shopping"></i>
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
+    </section>
 
 </main>
 
