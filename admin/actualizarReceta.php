@@ -30,7 +30,7 @@ session_start();
     );
 
     if ($consulta->execute()) {
-        header("Location: recetas.php");
+        header("Location: index.php");
         exit();
     } else {
         echo "Error al actualizar la receta.";

@@ -1985,3 +1985,107 @@ footer hr{
     from { opacity: 0; transform: scale(.95) translateY(20px); }
     to { opacity: 1; transform: scale(1) translateY(0); }
 }
+
+/*==========================
+    EDITAR RECETA
+==========================*/
+
+.editar-receta{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#FDF7F2;
+    padding:20px;
+}
+
+.editar-receta-card{
+    width:900px;
+    background:#fff;
+    border-radius:20px;
+    padding:30px 35px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    animation: entrada .6s ease forwards;
+}
+
+.editar-receta-card h1{
+    text-align:center;
+    color:#6E0B35;
+    font-size:32px;
+    margin-bottom:25px;
+}
+
+.editar-grupo{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:18px;
+}
+
+.editar-grupo label{
+    margin-bottom:8px;
+    color:#4C1930;
+    font-weight:600;
+}
+
+.editar-grupo input,
+.editar-grupo textarea{
+    width:100%;
+    padding:12px;
+    border:2px solid #E7CCBD;
+    border-radius:10px;
+    background:#FDF7F2;
+    font-family:'Poppins',sans-serif;
+    font-size:15px;
+    box-sizing:border-box;
+}
+
+.editar-grupo textarea{
+    height:220px;
+    resize:none;
+}
+
+.doble-textarea{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+    margin-bottom:18px;
+}
+
+.editar-botones{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:10px;
+}
+
+.btn-volver-editar{
+    text-decoration:none;
+    background:#d7d7d7;
+    color:#444;
+    padding:12px 24px;
+    border-radius:30px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-volver-editar:hover{
+    background:#bfbfbf;
+}
+
+.btn-actualizar{
+    border:none;
+    background:#6E0B35;
+    color:#fff;
+    padding:12px 28px;
+    border-radius:30px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    box-shadow:0 6px 12px rgba(0,0,0,.2);
+    transition:.3s;
+}
+
+.btn-actualizar:hover{
+    background:#8C1F4B;
+    transform:translateY(-3px);
+}

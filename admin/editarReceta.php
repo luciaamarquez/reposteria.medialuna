@@ -14,6 +14,8 @@ $consulta->execute();
 
 $resultado = $consulta->get_result();
 $receta = $resultado->fetch_assoc();
+
+include("../includes/header.php");
 ?>
 
 <!DOCTYPE html>
@@ -21,28 +23,55 @@ $receta = $resultado->fetch_assoc();
     <head>
         <meta charset="UTF-8">
         <title>Editar Receta</title>
+        <link rel="stylesheet" href="../css/style.css">
     </head>
     <body>
-    <h1>Editar Receta</h1>
+    <div class="editar-receta">
+    <div class="editar-receta-card">
+
+        <h1>Editar Receta</h1>
+
         <form action="actualizarReceta.php" method="POST">
 
             <input type="hidden" name="id" value="<?php echo $receta["id"]; ?>">
 
-            <label>Título</label><br>
-            <input type="text" name="titulo" value="<?php echo $receta["titulo"]; ?>" required><br><br>
+            <div class="editar-grupo">
+    <label>Título</label>
+    <input type="text" name="titulo"
+        value="<?php echo $receta["titulo"]; ?>" required>
+</div>
 
-            <label>Ingredientes</label><br>
-            <textarea name="ingredientes" rows="6" cols="50" required><?php echo $receta["ingredientes"]; ?></textarea><br><br>
+<div class="doble-textarea">
 
-            <label>Preparación</label><br>
-            <textarea name="preparacion" rows="8" cols="50" required><?php echo $receta["preparacion"]; ?></textarea><br><br>
+    <div class="editar-grupo">
+        <label>Ingredientes</label>
+        <textarea name="ingredientes" required><?php echo $receta["ingredientes"]; ?></textarea>
+    </div>
 
-            <label>Imagen</label><br>
-            <input type="text" name="imagen" value="<?php echo $receta["imagen"]; ?>" required><br><br>
+    <div class="editar-grupo">
+        <label>Preparación</label>
+        <textarea name="preparacion" required><?php echo $receta["preparacion"]; ?></textarea>
+    </div>
 
-            <button type="submit">Actualizar Receta</button>
+</div>
 
-        </form> <br>
-        <a href="index.php">← Volver</a>
-    </body>
+<div class="editar-grupo">
+    <label>Imagen</label>
+    <input type="text" name="imagen"
+        value="<?php echo $receta["imagen"]; ?>" required>
+</div>
+            <div class="editar-botones">
+                <a href="index.php" class="btn-volver-editar">Cancelar</a>
+                <button type="submit" class="btn-actualizar">Actualizar</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+</body>
 </html>
+
+<?php
+include("../includes/footer.php");
+?>
