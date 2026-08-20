@@ -26,6 +26,8 @@ $resultadoProductos = $conexion->query($sqlProductos);
 $sqlRecetas = "SELECT * FROM recetas ORDER BY id DESC";
 $resultadoRecetas = $conexion->query($sqlRecetas);
 
+$categorias = $conexion->query("SELECT id, nombre FROM categoria");
+
 ?>
 
 <main class="panel-admin">
@@ -92,134 +94,159 @@ $resultadoRecetas = $conexion->query($sqlRecetas);
 
         <section id="productos" class="admin-seccion activa">
 
-            <div class="admin-titulo">
+<div class="admin-titulo">
 
-                <h2>Productos</h2>
+    <h2>Productos</h2>
 
-                <a href="agregar_producto.php" class="btn-agregar">
-                    <i class="fa-solid fa-plus"></i>
-                    AGREGAR PRODUCTO
+    <a href="#" class="btn-agregar" onclick="abrirModalProducto(); return false;">
+        <i class="fa-solid fa-plus"></i>
+        AGREGAR PRODUCTO
+    </a>
+
+</div>
+
+<!-- MODAL PRODUCTOS -->
+<div id="modal-producto" class="overlay-producto">
+
+    <div class="agregar-producto-contenedor">
+
+        <h1>Agregar Producto</h1>
+
+        <form action="guardarProducto.php" method="POST">
+
+            <label for="nombre">Nombre *</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="descripcion">Descripción *</label>
+            <textarea id="descripcion" name="descripcion" rows="5" required></textarea>
+
+            <label for="precio">Precio *</label>
+            <input type="number" step="0.01" id="precio" name="precio" required>
+
+            <label for="stock">Stock *</label>
+            <input type="number" id="stock" name="stock" required>
+
+            <label for="imagen">Imagen *</label>
+            <input type="text" id="imagen" name="imagen" placeholder="ej: torta.jpg" required>
+
+            <label for="categoria">Categoría *</label>
+            <select id="categoria" name="id_categoria" required>
+
+                <option value="">Seleccione una categoría</option>
+
+                <?php while ($categoria = $categorias->fetch_assoc()) { ?>
+
+                    <option value="<?php echo $categoria["id"]; ?>">
+                        <?php echo htmlspecialchars($categoria["nombre"]); ?>
+                    </option>
+
+                <?php } ?>
+
+            </select>
+
+            <div class="botones-form">
+
+                <a href="#" class="btn-cancelar" onclick="cerrarModalProducto(); return false;">
+                    CANCELAR
                 </a>
 
-            </div>
-
-
-            <div class="tabla-contenedor">
-
-                <table class="tabla-admin">
-
-                    <thead>
-
-                        <tr>
-
-                            <th>ID</th>
-                            <th>Imagen</th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Categoría</th>
-                            <th>Precio</th>
-                            <th>Stock</th>
-                            <th>Acciones</th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody>
-
-                        <?php while ($producto = $resultadoProductos->fetch_assoc()): ?>
-
-                            <tr>
-
-                                <td>
-                                    <?php echo $producto["id"]; ?>
-                                </td>
-
-
-                                <td>
-
-                                    <?php if (!empty($producto["imagen"])): ?>
-
-                                        <img
-                                            src="../img/productos/<?php echo htmlspecialchars($producto["imagen"]); ?>"
-                                            class="imagen-producto-admin"
-                                            alt="Producto"
-                                        >
-
-                                    <?php else: ?>
-
-                                        <span>Sin imagen</span>
-
-                                    <?php endif; ?>
-
-                                </td>
-
-
-                                <td>
-                                    <?php echo htmlspecialchars($producto["nombre"]); ?>
-                                </td>
-
-
-                                <td class="descripcion-tabla">
-                                    <?php echo htmlspecialchars($producto["descripcion"]); ?>
-                                </td>
-
-
-                                <td>
-                                    <?php echo $producto["id_categoria"]; ?>
-                                </td>
-
-
-                                <td>
-                                    $<?php echo number_format(
-                                        $producto["precio"],
-                                        2,
-                                        ',',
-                                        '.'
-                                    ); ?>
-                                </td>
-
-
-                                <td>
-                                    <?php echo $producto["stock"]; ?>
-                                </td>
-
-
-                                <td class="acciones">
-
-                                    <a
-                                        href="editarProducto.php?id=<?php echo $producto["id"]; ?>"
-                                        class="btn-editar"
-                                        title="Editar"
-                                    >
-                                        <i class="fa-solid fa-pen"></i>
-                                    </a>
-
-
-                                    <a
-                                        href="eliminarProducto.php?id=<?php echo $producto["id"]; ?>"
-                                        class="btn-eliminar"
-                                        title="Eliminar"
-                                        onclick="return confirm('¿Seguro que querés eliminar este producto?');"
-                                    >
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
-
-                                </td>
-
-                            </tr>
-
-                        <?php endwhile; ?>
-
-                    </tbody>
-
-                </table>
+                <button type="submit" class="btn-guardar-receta">
+                    AGREGAR
+                </button>
 
             </div>
 
-        </section>
+        </form>
 
+    </div>
+
+</div>
+
+<div class="tabla-contenedor">
+
+    <table class="tabla-admin">
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <?php while ($producto = $resultadoProductos->fetch_assoc()): ?>
+
+            <tr>
+
+                <td><?php echo $producto["id"]; ?></td>
+
+                <td>
+
+                    <?php if (!empty($producto["imagen"])): ?>
+
+                        <img
+                            src="../img/productos/<?php echo htmlspecialchars($producto["imagen"]); ?>"
+                            class="imagen-producto-admin"
+                            alt="Producto">
+
+                    <?php else: ?>
+
+                        <span>Sin imagen</span>
+
+                    <?php endif; ?>
+
+                </td>
+
+                <td><?php echo htmlspecialchars($producto["nombre"]); ?></td>
+
+                <td class="descripcion-tabla">
+                    <?php echo htmlspecialchars($producto["descripcion"]); ?>
+                </td>
+
+                <td><?php echo $producto["id_categoria"]; ?></td>
+
+                <td>
+                    $<?php echo number_format($producto["precio"],2,',','.'); ?>
+                </td>
+
+                <td><?php echo $producto["stock"]; ?></td>
+
+                <td class="acciones">
+
+                    <a href="editarProducto.php?id=<?php echo $producto["id"]; ?>" class="btn-editar">
+                        <i class="fa-solid fa-pen"></i>
+                    </a>
+
+                    <a href="eliminarProducto.php?id=<?php echo $producto["id"]; ?>"
+                       class="btn-eliminar"
+                       onclick="return confirm('¿Seguro que querés eliminar este producto?');">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            <?php endwhile; ?>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</section>
 
     <!-- ==========================
           RECETAS
@@ -371,7 +398,16 @@ $resultadoRecetas = $conexion->query($sqlRecetas);
 =========================== -->
 
 <script>
-    function abrirModalReceta() {
+
+function abrirModalProducto() {
+    document.getElementById("modal-producto").style.display = "flex";
+}
+
+function cerrarModalProducto() {
+    document.getElementById("modal-producto").style.display = "none";
+}
+
+function abrirModalReceta() {
   document.getElementById("modal-receta").style.display = "flex";
 }
 

@@ -34,7 +34,7 @@ session_start();
     );
 
     if ($consulta->execute()) {
-        header("Location: productos.php");
+        header("Location: index.php");
         exit();
     } else {
         echo "Error al actualizar el producto.";

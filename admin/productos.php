@@ -111,7 +111,7 @@ $resultado = $conexion->query($sql);
                         <td class="acciones">
 
                             <a
-                                href="editar_producto.php?id=<?php echo $producto["id"]; ?>"
+                                href="editarProducto.php?id=<?php echo $producto["id"]; ?>"
                                 class="btn-editar"
                                 title="Editar"
                             >
@@ -120,7 +120,7 @@ $resultado = $conexion->query($sql);
 
 
                             <a
-                                href="eliminar_producto.php?id=<?php echo $producto["id"]; ?>"
+                                href="eliminarProducto.php?id=<?php echo $producto["id"]; ?>"
                                 class="btn-eliminar"
                                 title="Eliminar"
                                 onclick="return confirm('¿Seguro que querés eliminar este producto?');"

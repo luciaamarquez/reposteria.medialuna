@@ -29,7 +29,7 @@ $consulta->bind_param(
 );
 
 if ($consulta->execute()) {
-    header("Location: productos.php");
+    header("Location: index.php");
     exit();
 } else {
     echo "Error al guardar el producto.";

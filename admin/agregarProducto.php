@@ -50,6 +50,6 @@ if (!isset($_SESSION["rol"]) || $_SESSION["rol"] != "admin") {
             <button type="submit">Guardar Producto</button>
         </form> <br>
 
-        <a href="productos.php">← Volver</a>
+        <a href="index.php">← Volver</a>
     </body>
 </html>

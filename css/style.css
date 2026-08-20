@@ -1905,7 +1905,7 @@ footer hr{
 
 /* Contenedor del formulario */
 .agregar-receta-contenedor {
-    width: 480px;
+    width: 800px;
     background: #fff;
     border-radius: 18px;
     padding: 30px;
@@ -2088,4 +2088,65 @@ footer hr{
 .btn-actualizar:hover{
     background:#8C1F4B;
     transform:translateY(-3px);
+}
+
+
+/*===========================
+    MODAL AGREGAR PRODUCTO
+============================*
+
+/* Overlay */
+.overlay-producto,
+.overlay-receta{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+/* Formulario PRODUCTO */
+.agregar-producto-contenedor{
+    width:800px;
+    max-width:90%;
+    background:#fff;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    animation: entrada .6s ease forwards;
+}
+
+/* Inputs */
+.agregar-producto-contenedor label{
+    display:block;
+    margin-bottom:6px;
+    color:#4C1930;
+    font-weight:600;
+}
+
+.agregar-producto-contenedor input,
+.agregar-producto-contenedor textarea,
+.agregar-producto-contenedor select{
+    width:100%;
+    padding:12px;
+    margin-bottom:16px;
+    border:2px solid #E7CCBD;
+    border-radius:10px;
+    background:#FDF7F2;
+    font-family:'Poppins',sans-serif;
+    font-size:15px;
+}
+
+.agregar-producto-contenedor textarea{
+    resize:none;
+    height:120px;
+}
+
+.agregar-producto-contenedor select:focus,
+.agregar-producto-contenedor input:focus,
+.agregar-producto-contenedor textarea:focus{
+    border-color:#6E0B35;
+    outline:none;
 }
