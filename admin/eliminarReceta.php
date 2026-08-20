@@ -12,7 +12,7 @@ $consulta = $conexion->prepare("DELETE FROM recetas WHERE id = ?");
 $consulta->bind_param("i", $id);
 
 if ($consulta->execute()) {
-    header("Location: recetas.php");
+    header("Location: index.php");
     exit();
 } else {
     echo "Error al eliminar la receta.";
