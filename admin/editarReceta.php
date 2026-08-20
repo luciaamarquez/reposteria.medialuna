@@ -43,6 +43,6 @@ $receta = $resultado->fetch_assoc();
             <button type="submit">Actualizar Receta</button>
 
         </form> <br>
-        <a href="recetas.php">← Volver</a>
+        <a href="index.php">← Volver</a>
     </body>
 </html>

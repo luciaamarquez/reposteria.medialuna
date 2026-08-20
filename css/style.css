@@ -1886,3 +1886,102 @@ footer hr{
     margin-right: 8px;
     font-size: 26px;
 }
+
+/*==========================
+    MODAL AGREGAR RECETA admin
+==========================*/
+
+/* Overlay del modal */
+.overlay-receta{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4); /* fondo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    min-height: 100vh;
+}
+
+/* Contenedor del formulario */
+.agregar-receta-contenedor {
+    width: 480px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 8px 18px rgba(0,0,0,.25);
+    animation: entrada .6s ease forwards;
+}
+
+/* Título */
+.agregar-receta-contenedor h1 {
+    text-align: center;
+    color: #6E0B35;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Campos */
+.agregar-receta-contenedor label {
+    font-weight: 600;
+    color: #4C1930;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.agregar-receta-contenedor input,
+.agregar-receta-contenedor textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #E7CCBD;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 16px;
+    background: #FDF7F2;
+}
+
+/* Botones */
+.botones-form {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.btn-cancelar {
+    background: #ccc;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.btn-cancelar:hover {
+    background: #aaa;
+}
+
+.btn-guardar-receta {
+    background: #6E0B35;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0,0,0,.25);
+    transition: .3s;
+}
+
+.btn-guardar-receta:hover {
+    background: #8C1F4B;
+    transform: translateY(-3px);
+}
+
+/* Animación de entrada */
+@keyframes entrada {
+    from { opacity: 0; transform: scale(.95) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}

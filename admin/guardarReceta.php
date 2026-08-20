@@ -25,7 +25,7 @@ $consulta->bind_param(
 );
 
 if ($consulta->execute()) {
-    header("Location: recetas.php");
+    header("Location: index.php");
     exit();
 } else {
     echo "Error al guardar la receta.";

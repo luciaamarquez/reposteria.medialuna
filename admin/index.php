@@ -221,23 +221,46 @@ $resultadoRecetas = $conexion->query($sqlRecetas);
         </section>
 
 
-        <!-- ==========================
-             RECETAS
-        =========================== -->
+    <!-- ==========================
+          RECETAS
+    =========================== -->
+    <section id="recetas" class="admin-seccion">
 
-        <section id="recetas" class="admin-seccion">
+        <div class="admin-titulo">
 
-            <div class="admin-titulo">
+            <h2>Recetas</h2>
 
-                <h2>Recetas</h2>
-
-                <a href="agregarReceta.php" class="btn-agregar">
-                    <i class="fa-solid fa-plus"></i>
+            <a href="#" class="btn-agregar" onclick="abrirModalReceta()">
+                <i class="fa-solid fa-plus"></i>
                     AGREGAR RECETA
-                </a>
+            </a>
 
+        </div>
+
+        <div id="modal-receta" class="overlay-receta" style="display:none;">
+        <div class="agregar-receta-contenedor">
+            <h1>Agregar Receta</h1>
+            <form id="form-agregar-receta" action="guardarReceta.php" method="POST">
+            <label for="titulo">Nombre *</label>
+            <input type="text" id="titulo" name="titulo" required>
+
+            <label for="ingredientes">Ingredientes *</label>
+            <textarea id="ingredientes" name="ingredientes" rows="5" required></textarea>
+
+            <label for="preparacion">Preparación *</label>
+            <textarea id="preparacion" name="preparacion" rows="6" required></textarea>
+
+            <label for="imagen">URL de imagen</label>
+            <input type="text" id="imagen" name="imagen" placeholder="ej: receta.jpg" required>
+
+            <div class="botones-form">
+                <a href="#" class="btn-cancelar" onclick="cerrarModalReceta()">CANCELAR</a>
+                <button type="submit" class="btn-guardar-receta">AGREGAR</button>
             </div>
-
+            </form>
+        </div>
+        </div>
+        
 
             <div class="tabla-contenedor">
 
@@ -348,6 +371,14 @@ $resultadoRecetas = $conexion->query($sqlRecetas);
 =========================== -->
 
 <script>
+    function abrirModalReceta() {
+  document.getElementById("modal-receta").style.display = "flex";
+}
+
+function cerrarModalReceta() {
+  document.getElementById("modal-receta").style.display = "none";
+}
+
 
 function mostrarSeccion(seccion, boton) {
 

@@ -18,8 +18,9 @@ $resultado = $conexion->query("SELECT * FROM recetas");
     <body>
         <h1>Administración de Recetas</h1>
         <p>Bienvenido, <?php echo $_SESSION["nombre"]; ?></p>
-        <a href="agregarReceta.php">➕ Agregar receta</a>
+        <a href="agregarReceta.php" class="btn-agregar">➕ Agregar receta</a>
         <br><br>
+        
         
         <table border="1" cellpadding="10">
             <tr>
