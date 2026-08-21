@@ -6,46 +6,59 @@
 
         <h2>Crear cuenta</h2>
 
-<form action="registrar.php" method="POST">
-            <div class="fila-form">
-
-                <input type="text" name="nombre" placeholder="Nombre *" required>
-
-                <input type="text" name="apellido" placeholder="Apellido *" required>
-
-            </div>
-
-            <input type="email" name="email" placeholder="Email *" required>
+        <form action="registrar.php" method="POST">
 
             <div class="fila-form">
+                <div class="campo-icono">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="nombre" placeholder="Nombre *" required>
+                </div>
 
-                <input type="text" name="telefono" placeholder="Teléfono">
+                <div class="campo-icono">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="apellido" placeholder="Apellido *" required>
+                </div>
+            </div>
 
-                <input type="text" name="direccion" placeholder="Dirección">
-
+            <div class="campo-icono">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" name="email" placeholder="Email *" required>
             </div>
 
             <div class="fila-form">
+                <div class="campo-icono">
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="text" name="telefono" placeholder="Teléfono">
+                </div>
 
-                <input type="password" name="password" placeholder="Contraseña *" required>
-
-                <input type="password" name="confirmar" placeholder="Confirmar Contraseña *" required>
-
+                <div class="campo-icono">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <input type="text" name="direccion" placeholder="Dirección">
+                </div>
             </div>
 
-            <button type="submit">
-                CREAR CUENTA
-            </button>
+            <div class="fila-form">
+                <div class="campo-icono">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="password" placeholder="Contraseña *" required>
+                </div>
 
-        </form>
+                <div class="campo-icono">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="confirmar" placeholder="Confirmar contraseña *" required>
+                </div>
+            </div>
 
-        <p class="registro-login">
+            <button type="submit">CREAR CUENTA</button>
 
-            ¿Ya tenés cuenta?
+            </form>
 
-            <a href="login.php">Iniciá sesión acá</a>
-
-        </p>
+            <p class="registro-login">
+            ¿Ya tenés cuenta?<br>
+            <a href="login.php">
+                Iniciá sesión acá <i class="fa-solid fa-right-to-bracket"></i>
+            </a>
+            </p>
 
     </div>
 
