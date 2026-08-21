@@ -51,9 +51,12 @@ $envio = 500;
 // Total
 $total = $subtotal + $envio;
 
-?>
+ include("includes/header.php"); ?>
 
-<?php include("includes/header.php"); ?>
+<section class="banner-carrito">
+    <h1>Carrito de Compras</h1>
+    <p>Revisá tus productos antes de confirmar la compra.</p>
+</section>
 
 <main class="carrito">
 
@@ -83,11 +86,7 @@ $total = $subtotal + $envio;
         <!-- CARRITO CON PRODUCTOS -->
         <!-- ========================= -->
 
-        <section class="titulo-carrito">
 
-            <h1>Carrito de Compras</h1>
-
-        </section>
 
         <section class="carrito-contenido">
 
@@ -263,4 +262,6 @@ $total = $subtotal + $envio;
 
 </main>
 
-<?php include("includes/footer.php"); ?>
+<?php 
+include("includes/footer.php"); 
+?>

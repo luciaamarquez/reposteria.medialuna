@@ -62,7 +62,7 @@ $raiz = $enAdmin ? '../' : '';
             <?php if (isset($_SESSION["id"])): ?>
                 <!-- Carrito -->
                 <a href="<?php echo $raiz; ?>carrito.php"
-                   class="carrito"
+                   class="icono-carrito"
                    title="Carrito">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
