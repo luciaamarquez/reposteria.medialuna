@@ -754,81 +754,179 @@ footer hr{
 /*==========================
             LOGIN
 ==========================*/
+.login-contenedor{
+    position:relative;
+}
 
-.login{
+/* Botón */
+.admin-demo{
+    position:absolute;
+    bottom:18px;
+    right:18px;
+}
+
+.admin-demo summary{
+    list-style:none;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#6E0B35;
+    color:#fff;
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:90px 20px;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+    transition:.35s;
+}
+
+.admin-demo summary::-webkit-details-marker{
+    display:none;
+}
+
+.admin-demo summary:hover{
+    transform:scale(1.15);
+    background:#8C1F4B;
+}
+
+/* Panel */
+.admin-demo-info{
+    position:absolute;
+    bottom:55px;
+    right:0;
+    width:230px;
+    padding:16px;
+    border-radius:15px;
+    background:#fff;
+    border:2px solid #E7CCBD;
+    box-shadow:0 15px 30px rgba(0,0,0,.2);
+
+    opacity:0;
+    transform:translateY(15px) scale(.95);
+    transition:.35s;
+}
+
+.admin-demo[open] .admin-demo-info{
+    opacity:1;
+    transform:translateY(0) scale(1);
+}
+
+.admin-demo-info h4{
+    color:#6E0B35;
+    margin-bottom:10px;
+}
+
+.admin-demo-info p{
+    margin:6px 0;
+    font-size:14px;
+    color:#555;
+}
+
+
+
+.login{
+    min-height:calc(100vh - 172px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+   
 }
 
 .login-contenedor{
-    width:420px;
-    background:white;
-    border:1px solid #d4d4d4;
-    border-radius:22px;
-    padding:40px;
-    box-shadow:10px 12px 20px rgba(0,0,0,.25);
+    width:100%;
+    max-width:430px;
+    background:#fff;
+    border-radius:24px;
+    padding:112px 45px;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+    animation:entrada .7s ease;
+    position: relative;
 }
 
 .login-contenedor h2{
     text-align:center;
     color:#6E0B35;
-    font-size:42px;
-    margin-bottom:40px;
+    font-size:36px;
+    margin-bottom:25px;
 }
 
 .login form{
     display:flex;
     flex-direction:column;
+    gap:12px;
 }
 
 .login input{
-    padding:15px;
-    margin-bottom:25px;
-    border:2px solid #E8CDBD;
-    border-radius:8px;
-    font-size:16px;
-    outline:none;
+    width:100%;
+    padding:13px 16px;
+    border:2px solid #E8D2C3;
+    border-radius:12px;
+    background:#FFF9F6;
+    font-size:15px;
+    transition:.3s;
 }
 
 .login input:focus{
+    outline:none;
     border-color:#6E0B35;
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(110,11,53,.08);
 }
 
 .login button{
-    background:#6E0B35;
-    color:white;
+    margin-top:5px;
+    padding:14px;
     border:none;
-    padding:16px;
-    border-radius:6px;
-    font-size:18px;
+    border-radius:40px;
+    background:#6E0B35;
+    color:#fff;
+    font-size:16px;
     font-weight:600;
     cursor:pointer;
-    margin-bottom:22px;
+    transition:.3s;
 }
-
 
 .login button:hover{
-    background:#5A082C;
+    background:#8C1F4B;
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(110,11,53,.25);
 }
 
-.registro{
-    text-align:center;
-    font-size:15px;
+.login .registro{
+    margin-top:15px;
+    margin-bottom:2px;
+    padding:0;
+    line-height:1.5;
+}
+
+.login-registro i{
+    margin-left:6px;
 }
 
 .registro a{
     color:#6E0B35;
+    text-decoration:none;
     font-weight:600;
+    margin-left:10px;
 }
 
-.olvide{
+.registro a:hover{
+    text-decoration:underline;
+}
+
+.login .olvide{
     display:block;
-    margin-top:18px;
-    text-align:center;
-    font-size:14px;
-    color:#6E0B35;
+    margin-top:2px;
+    line-height:1.2;
+    text-align: center;
+    font-size: 14px;
+    color: rgb(83, 83, 83);
+}
+
+.olvide:hover{
+    color:#8C1F4B;
+    text-decoration:underline;
 }
 
 /*==========================
@@ -1846,7 +1944,7 @@ footer hr{
 }
 
 .tituloNR {
-    font-size: 38px;
+    font-size: 46px;
     font-weight: bold;
     color: #4a1525; /* Tono bordó/marrón oscuro */
     margin-bottom: 10px;
@@ -1854,7 +1952,7 @@ footer hr{
 
 .subtitulo-recetas {
     color: #6b4d45;
-    font-size: 16px;
+    font-size: 19px;
     margin: 0;
 }
 
@@ -2259,6 +2357,8 @@ EDITAR PRODUCTO
     padding:70px 20px;
     text-align:center;
     margin:0;
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+
 }
 
 .banner-carrito h1{

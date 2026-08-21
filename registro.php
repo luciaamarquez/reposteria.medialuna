@@ -27,7 +27,7 @@
 
             <div class="fila-form">
 
-                <input type="password" name="password" placeholder="password *" required>
+                <input type="password" name="password" placeholder="Contraseña *" required>
 
                 <input type="password" name="confirmar" placeholder="Confirmar Contraseña *" required>
 

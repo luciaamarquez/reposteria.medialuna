@@ -27,9 +27,22 @@
 
         </form>
 
+        <details class="admin-demo">
+            <summary>
+                <i class="fa-solid fa-user-shield"></i>
+            </summary>
+
+            <div class="admin-demo-info">
+                <h4>Administrador</h4>
+
+                <p><strong>Email:</strong> admin@dulce.com</p>
+                <p><strong>Contraseña:</strong> medialuna0206</p>
+            </div>
+        </details>
+
         <p class="registro">
-            ¿No tenés cuenta?
-            <a href="registro.php">Registrate acá</a>
+            ¿No tenés cuenta? 
+            <a href="registro.php">Registrate acá <i class="fa-solid fa-user-plus"></i></a>
         </p>
 
         <a href="recuperar.php" class="olvide">
