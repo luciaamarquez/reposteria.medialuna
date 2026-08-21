@@ -33,9 +33,9 @@
 
             <h3>Contacto</h3>
 
-            <p><i class="fa-solid fa-phone"></i> +54 11 1234-5678</p>
+            <p><i class="fa-solid fa-phone"></i> +54 29 9606-2026</p>
             <p><i class="fa-solid fa-envelope"></i> contacto@medialuna.com</p>            
-            <p><i class="fa-solid fa-location-dot"></i> Buenos Aires, Argentina</p>
+            <p><i class="fa-solid fa-location-dot"></i> Neuquén Capital, Argentina</p>
             
         </div>
 
