@@ -1,63 +1,97 @@
 <?php
 session_start();
+
 if (!isset($_SESSION["rol"]) || $_SESSION["rol"] != "admin") {
     header("Location: ../login.php");
     exit();
 }
+
 require_once "../conexion.php";
 
 $id = $_GET["id"];
 
-// Obtener el producto
 $consulta = $conexion->prepare("SELECT * FROM productos WHERE id = ?");
 $consulta->bind_param("i", $id);
 $consulta->execute();
+
 $resultado = $consulta->get_result();
 $producto = $resultado->fetch_assoc();
 
-// Obtener las categorías
 $categorias = $conexion->query("SELECT id, nombre FROM categoria");
+
+include("../includes/header.php");
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Editar Producto</title>
-    </head>
-    <body>
-    <h1>Editar Producto</h1>
+<div class="editar-receta">
+    <div class="editar-receta-card">
+
+        <h1>Editar Producto</h1>
+
         <form action="actualizarProducto.php" method="POST">
 
             <input type="hidden" name="id" value="<?php echo $producto["id"]; ?>">
 
-            <label>Nombre</label><br>
-            <input type="text" name="nombre" value="<?php echo $producto["nombre"]; ?>" required><br><br>
+            <div class="editar-grupo">
+                <label>Nombre</label>
+                <input type="text" name="nombre"
+                    value="<?php echo htmlspecialchars($producto["nombre"]); ?>" required>
+            </div>
 
-            <label>Descripción</label><br>
-            <textarea name="descripcion" required><?php echo $producto["descripcion"]; ?></textarea><br><br>
+            <div class="editar-grupo">
+                <label>Descripción</label>
+                <textarea name="descripcion" required><?php echo htmlspecialchars($producto["descripcion"]); ?></textarea>
+            </div>
 
-            <label>Precio</label><br>
-            <input type="number" step="0.01" name="precio" value="<?php echo $producto["precio"]; ?>" required><br><br>
+            <div class="doble-textarea">
 
-            <label>Stock</label><br>
-            <input type="number" name="stock" value="<?php echo $producto["stock"]; ?>" required><br><br>
+                <div class="editar-grupo">
+                    <label>Precio</label>
+                    <input type="number" step="0.01" name="precio"
+                        value="<?php echo $producto["precio"]; ?>" required>
+                </div>
 
-            <label>Imagen</label><br>
-            <input type="text" name="imagen" value="<?php echo $producto["imagen"]; ?>" required><br><br>
+                <div class="editar-grupo">
+                    <label>Stock</label>
+                    <input type="number" name="stock"
+                        value="<?php echo $producto["stock"]; ?>" required>
+                </div>
 
-            <label>Categoría</label><br>
+            </div>
 
-            <select name="id_categoria" required>
-                <?php while ($categoria = $categorias->fetch_assoc()) { ?>
-                    <option value="<?php echo $categoria["id"]; ?>"
-                        <?php if ($categoria["id"] == $producto["id_categoria"]) echo "selected"; ?>>
-                        <?php echo $categoria["nombre"]; ?>
-                    </option>
-                <?php } ?>
-            </select>
-            <br><br>
-            <button type="submit">Actualizar Producto</button>
+            <div class="editar-grupo">
+                <label>Imagen</label>
+                <input type="text" name="imagen"
+                    value="<?php echo htmlspecialchars($producto["imagen"]); ?>" required>
+            </div>
+
+            <div class="editar-grupo">
+                <label>Categoría</label>
+
+                <select name="id_categoria" required>
+
+                    <?php while($categoria = $categorias->fetch_assoc()) { ?>
+
+                        <option value="<?php echo $categoria["id"]; ?>"
+                            <?php if($categoria["id"] == $producto["id_categoria"]) echo "selected"; ?>>
+
+                            <?php echo htmlspecialchars($categoria["nombre"]); ?>
+
+                        </option>
+
+                    <?php } ?>
+
+                </select>
+
+            </div>
+
+            <div class="editar-botones">
+                <a href="index.php" class="btn-volver-editar">Cancelar</a>
+                <button type="submit" class="btn-actualizar">Actualizar</button>
+            </div>
+
         </form>
-    </body>
-</html>
+
+    </div>
+</div>
+
+<?php include("../includes/footer.php"); ?>

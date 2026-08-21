@@ -119,12 +119,12 @@ header{
 }
 
 .logo img{ 
-    width:45px; 
+    width:50px; 
 }
 
 .logo h1{ 
     color:white; 
-    font-size:18px; 
+    font-size:20px; 
     font-weight:700; 
 }
 
@@ -141,7 +141,7 @@ nav a{
     transition:.3s; }
 
 nav a:hover{ 
-    color:#FFD5A5; 
+    color:#F6D7C3; 
 }
 
 .btn-ingresar{ 
@@ -1165,95 +1165,184 @@ footer hr{
 ==========================*/
 
 .perfil{
+    width:90%;
+    max-width:1300px;
+    margin:20px auto;
+}
+
+.perfil-titulo{
+    margin-bottom:15px;
+}
+
+.perfil-titulo h1{
+    font-size:35px;
+    color:#4C1930;
+    margin-top:30px;
+}
+
+.perfil-titulo p{
+    color:#777;
+}
+
+.perfil-layout{
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:30px;
+}
+
+.card-usuario{
+    background:linear-gradient(180deg,#6E0B35,#8C1F4B);
+    color:white;
+    border-radius:22px;
+    padding:19px;
+    text-align:center;
+    height:fit-content;
+    box-shadow:0 12px 25px rgba(0,0,0,.15);
+}
+
+.perfil-icono{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:white;
+    color:#6E0B35;
     display:flex;
     justify-content:center;
-    margin-top: 60px;
-}
-
-.perfil-contenedor{
-    width:720px;
-    background:white;
-    border:1px solid #d4d4d4;
-    border-radius:22px;
-    padding: 40px;
-    box-shadow:10px 12px 20px rgba(0,0,0,.25);
-}
-
-.perfil h2{
-    color:#4C1930;
+    align-items:center;
     font-size:30px;
-    margin-bottom:5px;
+    margin:auto;
 }
 
-.perfil-subtitulo{
-    color:#777;
-    margin-bottom:30px;
+.card-usuario h2{
+    margin:20px 0 5px;
+    font-size: 22px;
 }
 
-.perfil label{
-    font-size: 20px;
+.perfil-rol{
+    display:inline-block;
+    background:rgba(255,255,255,.2);
+    padding:3px 9px;
+    border-radius:20px;
+    margin-bottom:25px;
 }
 
-.perfil input{
-    font-size: 17px;
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+.info-usuario{
+    text-align:left;
+    margin-top:20px;
+    margin-left: 20px;
 }
 
-.perfil button{
-    margin-bottom: 20px;
-}
-
-.botones-perfil {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin-top: 25px;
-}
-
-
-/* GUARDAR CAMBIOS */
-.btn-guardar-cambios {
+.info-usuario p{
+    margin-bottom:18px;
     font-size: 15px;
-    background: #6E0B35;
-    color: white;
-    padding: 17px 32px;
-    border: none;
-    border-radius: 40px;
-    text-decoration: none;
-    font-weight: 600;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, .25);
-    cursor: pointer;
-    transition: .3s;
-    margin-top: 20px;
 }
 
-/* CERRAR SESIÓN */
-.btn-cerrar-sesion {
-    font-size: 17px;
-    background: #6E0B35;
-    color: white;
-    padding: 14px 32px;
-    border: none;
-    border-radius: 40px;
-    text-decoration: none;
-    font-weight: 600;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, .25);
-    cursor: pointer;
-    transition: .3s;
+.info-usuario i{
+    width:25px;
 }
 
-/* VOLVER */
-.volver {
-    color: #6E0B35;
-    text-decoration: none;
-    font-weight: 600;
-    margin-top: 5px;
+.card-editar,
+.card-seguridad{
+    background:white;
+    border-radius:22px;
+    padding:29px;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
 }
 
+.card-seguridad{
+    margin-top:25px;
+}
+
+.card-editar h3,
+.card-seguridad h3{
+    color:#6E0B35;
+    margin-bottom:25px;
+    font-size: 23.5px;
+}
+
+.campo{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+
+.campo label{
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.campo input{
+    padding:12px;
+    border:2px solid #E7CCBD;
+    border-radius:12px;
+    background:#FFF9F5;
+}
+
+.campo input:focus{
+    outline:none;
+    border-color:#6E0B35;
+}
+
+.fila-form{
+    display:flex;
+    gap:20px;
+    margin-bottom:10px;
+}
+
+.perfil-botones{
+    display:flex;
+    justify-content:flex-end;
+    gap:15px;
+    margin-top:25px;
+}
+
+.btn-guardar,
+.btn-volver,
+.btn-salir{
+    padding:13px 25px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-guardar{
+    border:none;
+    background:#6E0B35;
+    color:white;
+    cursor:pointer;
+    font-size: 14px;
+}
+
+.btn-volver{
+    background:#ececec;
+    color:#555;
+    font-size: 14px;
+}
+
+.btn-salir{
+    display:block;
+    margin-top:10px;
+    background:white;
+    color:#6E0B35;
+    font-size: 14px;
+}
+
+.btn-guardar:hover,
+.btn-volver:hover,
+.btn-salir:hover{
+    transform:translateY(-3px);
+}
+
+@media(max-width:900px){
+    .perfil-layout{
+        grid-template-columns:1fr;
+    }
+
+    .fila-form{
+        flex-direction:column;
+    }
+}
 /* EFECTO AL PASAR EL MOUSE */
 .btn-guardar-cambios:hover,
 .btn-cerrar-sesion:hover {
@@ -1264,6 +1353,7 @@ footer hr{
 .ayuda-password{
     color:#777;
     margin: 10px 0px;
+    font-size: 14px;
 }
  
 /*==========================
@@ -1891,56 +1981,6 @@ footer hr{
     MODAL AGREGAR RECETA admin
 ==========================*/
 
-/* Overlay del modal */
-.overlay-receta{
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.4); /* fondo semitransparente */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-    min-height: 100vh;
-}
-
-/* Contenedor del formulario */
-.agregar-receta-contenedor {
-    width: 800px;
-    background: #fff;
-    border-radius: 18px;
-    padding: 30px;
-    box-shadow: 0 8px 18px rgba(0,0,0,.25);
-    animation: entrada .6s ease forwards;
-}
-
-/* Título */
-.agregar-receta-contenedor h1 {
-    text-align: center;
-    color: #6E0B35;
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-/* Campos */
-.agregar-receta-contenedor label {
-    font-weight: 600;
-    color: #4C1930;
-    display: block;
-    margin-bottom: 6px;
-    font-size: 14px;
-}
-
-.agregar-receta-contenedor input,
-.agregar-receta-contenedor textarea {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #E7CCBD;
-    border-radius: 6px;
-    font-size: 14px;
-    margin-bottom: 16px;
-    background: #FDF7F2;
-}
-
 /* Botones */
 .botones-form {
     display: flex;
@@ -2092,34 +2132,51 @@ footer hr{
 
 
 /*===========================
-    MODAL AGREGAR PRODUCTO
-============================*
+    MODAL AGREGAR PRODUCTO 
+============================*/
 
 /* Overlay */
-.overlay-producto,
-.overlay-receta{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.55);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
+body{
+    position: relative;
 }
 
-/* Formulario PRODUCTO */
-.agregar-producto-contenedor{
+.overlay-producto,
+.overlay-receta{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.55);
+    display: none;
+    justify-content: center;
+    overflow-y: auto;
+    align-items: flex-start;
+    padding: 40px 0;
+
+}
+
+/* Formulario PRODUCTO RECETA*/
+.agregar-producto-contenedor,
+.agregar-receta-contenedor{
     width:800px;
     max-width:90%;
     background:#fff;
     border-radius:18px;
     padding:30px;
     box-shadow:0 10px 30px rgba(0,0,0,.25);
-    animation: entrada .6s ease forwards;
+    animation:entrada .6s ease forwards;
+}
+
+.agregar-producto-contenedor h2,
+.agregar-receta-contenedor h2{
+    text-align:center;
+    color:#6E0B35;
+    margin-bottom:20px;
 }
 
 /* Inputs */
-.agregar-producto-contenedor label{
+.agregar-producto-contenedor label,
+.agregar-receta-contenedor label{
     display:block;
     margin-bottom:6px;
     color:#4C1930;
@@ -2128,25 +2185,41 @@ footer hr{
 
 .agregar-producto-contenedor input,
 .agregar-producto-contenedor textarea,
-.agregar-producto-contenedor select{
+.agregar-producto-contenedor select,
+.agregar-receta-contenedor input,
+.agregar-receta-contenedor textarea{
     width:100%;
     padding:12px;
     margin-bottom:16px;
     border:2px solid #E7CCBD;
     border-radius:10px;
     background:#FDF7F2;
-    font-family:'Poppins',sans-serif;
     font-size:15px;
-}
-
-.agregar-producto-contenedor textarea{
-    resize:none;
-    height:120px;
+    font-family:'Poppins',sans-serif;
 }
 
 .agregar-producto-contenedor select:focus,
 .agregar-producto-contenedor input:focus,
 .agregar-producto-contenedor textarea:focus{
+    border-color:#6E0B35;
+    outline:none;
+}
+
+/*===============
+EDITAR PRODUCTO
+==================*/
+.editar-grupo select{
+    width:100%;
+    padding:12px;
+    border:2px solid #E7CCBD;
+    border-radius:10px;
+    background:#FDF7F2;
+    font-family:'Poppins', sans-serif;
+    font-size:15px;
+    box-sizing:border-box;
+}
+
+.editar-grupo select:focus{
     border-color:#6E0B35;
     outline:none;
 }

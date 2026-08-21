@@ -28,152 +28,156 @@ include("includes/header.php");
 ?>
 
 <main class="perfil">
-    <div class="perfil-contenedor">
-        <h2>Mi perfil</h2>
-        <p class="perfil-subtitulo">
-            Editá tus datos personales
-        </p>
 
-        <?php if (isset($_GET["mensaje"])): ?>
+    <div class="perfil-titulo">
+        <h1>Mi Perfil</h1>
+        <p>Administrá la información de tu cuenta.</p>
+    </div>
 
-            <div class="mensaje-exito">
-                <?php echo htmlspecialchars($_GET["mensaje"]); ?>
+    <div class="perfil-layout">
+
+        <!-- CARD IZQUIERDA -->
+        <aside class="card-usuario">
+
+            <div class="perfil-icono">
+                <i class="fa-solid fa-user"></i>
             </div>
 
-        <?php endif; ?>
+            <h2>
+                <?php echo htmlspecialchars($usuario["nombre"]); ?>
+                <?php echo htmlspecialchars($usuario["apellido"]); ?>
+            </h2>
 
+            <span class="perfil-rol">
+                <?php echo ucfirst($usuario["rol"]); ?>
+            </span>
 
-        <?php if (isset($_GET["error"])): ?>
+            <div class="info-usuario">
 
-            <div class="mensaje-error">
-                <?php echo htmlspecialchars($_GET["error"]); ?>
-            </div>
+                <p>
+                    <i class="fa-solid fa-envelope"></i>
+                    <?php echo htmlspecialchars($usuario["email"]); ?>
+                </p>
 
-        <?php endif; ?>
+                <p>
+                    <i class="fa-solid fa-phone"></i>
+                    <?php echo htmlspecialchars($usuario["telefono"]); ?>
+                </p>
 
-
-        <form action="actualizar_perfil.php" method="POST">
-
-            <!-- NOMBRE Y APELLIDO -->
-
-            <div class="fila-form">
-                <div>
-                    <label>Nombre</label></br>
-                    <input
-                        type="text"
-                        name="nombre"
-                        value="<?php echo htmlspecialchars($usuario["nombre"]); ?>"
-                        required>
-                </div>
-
-                <div>
-                    <label>Apellido</label></br>
-                    <input
-                        type="text"
-                        name="apellido"
-                        value="<?php echo htmlspecialchars($usuario["apellido"]); ?>"
-                        required> 
-                </div>
-            </div>
-
-
-            <!-- EMAIL -->
-
-            <label>Email</label></br>
-
-            <input
-                type="email"
-                name="email"
-                value="<?php echo htmlspecialchars($usuario["email"]); ?>"
-                required
-            ></br></br> 
-
-
-            <!-- TELEFONO Y DIRECCION -->
-
-            <div class="fila-form">
-
-                <div>
-                    <label>Teléfono</label></br>
-
-                    <input
-                        type="text"
-                        name="telefono"
-                        value="<?php echo htmlspecialchars($usuario["telefono"]); ?>"
-                    >
-                </div>
-
-
-                <div>
-                    <label>Dirección</label></br>
-
-                    <input
-                        type="text"
-                        name="direccion"
-                        value="<?php echo htmlspecialchars($usuario["direccion"]); ?>"
-                    >
-                </div>
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <?php echo htmlspecialchars($usuario["direccion"]); ?>
+                </p>
 
             </div>
 
+            <a href="logout.php" class="btn-salir">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Cerrar sesión
+            </a>
 
-            <hr>
-
-
-            <!-- CONTRASEÑA -->
-
-            <h3>Cambiar contraseña</h3>
-
-            <p class="ayuda-password">
-                Dejá estos campos vacíos si no querés cambiar tu contraseña.
-            </p>
+        </aside>
 
 
-            <div class="fila-form">
+        <!-- CARD DERECHA -->
+        <section>
 
-                <div>
-                    <label>Nueva contraseña</label>
+            <div class="card-editar">
 
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Nueva contraseña"
-                    >
-                </div>
+                <h3>
+                    <i class="fa-solid fa-pen"></i>
+                    Información personal
+                </h3>
 
+                <form action="actualizar_perfil.php" method="POST">
 
-                <div>
-                    <label>Confirmar contraseña</label>
+                    <div class="fila-form">
 
-                    <input
-                        type="password"
-                        name="confirmar"
-                        placeholder="Confirmar contraseña"
-                    >
-                </div>
+                        <div class="campo">
+                            <label>Nombre</label>
+                            <input type="text" name="nombre"
+                                value="<?php echo htmlspecialchars($usuario["nombre"]); ?>">
+                        </div>
+
+                        <div class="campo">
+                            <label>Apellido</label>
+                            <input type="text" name="apellido"
+                                value="<?php echo htmlspecialchars($usuario["apellido"]); ?>">
+                        </div>
+
+                    </div>
+
+                    <div class="campo">
+                        <label>Email</label>
+                        <input type="email" name="email"
+                            value="<?php echo htmlspecialchars($usuario["email"]); ?>">
+                    </div>
+
+                    <div class="fila-form">
+
+                        <div class="campo">
+                            <label>Teléfono</label>
+                            <input type="text" name="telefono"
+                                value="<?php echo htmlspecialchars($usuario["telefono"]); ?>">
+                        </div>
+
+                        <div class="campo">
+                            <label>Dirección</label>
+                            <input type="text" name="direccion"
+                                value="<?php echo htmlspecialchars($usuario["direccion"]); ?>">
+                        </div>
+
+                    </div>
 
             </div>
 
+            <!-- CARD CONTRASEÑA -->
 
-            <!-- GUARDAR -->
-        </form>
-        <div class="botones-perfil">
+            <div class="card-seguridad">
 
-    <button class="btn-guardar-cambios" type="submit">
-        <i class="fa-solid fa-floppy-disk"></i>
-        GUARDAR CAMBIOS
-    </button>
+                <h3>
+                    <i class="fa-solid fa-lock"></i>
+                    Seguridad
+                </h3>
 
-    <a href="logout.php" class="btn-cerrar-sesion">
-        <i class="fa-solid fa-right-from-bracket"></i>
-        CERRAR SESIÓN
-    </a>
+                <p class="ayuda-password">
+                    Dejá estos campos vacíos si no querés cambiar tu contraseña.
+                </p>
 
-    <a href="index.php" class="volver">
-        ← Volver al inicio
-    </a>
+                <div class="fila-form">
 
-</div>
+                    <div class="campo">
+                        <label>Nueva contraseña</label>
+                        <input type="password" name="password">
+                    </div>
+
+                    <div class="campo">
+                        <label>Confirmar contraseña</label>
+                        <input type="password" name="confirmar">
+                    </div>
+
+                </div>
+
+                <div class="perfil-botones">
+
+                    <a href="index.php" class="btn-volver">
+                        <i class="fa-solid fa-house"></i>
+                        Inicio
+                    </a>
+
+                    <button type="submit" class="btn-guardar">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Guardar cambios
+                    </button>
+
+                </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
     </div>
 
 </main>

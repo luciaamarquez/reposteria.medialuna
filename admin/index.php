@@ -94,159 +94,159 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria");
 
         <section id="productos" class="admin-seccion activa">
 
-<div class="admin-titulo">
+        <div class="admin-titulo">
 
-    <h2>Productos</h2>
+            <h2>Productos</h2>
 
-    <a href="#" class="btn-agregar" onclick="abrirModalProducto(); return false;">
-        <i class="fa-solid fa-plus"></i>
-        AGREGAR PRODUCTO
-    </a>
+            <a href="#" class="btn-agregar" onclick="abrirModalProducto(); return false;">
+                <i class="fa-solid fa-plus"></i>
+                AGREGAR PRODUCTO
+            </a>
 
-</div>
+        </div>
 
-<!-- MODAL PRODUCTOS -->
-<div id="modal-producto" class="overlay-producto">
+        <!-- MODAL PRODUCTOS -->
+        <div id="modal-producto" class="overlay-producto">
 
-    <div class="agregar-producto-contenedor">
+            <div class="agregar-producto-contenedor">
 
-        <h1>Agregar Producto</h1>
+                <h2>Agregar Producto</h2>
 
-        <form action="guardarProducto.php" method="POST">
+                <form action="guardarProducto.php" method="POST" display=none;>
 
-            <label for="nombre">Nombre *</label>
-            <input type="text" id="nombre" name="nombre" required>
+                    <label for="nombre">Nombre *</label>
+                    <input type="text" id="nombre" name="nombre" required>
 
-            <label for="descripcion">Descripción *</label>
-            <textarea id="descripcion" name="descripcion" rows="5" required></textarea>
+                    <label for="descripcion">Descripción *</label>
+                    <textarea id="descripcion" name="descripcion" rows="5" required></textarea>
 
-            <label for="precio">Precio *</label>
-            <input type="number" step="0.01" id="precio" name="precio" required>
+                    <label for="precio">Precio *</label>
+                    <input type="number" step="0.01" id="precio" name="precio" required>
 
-            <label for="stock">Stock *</label>
-            <input type="number" id="stock" name="stock" required>
+                    <label for="stock">Stock *</label>
+                    <input type="number" id="stock" name="stock" required>
 
-            <label for="imagen">Imagen *</label>
-            <input type="text" id="imagen" name="imagen" placeholder="ej: torta.jpg" required>
+                    <label for="imagen">Imagen *</label>
+                    <input type="text" id="imagen" name="imagen" placeholder="ej: torta.jpg" required>
 
-            <label for="categoria">Categoría *</label>
-            <select id="categoria" name="id_categoria" required>
+                    <label for="categoria">Categoría *</label>
+                    <select id="categoria" name="id_categoria" required>
 
-                <option value="">Seleccione una categoría</option>
+                        <option value="">Seleccione una categoría</option>
 
-                <?php while ($categoria = $categorias->fetch_assoc()) { ?>
+                        <?php while ($categoria = $categorias->fetch_assoc()) { ?>
 
-                    <option value="<?php echo $categoria["id"]; ?>">
-                        <?php echo htmlspecialchars($categoria["nombre"]); ?>
-                    </option>
+                            <option value="<?php echo $categoria["id"]; ?>">
+                                <?php echo htmlspecialchars($categoria["nombre"]); ?>
+                            </option>
 
-                <?php } ?>
+                        <?php } ?>
 
-            </select>
+                    </select>
 
-            <div class="botones-form">
+                    <div class="botones-form">
 
-                <a href="#" class="btn-cancelar" onclick="cerrarModalProducto(); return false;">
-                    CANCELAR
-                </a>
+                        <a href="#" class="btn-cancelar" onclick="cerrarModalProducto(); return false;">
+                            CANCELAR
+                        </a>
 
-                <button type="submit" class="btn-guardar-receta">
-                    AGREGAR
-                </button>
+                        <button type="submit" class="btn-guardar-receta">
+                            AGREGAR
+                        </button>
+
+                    </div>
+
+                </form>
 
             </div>
 
-        </form>
+        </div>
 
-    </div>
+        <div class="tabla-contenedor">
 
-</div>
+            <table class="tabla-admin">
 
-<div class="tabla-contenedor">
+                <thead>
 
-    <table class="tabla-admin">
+                    <tr>
+                        <th>ID</th>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Acciones</th>
+                    </tr>
 
-        <thead>
+                </thead>
 
-            <tr>
-                <th>ID</th>
-                <th>Imagen</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Categoría</th>
-                <th>Precio</th>
-                <th>Stock</th>
-                <th>Acciones</th>
-            </tr>
+                <tbody>
 
-        </thead>
+                    <?php while ($producto = $resultadoProductos->fetch_assoc()): ?>
 
-        <tbody>
+                    <tr>
 
-            <?php while ($producto = $resultadoProductos->fetch_assoc()): ?>
+                        <td><?php echo $producto["id"]; ?></td>
 
-            <tr>
+                        <td>
 
-                <td><?php echo $producto["id"]; ?></td>
+                            <?php if (!empty($producto["imagen"])): ?>
 
-                <td>
+                                <img
+                                    src="../img/productos/<?php echo htmlspecialchars($producto["imagen"]); ?>"
+                                    class="imagen-producto-admin"
+                                    alt="Producto">
 
-                    <?php if (!empty($producto["imagen"])): ?>
+                            <?php else: ?>
 
-                        <img
-                            src="../img/productos/<?php echo htmlspecialchars($producto["imagen"]); ?>"
-                            class="imagen-producto-admin"
-                            alt="Producto">
+                                <span>Sin imagen</span>
 
-                    <?php else: ?>
+                            <?php endif; ?>
 
-                        <span>Sin imagen</span>
+                        </td>
 
-                    <?php endif; ?>
+                        <td><?php echo htmlspecialchars($producto["nombre"]); ?></td>
 
-                </td>
+                        <td class="descripcion-tabla">
+                            <?php echo htmlspecialchars($producto["descripcion"]); ?>
+                        </td>
 
-                <td><?php echo htmlspecialchars($producto["nombre"]); ?></td>
+                        <td><?php echo $producto["id_categoria"]; ?></td>
 
-                <td class="descripcion-tabla">
-                    <?php echo htmlspecialchars($producto["descripcion"]); ?>
-                </td>
+                        <td>
+                            $<?php echo number_format($producto["precio"],2,',','.'); ?>
+                        </td>
 
-                <td><?php echo $producto["id_categoria"]; ?></td>
+                        <td><?php echo $producto["stock"]; ?></td>
 
-                <td>
-                    $<?php echo number_format($producto["precio"],2,',','.'); ?>
-                </td>
+                        <td class="acciones">
 
-                <td><?php echo $producto["stock"]; ?></td>
+                            <a href="editarProducto.php?id=<?php echo $producto["id"]; ?>" class="btn-editar">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
 
-                <td class="acciones">
+                            <a href="eliminarProducto.php?id=<?php echo $producto["id"]; ?>"
+                            class="btn-eliminar"
+                            onclick="return confirm('¿Seguro que querés eliminar este producto?');">
 
-                    <a href="editarProducto.php?id=<?php echo $producto["id"]; ?>" class="btn-editar">
-                        <i class="fa-solid fa-pen"></i>
-                    </a>
+                                <i class="fa-solid fa-trash"></i>
 
-                    <a href="eliminarProducto.php?id=<?php echo $producto["id"]; ?>"
-                       class="btn-eliminar"
-                       onclick="return confirm('¿Seguro que querés eliminar este producto?');">
+                            </a>
 
-                        <i class="fa-solid fa-trash"></i>
+                        </td>
 
-                    </a>
+                    </tr>
 
-                </td>
+                    <?php endwhile; ?>
 
-            </tr>
+                </tbody>
 
-            <?php endwhile; ?>
+            </table>
 
-        </tbody>
+        </div>
 
-    </table>
-
-</div>
-
-</section>
+        </section>
 
     <!-- ==========================
           RECETAS
@@ -266,7 +266,7 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria");
 
         <div id="modal-receta" class="overlay-receta" style="display:none;">
         <div class="agregar-receta-contenedor">
-            <h1>Agregar Receta</h1>
+            <h2>Agregar Receta</h2>
             <form id="form-agregar-receta" action="guardarReceta.php" method="POST">
             <label for="titulo">Nombre *</label>
             <input type="text" id="titulo" name="titulo" required>
