@@ -1093,68 +1093,132 @@ footer hr{
 ==========================*/
 
 .recuperar{
+    min-height:calc(100vh - 172px);
     display:flex;
-    flex-direction:column;
+    justify-content:center;
     align-items:center;
-    gap:25px;
-    padding:70px 20px;
+    padding:25px;
 }
 
-.recuperar-contenedor,
-.codigo-contenedor{
-    width:420px;
+.recuperar-contenedor{
+    width:100%;
+    max-width:460px;
     background:#fff;
-    border-radius:22px;
-    padding:35px;
-    box-shadow:10px 10px 20px rgba(0,0,0,.25);
-    text-align:center;
+    border-radius:24px;
+    padding:40px;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+    animation:entrada .7s ease;
 }
 
 .recuperar-contenedor h2{
+    text-align:center;
     color:#6E0B35;
-    font-size:40px;
-    margin-bottom:30px;
+    font-size:34px;
+    margin-bottom:10px;
 }
 
-.recuperar input{
-    width:100%;
-    padding:14px;
-    border:2px solid #E7CCBD;
-    border-radius:8px;
+.recuperar-contenedor h2 i{
+    margin-right:8px;
+}
+
+.subtitulo{
+    text-align:center;
+    color:#666;
     margin-bottom:25px;
-    box-sizing:border-box;
+    line-height:1.5;
+}
+
+.recuperar form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.campo-icono{
+    position:relative;
+}
+
+.campo-icono i{
+    position:absolute;
+    left:16px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#6E0B35;
+}
+
+.campo-icono input{
+    width:100%;
+    padding:14px 16px 14px 45px;
+    border:2px solid #E7CCBD;
+    border-radius:12px;
+    background:#FFF9F6;
+    font-size:15px;
+    transition:.3s;
+}
+
+.campo-icono input:focus{
+    outline:none;
+    border-color:#6E0B35;
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(110,11,53,.08);
 }
 
 .recuperar button{
-    width:100%;
     padding:14px;
-    background:#6E0B35;
-    color:white;
     border:none;
-    border-radius:6px;
+    border-radius:40px;
+    background:#6E0B35;
+    color:#fff;
+    font-size:16px;
     font-weight:600;
     cursor:pointer;
+    transition:.3s;
 }
 
-.codigo-contenedor p{
-    color:#6E0B35;
-    margin-bottom:30px;
+.recuperar button:hover{
+    background:#8C1F4B;
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(110,11,53,.25);
 }
 
-.codigo-inputs{
-    display:flex;
-    justify-content:center;
-    gap:18px;
-    margin-bottom:30px;
+.recuperar button i{
+    margin-right:8px;
 }
 
-.codigo-inputs input{
-    width:42px;
-    height:60px;
+.mensaje{
+    padding:12px;
+    border-radius:10px;
     text-align:center;
-    font-size:22px;
-    border:2px solid #E7CCBD;
-    border-radius:8px;
+    margin-bottom:20px;
+    font-weight:600;
+}
+
+.exito{
+    background:#E8F8EC;
+    color:#2E7D32;
+}
+
+.error{
+    background:#FDECEC;
+    color:#C62828;
+}
+
+.codigo-demo{
+    margin-bottom:20px;
+    padding:12px;
+    border:2px dashed #E7CCBD;
+    border-radius:10px;
+    background:#FFF9F6;
+    text-align:center;
+    color:#6E0B35;
+}
+
+@media(max-width:768px){
+
+    .recuperar-contenedor{
+        padding:30px 25px;
+    }
+
 }
 
 /*==========================
@@ -1162,66 +1226,136 @@ footer hr{
 ==========================*/
 
 .nueva-password{
+    min-height:calc(100vh - 172px);
     display:flex;
-    flex-direction:column;
+    justify-content:center;
     align-items:center;
-    gap:25px;
-    padding:70px 20px;
-}
-
-.verificado{
-    width:420px;
-    background:white;
-    border-radius:22px;
-    padding:45px;
-    text-align:center;
-    box-shadow:10px 10px 20px rgba(0,0,0,.25);
-}
-
-.verificado p{
-    color:#6E0B35;
-    font-size:24px;
-    margin-bottom:25px;
-}
-
-.verificado i{
-    font-size:70px;
-    color:#6E0B35;
+    padding:25px;
 }
 
 .nueva-password-contenedor{
-    width:420px;
-    background:white;
-    border-radius:22px;
-    padding:35px;
-    box-shadow:10px 10px 20px rgba(0,0,0,.25);
+    width:100%;
+    max-width:450px;
+    background:#fff;
+    border-radius:24px;
+    padding:40px;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+    animation:entrada .7s ease;
+}
+
+.verificado{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:#EAF8EE;
+    color:#2E7D32;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:25px;
+    font-weight:600;
+}
+
+.verificado i{
+    font-size:22px;
 }
 
 .nueva-password-contenedor h2{
     text-align:center;
     color:#6E0B35;
-    margin-bottom:30px;
-    font-size:36px;
+    font-size:34px;
+    margin-bottom:10px;
 }
 
-.nueva-password-contenedor input{
-    width:100%;
-    padding:15px;
-    border:2px solid #E7CCBD;
-    border-radius:8px;
+.nueva-password-contenedor h2 i{
+    margin-right:8px;
+}
+
+.subtitulo{
+    text-align:center;
+    color:#666;
     margin-bottom:25px;
-    box-sizing:border-box;
+    line-height:1.5;
 }
 
-.nueva-password-contenedor button{
+.nueva-password form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.campo-icono{
+    position:relative;
+}
+
+.campo-icono i{
+    position:absolute;
+    left:16px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#6E0B35;
+    font-size:15px;
+}
+
+.campo-icono input{
     width:100%;
-    padding:15px;
-    background:#6E0B35;
-    color:white;
+    padding:14px 16px 14px 45px;
+    border:2px solid #E7CCBD;
+    border-radius:12px;
+    background:#FFF9F6;
+    font-size:15px;
+    transition:.3s;
+}
+
+.campo-icono input:focus{
+    outline:none;
+    border-color:#6E0B35;
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(110,11,53,.08);
+}
+
+.nueva-password button{
+    margin-top:5px;
+    padding:14px;
     border:none;
-    border-radius:6px;
+    border-radius:40px;
+    background:#6E0B35;
+    color:#fff;
+    font-size:16px;
     font-weight:600;
     cursor:pointer;
+    transition:.3s;
+}
+
+.nueva-password button:hover{
+    background:#8C1F4B;
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(110,11,53,.25);
+}
+
+.nueva-password button i{
+    margin-right:8px;
+}
+
+.mensaje{
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:20px;
+    text-align:center;
+    font-weight:600;
+}
+
+.error{
+    background:#FDECEC;
+    color:#C62828;
+}
+
+@media(max-width:768px){
+
+    .nueva-password-contenedor{
+        padding:30px 25px;
+    }
+
 }
 
 /*==========================

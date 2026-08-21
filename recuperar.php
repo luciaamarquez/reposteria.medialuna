@@ -99,70 +99,75 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <div class="recuperar-contenedor">
 
-        <h2>Recuperar Contraseña</h2>
+        <h2><i class="fa-solid fa-key"></i> Recuperar contraseña</h2>
 
-        <?php if ($mensaje != ""): ?>
+        <p class="subtitulo">
+            Ingresá el teléfono con el que te registraste.
+        </p>
 
-            <p class="<?php echo $tipoMensaje; ?>">
+        <?php if($mensaje != ""): ?>
+            <div class="mensaje <?php echo $tipoMensaje; ?>">
                 <?php echo htmlspecialchars($mensaje); ?>
-            </p>
-
-        <?php endif; ?>
-
-        <form method="POST">
-
-            <input
-                type="text"
-                name="telefono"
-                placeholder="Teléfono"
-                required
-            >
-
-            <button type="submit">
-                ENVIAR CÓDIGO
-            </button>
-
-        </form>
-
-    </div>
-
-
-    <div class="codigo-contenedor">
-
-        <p>Ingresá el código enviado por SMS/WhatsApp</p>
-
-        <?php if (isset($_SESSION["codigo_recuperacion"])): ?>
-
-            <!-- SOLO PARA PRUEBAS -->
-            <p>
-                <strong>
-                    Código de prueba:
-                    <?php echo $_SESSION["codigo_recuperacion"]; ?>
-                </strong>
-            </p>
-
+            </div>
         <?php endif; ?>
 
 
-        <form method="POST">
+        <?php if(!isset($_SESSION["codigo_recuperacion"])): ?>
 
-            <div class="codigo-inputs">
+            <form method="POST">
 
-                <input
-                    type="text"
-                    name="codigo"
-                    maxlength="4"
-                    placeholder="Código"
-                    required
-                >
+                <div class="campo-icono">
+                    <i class="fa-solid fa-phone"></i>
 
+                    <input
+                        type="text"
+                        name="telefono"
+                        placeholder="Teléfono"
+                        required
+                    >
+                </div>
+
+                <button type="submit">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Enviar código
+                </button>
+
+            </form>
+
+        <?php else: ?>
+
+            <p class="subtitulo">
+                Ingresá el código de 4 dígitos enviado a tu teléfono.
+            </p>
+
+            <!-- Solo para pruebas -->
+            <div class="codigo-demo">
+                Código de prueba:
+                <strong><?php echo $_SESSION["codigo_recuperacion"]; ?></strong>
             </div>
 
-            <button type="submit">
-                VERIFICAR
-            </button>
+            <form method="POST">
 
-        </form>
+                <div class="campo-icono">
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <input
+                        type="text"
+                        name="codigo"
+                        maxlength="4"
+                        placeholder="Código de verificación"
+                        required
+                    >
+                </div>
+
+                <button type="submit">
+                    <i class="fa-solid fa-check"></i>
+                    Verificar código
+                </button>
+
+            </form>
+
+        <?php endif; ?>
 
     </div>
 

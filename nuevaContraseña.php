@@ -122,56 +122,61 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 ?>
-
 <?php include("includes/header.php"); ?>
 
 <main class="nueva-password">
 
-    <div class="verificado">
-
-        <p>Código verificado</p>
-
-        <i class="fa-solid fa-circle-check"></i>
-
-    </div>
-
-
     <div class="nueva-password-contenedor">
 
-        <h2>Ingresá nueva contraseña</h2>
+        <div class="verificado">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>Código verificado correctamente</span>
+        </div>
 
+        <h2>
+            <i class="fa-solid fa-lock"></i>
+            Nueva contraseña
+        </h2>
 
-        <?php if ($mensaje != ""): ?>
+        <p class="subtitulo">
+            Elegí una contraseña segura para proteger tu cuenta.
+        </p>
 
-            <p class="error">
+        <?php if($mensaje != ""): ?>
+            <div class="mensaje error">
                 <?php echo htmlspecialchars($mensaje); ?>
-            </p>
-
+            </div>
         <?php endif; ?>
-
 
         <form method="POST">
 
-            <input
-                type="password"
-                name="password"
-                placeholder="Nueva contraseña"
-                minlength="6"
-                required
-            >
+            <div class="campo-icono">
+                <i class="fa-solid fa-key"></i>
 
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Nueva contraseña"
+                    minlength="6"
+                    required
+                >
+            </div>
 
-            <input
-                type="password"
-                name="password_confirmacion"
-                placeholder="Repetir nueva contraseña"
-                minlength="6"
-                required
-            >
+            <div class="campo-icono">
+                <i class="fa-solid fa-lock"></i>
 
+                <input
+                    type="password"
+                    name="password_confirmacion"
+                    placeholder="Confirmar contraseña"
+                    minlength="6"
+                    required
+                >
+            </div>
 
             <button type="submit">
-                ACTUALIZAR CONTRASEÑA
+                <i class="fa-solid fa-floppy-disk"></i>
+                Actualizar contraseña
             </button>
 
         </form>
