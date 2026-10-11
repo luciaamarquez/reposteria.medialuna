@@ -239,6 +239,69 @@ nav a:hover{
     border-radius:45px; 
 }
 
+/* MENÚ RESPONSIVE PARA CELULARES */
+@media (max-width: 600px) {
+
+    header {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .banner {
+        width: 90%;
+        margin: 35px auto;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .banner-texto {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .banner-texto h2 {
+        font-size: clamp(42px, 12vw, 58px);
+        overflow-wrap: break-word;
+    }
+
+    .banner-texto p {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    .botones-banner {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .btn-principal,
+    .btn-secundario {
+        padding: 13px 20px;
+        font-size: 14px;
+    }
+
+    .banner-imagen {
+        width: 100%;
+        margin: 0;
+    }
+
+    .banner-imagen img {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+    }
+}
+
 /*==========================
         CATEGORÍAS
 ==========================*/
