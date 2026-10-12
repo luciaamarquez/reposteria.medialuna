@@ -14,10 +14,9 @@ $raiz = $enAdmin ? '../' : '';
     <title>Medialuna</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.google.com/specimen/Xanh+Mono?categoryFilters=Feeling:%2FExpressive%2FVintage;Appearance:%2FMonospace%2FMonospace&preview.layout=grid&preview.script=Latn" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.google.com/specimen/Cossette+Titre?preview.text=Endulz%C3%A1%20tus%0Amomentos%20especiales&preview.layout=grid&query=co&specimen.preview.text=Endulz%C3%A1+tus%0Amomentos+especiales&preview.script=Latn" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <link rel="stylesheet" href="<?php echo $raiz; ?>css/style.css">
@@ -27,33 +26,33 @@ $raiz = $enAdmin ? '../' : '';
     <div class="header-contenedor">
         <div class="logo">
             <img src="<?php echo $raiz; ?>img/logo/logo.png" alt="Logo">
-            <h1>MEDIALUNA</h1>
+            <h1 class="medialuna-logo">Medialuna</h1>
         </div>
         <nav>
             <ul>
                 <li>
                     <a href="<?php echo $raiz; ?>index.php#inicio">
-                        INICIO
+                        Inicio
                     </a>
                 </li>
                 <li>
                     <a href="<?php echo $raiz; ?>index.php#nosotros">
-                        NOSOTROS
+                        Nosotros
                     </a>
                 </li>
                 <li>
                     <a href="<?php echo $raiz; ?>index.php#productos">
-                        PRODUCTOS
+                        Productos
                     </a>
                 </li>
                 <li>
                     <a href="<?php echo $raiz; ?>index.php#recetas">
-                        RECETAS
+                        Recetas
                     </a>
                 </li>
                 <li>
                     <a href="<?php echo $raiz; ?>index.php#contacto">
-                        CONTACTO
+                        Contacto
                     </a>
                 </li>
             </ul>

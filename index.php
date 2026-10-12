@@ -29,8 +29,8 @@ include("includes/header.php");
             </p>
 
             <div class="botones-banner">
-                <a href="productos.php" class="btn-principal">Ver Productos</a>
-                <a href="recetas.php" class="btn-secundario">Ver Recetas</a>
+                <a href="productos.php" class="btn-principal">VER PRODUCTOS</a>
+                <a href="recetas.php" class="btn-secundario">VER RECETAS</a>
             </div>
         </div>
 

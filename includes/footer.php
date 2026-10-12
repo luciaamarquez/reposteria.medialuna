@@ -4,7 +4,7 @@
 
         <div class="footer-columna">
 
-            <h2>MEDIALUNA</h2>
+            <h2>Medialuna</h2>
 
             <p>
                 Pastelería artesanal hecha con amor, utilizando

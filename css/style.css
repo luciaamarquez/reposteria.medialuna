@@ -9,10 +9,12 @@
 }
 
 body{ 
-    font-family:'Poppins', sans-serif; 
+    font-family: "Xanh Mono";
+    font-weight: 100;
     background:#FDF7F2; 
     margin:0; 
     padding:0; 
+    font-style: italic;
 }
 
 main{
@@ -109,6 +111,16 @@ header{
     display:flex; 
     justify-content:space-between; 
     align-items:center; 
+    font-style:normal;
+    font-weight: bold;
+}
+
+.medialuna-logo{
+    font-family: 'Great Vibes', cursive;
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .logo{ 
@@ -121,12 +133,6 @@ header{
     width:50px; 
 }
 
-.logo h1{ 
-    color:white; 
-    font-size:20px; 
-    font-weight:700; 
-}
-
 nav ul{ 
     display:flex; 
     list-style:none; 
@@ -134,10 +140,12 @@ nav ul{
 }
 
 nav a{ 
-    color:white; 
+    color: white; 
     text-decoration:none; 
-    font-size:15px; 
-    transition:.3s; }
+    font-size:20px; 
+    transition:.3s; 
+    font-weight: lighter;
+}
 
 nav a:hover{ 
     color:#F6D7C3; 
@@ -145,7 +153,7 @@ nav a:hover{
 
 .btn-ingresar{ 
     background:#560628; 
-    color:white; 
+    color:#EFE6DD; 
     text-decoration:none; 
     padding:10px 18px; 
     border-radius:10px; 
@@ -174,7 +182,7 @@ nav a:hover{
 .banner-texto h2{ 
     font-family:'Great Vibes', cursive; 
     font-size:82px; 
-    font-weight:400; 
+    font-weight: bold;
     color:#5A2018; 
     line-height:1; 
     margin-bottom:30px; 
@@ -182,7 +190,7 @@ nav a:hover{
 
 .banner-texto p{ 
     width:430px; 
-    font-size:18px; 
+    font-size:20px; 
     color:#6C3045; 
     line-height:1.4; 
     margin-bottom:35px; 
@@ -191,6 +199,8 @@ nav a:hover{
 .botones-banner{ 
     display:flex; 
     gap:30px; 
+    font-weight: bold;
+    font-size: 13px;
 }
 
 .btn-principal{ 
@@ -199,8 +209,8 @@ nav a:hover{
     padding:16px 32px; 
     border-radius:40px; 
     text-decoration:none; 
-    font-weight:600; 
     box-shadow:0 8px 15px rgba(0,0,0,.25); 
+    font-style: normal;
 }
 
 .btn-secundario{ 
@@ -212,6 +222,7 @@ nav a:hover{
     font-weight:600; 
     background:#EFE6DD; 
     box-shadow:0 8px 15px rgba(0,0,0,.15); 
+    font-style: normal;
 }
 
 .btn-principal:hover{ 
@@ -237,6 +248,7 @@ nav a:hover{
     height:500px; 
     object-fit:cover; 
     border-radius:45px; 
+    box-shadow:12px 14px 18px rgba(0,0,0,.25);
 }
 
 /* MENÚ RESPONSIVE PARA CELULARES */
@@ -311,12 +323,19 @@ nav a:hover{
     max-width:1000px;
     margin:90px auto;
     text-align:center;
+    font-style: normal;
+    background:#f1ebe6;
+    padding:50px;
+    border-radius: 35px;
+
 }
 
 .categorias h2{
     color:#6E0B35;
-    font-size:48px;
-    margin-bottom:45px;
+    font-size:50px;
+    margin-bottom:30px;
+    font-family: 'Great Vibes', cursive;
+    font-style: normal;
 }
 
 .fila{
@@ -349,7 +368,7 @@ nav a:hover{
 .categoria p{
     margin-top:10px;
     color:#5B2C3B;
-    font-size:18px;
+    font-size:20px;
 }
 
 
@@ -364,6 +383,7 @@ nav a:hover{
     text-decoration:none;
     font-weight:600;
     transition:.3s;
+    box-shadow:0 8px 15px rgba(0,0,0,.15); 
 }
 
 .btn-productos:hover{
@@ -382,6 +402,7 @@ nav a:hover{
     height:150px;
     overflow:hidden;
     border-radius:18px;
+    box-shadow:0px 5px 15px rgba(0,0,0,.25);
 }
 
 .imagen-categoria img{
@@ -408,7 +429,7 @@ nav a:hover{
 
 .overlay p{
     color: white;
-    font-size:15px;
+    font-size:20px;
     line-height:1.5;
 }
 
@@ -433,9 +454,10 @@ nav a:hover{
 
 .nosotros h2{
     color:#6E0B35;
-    font-size:48px;
-    margin-bottom:45px;
-    padding-top: 500;
+    font-size:50px;
+    margin-bottom:40px;
+    font-family: 'Great Vibes', cursive;
+
 }
 
 .contenedor-nosotros{
@@ -445,17 +467,6 @@ nav a:hover{
     flex-wrap:wrap;
 }
 
-.nosotros-card{
-    width:230px;
-    height:430px;
-    background:#DFC5B5;
-    border-radius:25px;
-    box-shadow:12px 14px 18px rgba(0,0,0,.25);
-    padding:30px 20px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-}
 
 .icono{
     font-size:62px;
@@ -478,10 +489,10 @@ nav a:hover{
 
 .nosotros-card{
     width:230px;
-    height:430px;
+    height:330px;
     background:#DFC5B5;
     border-radius:25px;
-    box-shadow:12px 14px 18px rgba(0,0,0,.25);
+    box-shadow:0px 5px 15px rgba(0,0,0,.25);
     padding:30px 20px;
     display:flex;
     flex-direction:column;
@@ -548,9 +559,10 @@ nav a:hover{
 }
 
 .recetas-texto h2{
-    font-size:52px;
+    font-size:50px;
     color:#6b1f38;
     margin-bottom:20px;
+    font-family: 'Great Vibes', cursive;
 }
 
 .descripcion{
@@ -762,13 +774,15 @@ footer{
 }
 
 .footer-columna h2{
-    font-size:34px;
+    font-size:45px;
     margin-bottom:20px;
+    font-family: 'great vibes', cursive;
 }
 
 .footer-columna h3{
     font-size:26px;
     margin-bottom:20px;
+    font-style: normal;
 }
 
 .footer-columna p{
