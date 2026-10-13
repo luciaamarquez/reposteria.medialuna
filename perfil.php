@@ -167,7 +167,7 @@ include("includes/header.php");
 
                     <button type="submit" class="btn-guardar">
                         <i class="fa-solid fa-floppy-disk"></i>
-                        Guardar cambios
+                        GUARDAR CAMBIOS
                     </button>
 
                 </div>

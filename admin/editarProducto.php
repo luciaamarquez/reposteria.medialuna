@@ -85,8 +85,8 @@ include("../includes/header.php");
             </div>
 
             <div class="editar-botones">
-                <a href="index.php" class="btn-volver-editar">Cancelar</a>
-                <button type="submit" class="btn-actualizar">Actualizar</button>
+                <a href="index.php" class="btn-volver-editar">CANCELAR</a>
+                <button type="submit" class="btn-actualizar">ACTUALIZAR</button>
             </div>
 
         </form>

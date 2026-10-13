@@ -96,7 +96,7 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria");
 
         <div class="admin-titulo">
 
-            <h2>Productos</h2>
+            <h2>PRODUCTOS</h2>
 
             <a href="#" class="btn-agregar" onclick="abrirModalProducto(); return false;">
                 <i class="fa-solid fa-plus"></i>
@@ -170,13 +170,13 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria");
 
                     <tr>
                         <th>ID</th>
-                        <th>Imagen</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Categoría</th>
-                        <th>Precio</th>
-                        <th>Stock</th>
-                        <th>Acciones</th>
+                        <th>IMÁGEN</th>
+                        <th>NOMBRE</th>
+                        <th>DESCRIPCIÓN</th>
+                        <th>CATEGORÍA</th>
+                        <th>PRECIO</th>
+                        <th>STOCK</th>
+                        <th>ACCIONES</th>
                     </tr>
 
                 </thead>
@@ -255,7 +255,7 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria");
 
         <div class="admin-titulo">
 
-            <h2>Recetas</h2>
+            <h2>RECETAS</h2>
 
             <a href="#" class="btn-agregar" onclick="abrirModalReceta()">
                 <i class="fa-solid fa-plus"></i>
@@ -298,11 +298,11 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria");
                         <tr>
 
                             <th>ID</th>
-                            <th>Imagen</th>
-                            <th>Título</th>
-                            <th>Ingredientes</th>
-                            <th>Preparación</th>
-                            <th>Acciones</th>
+                            <th>IMÁGEN</th>
+                            <th>TÍTULO</th>
+                            <th>INGREDIENTES</th>
+                            <th>PREPARACIÓN</th>
+                            <th>ACCIONES</th>
 
                         </tr>
 

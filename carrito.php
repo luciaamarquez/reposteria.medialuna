@@ -208,7 +208,7 @@ $total = $subtotal + $envio;
 
             <aside class="resumen-carrito">
 
-                <h2>Resumen del pedido</h2>
+                <h2>RESUMEN DEL PEDIDO</h2>
 
                 <div class="resumen-linea">
 

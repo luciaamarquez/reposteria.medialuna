@@ -104,7 +104,7 @@ $consulta = $conexion->query("SELECT * FROM productos ORDER BY id DESC");
                                 <?= htmlspecialchars($producto['descripcion']) ?>
                             </p>
 
-                            <span>
+                            <span id="precio-agotado">
                                 AGOTADO
                             </span>
 

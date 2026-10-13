@@ -319,20 +319,16 @@ nav a:hover{
 ==========================*/
 
 .categorias{
-    width:90%;
-    max-width:1000px;
-    margin:90px auto;
     text-align:center;
     font-style: normal;
-    background:#f1ebe6;
-    padding:50px;
+    background:#f5eee9;
     border-radius: 35px;
-
+    padding:50px 10%;
 }
 
 .categorias h2{
     color:#6E0B35;
-    font-size:50px;
+    font-size:55px;
     margin-bottom:30px;
     font-family: 'Great Vibes', cursive;
     font-style: normal;
@@ -374,8 +370,8 @@ nav a:hover{
 
 .btn-productos{
     display:inline-block;
-    margin-top:35px;
-    padding:16px 38px;
+    margin-top:28px;
+    padding:12px 34px;
     border:2px solid #6E0B35;
     border-radius:40px;
     background:#E7D3C5;
@@ -384,6 +380,9 @@ nav a:hover{
     font-weight:600;
     transition:.3s;
     box-shadow:0 8px 15px rgba(0,0,0,.15); 
+    font-style: normal;
+    font-size: 13px;
+
 }
 
 .btn-productos:hover{
@@ -448,13 +447,13 @@ nav a:hover{
 .nosotros{
     width:90%;
     max-width:1200px;
-    margin:120px auto 80px;
+    margin:60px auto 80px;
     text-align:center;
 }
 
 .nosotros h2{
     color:#6E0B35;
-    font-size:50px;
+    font-size:55px;
     margin-bottom:40px;
     font-family: 'Great Vibes', cursive;
 
@@ -509,13 +508,34 @@ nav a:hover{
     transform: translateY(0);
 }
 
+
+.nosotros-card h3{
+    position: relative;
+    display: inline-block;
+}
+
+.nosotros-card h3::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-6px;
+    width:0;
+    height:3px;
+    background:#6E0B35;
+    transition:.4s;
+    transform:translateX(-50%);
+}
+
+.nosotros-card:hover h3::after{
+    width:100%;
+}
+
 /*==========================
         RECETAS
 ==========================*/
 .recetas{
-    padding:90px 10%;
-    background:#f1ebe6;
-    border-radius: 18px;
+    padding:50px 10%;
+    background:#f5eee9;
 }
 
 .recetas-contenedor{
@@ -526,8 +546,8 @@ nav a:hover{
 
 .recetas-img{
     position: relative;
-    width: 420px;
-    height: 560px;
+    width: 320px;
+    height: 460px;
     overflow: hidden;
     border-radius: 20px;
 }
@@ -559,7 +579,7 @@ nav a:hover{
 }
 
 .recetas-texto h2{
-    font-size:50px;
+    font-size:55px;
     color:#6b1f38;
     margin-bottom:20px;
     font-family: 'Great Vibes', cursive;
@@ -600,154 +620,6 @@ nav a:hover{
 
 }
 
-.nosotros-card h3{
-    position: relative;
-    display: inline-block;
-}
-
-.nosotros-card h3::after{
-    content:"";
-    position:absolute;
-    left:50%;
-    bottom:-6px;
-    width:0;
-    height:3px;
-    background:#6E0B35;
-    transition:.4s;
-    transform:translateX(-50%);
-}
-
-.nosotros-card:hover h3::after{
-    width:100%;
-}
-/*==========================
-        RECETAS Pagina
-==========================*/
-
-.recetas{
-    width:90%;
-    max-width:1200px;
-    margin:60px auto;
-}
-
-.TituloNR{
-    text-align:center;
-    font-size:42px;
-    color:#5a2d2d;
-    margin-bottom:10px;
-}
-
-.subtitulo-recetas{
-    text-align:center;
-    color:#777;
-    margin-bottom:40px;
-}
-
-.receta{
-    display:flex;
-    background:#fff;
-    border-radius:15px;
-    overflow:hidden;
-    margin-bottom:30px;
-    box-shadow:0 5px 15px rgba(0,0,0,.15);
-}
-
-.receta-imagen{
-    width:260px;
-}
-
-.receta-imagen img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.receta-contenido{
-    flex:1;
-    padding:25px;
-}
-
-.receta-contenido h3{
-    color:#5a2d2d;
-    margin-bottom:20px;
-    font-size:28px;
-}
-
-.columnas{
-    display:flex;
-    gap:40px;
-}
-
-.columna{
-    width:50%;
-}
-
-.columna h4{
-    color:#c17a2c;
-    margin-bottom:10px;
-}
-
-.columna p{
-    color:#555;
-    line-height:1.7;
-    text-align:justify;
-    white-space:pre-line;
-    display: block;
-    white-space: pre-line;
-    line-height: 1.8;
-}
-
-
-.receta:hover{
-    transform:translateY(-5px);
-    transition:.3s;
-}
-
-@media(max-width:900px){
-
-    .receta{
-        flex-direction:column;
-    }
-
-    .receta-imagen{
-        width:100%;
-        height:250px;
-    }
-
-    .columnas{
-        flex-direction:column;
-        gap:20px;
-    }
-
-    .columna{
-        width:100%;
-    }
-
-    .recetas h2{
-        font-size:32px;
-    }
-
-}
-
-.frase{
-    font-style: italic;
-    color:#8a6d63;
-    font-size:18px;
-    margin-bottom:35px;
-    min-height:50px;
-}
-
-.frase::after{
-    content:"|";
-    animation:parpadeo .8s infinite;
-    color:#6E0B35;
-}
-
-@keyframes parpadeo{
-    50%{
-        opacity:0;
-    }
-}
 /*==========================
         FOOTER
 ==========================*/
@@ -789,6 +661,7 @@ footer{
     font-size:16px;
     line-height:1.8;
     margin-bottom:10px;
+    font-style: normal;
 }
 
 .footer-columna ul{
@@ -856,8 +729,9 @@ footer hr{
 .login-contenedor h2{
     text-align:center;
     color:#6E0B35;
-    font-size:36px;
+    font-size:50px;
     margin-bottom:25px;
+    font-family: 'Great Vibes', cursive;
 }
 
 /* Formulario */
@@ -876,6 +750,7 @@ footer hr{
     background:#FFF9F6;
     font-size:15px;
     transition:.3s;
+    font-family: 'xanh mono';
 }
 
 .login input:focus{
@@ -892,10 +767,11 @@ footer hr{
     border-radius:40px;
     background:#6E0B35;
     color:#fff;
-    font-size:16px;
+    font-size:12px;
     font-weight:600;
     cursor:pointer;
     transition:.3s;
+    font-weight: bold;
 }
 
 .login button:hover{
@@ -914,6 +790,7 @@ footer hr{
     text-align:center;
     line-height:1.3;
     color:#666;
+    font-style: normal;
 }
 
 .login .registro a{
@@ -924,6 +801,7 @@ footer hr{
     text-decoration:none;
     font-weight:600;
     transition:.3s;
+    font-style: italic;
 }
 
 .login .registro a:hover{
@@ -943,6 +821,7 @@ footer hr{
     color:#555;
     text-decoration:none;
     transition:.3s;
+    font-style: normal;
 }
 
 .login .olvide:hover{
@@ -958,6 +837,7 @@ footer hr{
     position:absolute;
     bottom:18px;
     right:18px;
+    font-style: normal;
 }
 
 .admin-demo summary{
@@ -1050,8 +930,9 @@ footer hr{
 .registro-contenedor h2{
     text-align:center;
     color:#6E0B35;
-    font-size:42px;
+    font-size:50px;
     margin-bottom:30px;
+    font-family: 'Great Vibes', cursive;
 }
 
 .registro form{
@@ -1077,6 +958,8 @@ footer hr{
     background:#FFF9F6;
     font-size:15px;
     transition:.3s;
+    font-family: 'xanh mono';
+
 }
 
 .registro input:focus{
@@ -1094,7 +977,7 @@ footer hr{
     border-radius:40px;
     background:#6E0B35;
     color:white;
-    font-size:16px;
+    font-size:11px;
     font-weight:600;
     cursor:pointer;
     transition:.3s;
@@ -1111,6 +994,7 @@ footer hr{
     text-align:center;
     color:#666;
     line-height:1.6;
+    font-style: normal;
 }
 
 .registro-login a{
@@ -1118,6 +1002,7 @@ footer hr{
     text-decoration:none;
     font-weight:600;
     transition:.3s;
+    font-style: italic;
 }
 
 .registro-login a:hover{
@@ -1190,8 +1075,10 @@ footer hr{
 .recuperar-contenedor h2{
     text-align:center;
     color:#6E0B35;
-    font-size:34px;
+    font-size:40px;
     margin-bottom:10px;
+    font-family: 'great vibes', cursive;
+
 }
 
 .recuperar-contenedor h2 i{
@@ -1203,6 +1090,7 @@ footer hr{
     color:#666;
     margin-bottom:25px;
     line-height:1.5;
+    font-style: normal;
 }
 
 .recuperar form{
@@ -1231,6 +1119,7 @@ footer hr{
     background:#FFF9F6;
     font-size:15px;
     transition:.3s;
+    font-family: 'xanh mono';
 }
 
 .campo-icono input:focus{
@@ -1246,7 +1135,7 @@ footer hr{
     border-radius:40px;
     background:#6E0B35;
     color:#fff;
-    font-size:16px;
+    font-size:11px;
     font-weight:600;
     cursor:pointer;
     transition:.3s;
@@ -1340,8 +1229,9 @@ footer hr{
 .nueva-password-contenedor h2{
     text-align:center;
     color:#6E0B35;
-    font-size:34px;
+    font-size:40px;
     margin-bottom:10px;
+    font-family: 'great vibes', cursive;
 }
 
 .nueva-password-contenedor h2 i{
@@ -1398,7 +1288,7 @@ footer hr{
     border-radius:40px;
     background:#6E0B35;
     color:#fff;
-    font-size:16px;
+    font-size:11px;
     font-weight:600;
     cursor:pointer;
     transition:.3s;
@@ -1442,13 +1332,16 @@ footer hr{
 .banner-productos{
     background:#DDBFAE;
     text-align:center;
-    padding:90px 20px;
+    padding:45px 20px;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, .13);
+
 }
 
 .banner-productos h1{
     color:#4C1930;
-    font-size:64px;
+    font-size:70px;
     margin-bottom:20px;
+    font-family: 'great vibes', cursive;
 }
 
 .banner-productos p{
@@ -1463,12 +1356,14 @@ footer hr{
 }
 
 .categorias-productos button{
-    padding:14px 38px;
+    padding:8px 60px;
     background:white;
     border:1px solid #D9BDAE;
     color:#4C1930;
     font-size:18px;
     cursor:pointer;
+    font-family: 'xanh mono';
+
 }
 
 .categorias-productos button:first-child{
@@ -1479,75 +1374,144 @@ footer hr{
     border-radius:0 30px 30px 0;
 }
 
-.productos-grid{
-    max-width:1200px;
-    margin:60px auto;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:45px;
+
+/* ==========================
+   PRODUCTOS: 4 POR FILA
+========================== */
+
+.productos-grid {
+    width: 92%;
+    max-width: 1400px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
 }
 
-.card-producto{
-    background:white;
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 8px 18px rgba(0,0,0,.18);
+/* Tarjeta */
+.card-producto {
+    min-width: 0;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease;
 }
 
-.card-producto img{
-    width:100%;
-    height:270px;
-    object-fit:cover;
-    display:block;
+.card-producto:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 9px 20px rgba(0, 0, 0, .16);
 }
 
-.info-producto{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    padding:18px;
+/* Imagen */
+.card-producto img,
+.card-producto .imagen-agotada {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
 }
 
-.info-producto h3{
-    color:#4C1930;
-    font-size:30px;
-    margin-bottom:5px;
+/* Imagen de producto agotado */
+.card-producto .imagen-agotada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #B7BEC2;
+    color: #444;
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.info-producto p{
-    font-size:16px;
-    color:#555;
+/* Información */
+.info-producto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
 }
 
-.info-producto span{
-    display:block;
-    margin-top:12px;
-    font-size:24px;
-    font-weight:bold;
-    color:#4C1930;
+.info-producto > div {
+    min-width: 0;
+    flex: 1;
 }
 
-.info-producto button{
-    width:52px;
-    height:52px;
-    border:none;
-    border-radius:50%;
-    background:#6E0B35;
-    color:white;
-    cursor:pointer;
-    font-size:22px;
+.info-producto h3 {
+    color: #4C1930;
+    font-size: 20px;
+    line-height: 1.2;
+    margin: 0 0 7px;
+    overflow-wrap: anywhere;
+    font-style: normal;
 }
 
-.imagen-agotada{
-    height:270px;
-    background:#B7BEC2;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:34px;
-    color:#444;
-    font-weight:bold;
+.info-producto p {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #555;
+    margin: 0;
 }
+
+.info-producto span {
+    display: block;
+    margin-top: 10px;
+    font-size: 19px;
+    font-weight: bold;
+    color: #4C1930;
+    font-style: normal;
+
+}
+
+#precio-agotado {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #4C1930;
+}
+
+/* Botón del carrito */
+.info-producto button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: #6E0B35;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background .2s, transform .2s;
+}
+
+.info-producto button:hover {
+    background: #8C1F4B;
+    transform: scale(1.06);
+}
+
+/* Tablets: 2 por fila */
+@media (max-width: 1000px) {
+    .productos-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+}
+
+/* Celulares: 1 por fila */
+@media (max-width: 550px) {
+    .productos-grid {
+        width: 90%;
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .card-producto img,
+    .card-producto .imagen-agotada {
+        height: 210px;
+    }
+}
+
+
 
 /*==========================
          PERFIL
@@ -1567,6 +1531,8 @@ footer hr{
     font-size:35px;
     color:#4C1930;
     margin-top:30px;
+    font-style: normal;
+
 }
 
 .perfil-titulo p{
@@ -1605,6 +1571,8 @@ footer hr{
 .card-usuario h2{
     margin:20px 0 5px;
     font-size: 22px;
+    font-style: normal;
+
 }
 
 .perfil-rol{
@@ -1619,6 +1587,8 @@ footer hr{
     text-align:left;
     margin-top:20px;
     margin-left: 20px;
+    font-style: normal;
+
 }
 
 .info-usuario p{
@@ -1656,8 +1626,13 @@ footer hr{
 }
 
 .campo label{
-    margin-bottom:8px;
+    margin-bottom:10px;
     font-weight:600;
+    font-style: normal;
+    margin-top:10px;
+    color:#3f051d;
+
+
 }
 
 .campo input{
@@ -1700,7 +1675,7 @@ footer hr{
     background:#6E0B35;
     color:white;
     cursor:pointer;
-    font-size: 14px;
+    font-size: 11px;
 }
 
 .btn-volver{
@@ -1745,197 +1720,6 @@ footer hr{
     font-size: 14px;
 }
  
-/*==========================
-        PANEL ADMIN
-==========================*/
-.Contenedor_panel{
-     display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    width:100%;
-    margin:0;
-    padding:40px 5%;
-
-    background-color:#bfbfbf;
-}
-
-.titulo_panel_admin{
-    font-size:50px;
-    margin-right: 100px;
-}
-
-.subcontenedor_panel{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-end;
-    gap:15px;
-}
-
-.Tienda_panel{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    background:#6E0B35;
-    color:white;
-    padding:12px 22px;
-    border-radius:30px;
-    text-decoration:none;
-    font-weight:600;
-    transition:.3s;
-}
-
-.Tienda_panel:hover{
-    background:#8C1F4B;
-    transform:translateY(-3px);
-}
-
-.subcontenedor_panel p{
-    margin:0;
-    color:#555;
-}
-
-/* ===========================
-        ADMIN PRODUCTOS
-=========================== */
-
-.admin-contenedor{
-    width:90%;
-    max-width:1200px;
-    margin:50px auto;
-    background:white;
-    border-radius:25px;
-    box-shadow:0 8px 20px rgba(0,0,0,.15);
-    overflow:hidden;
-}
-
-/* TITULO */
-
-.admin-titulo{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:30px 40px;
-    border-bottom:1px solid #ddd;
-}
-
-.admin-titulo h1{
-    color:#4C1930;
-    font-size:38px;
-    margin:0;
-}
-
-/* BOTON AGREGAR */
-
-.btn-agregar{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    background:#6E0B35;
-    color:white;
-    padding:12px 20px;
-    border-radius:30px;
-    text-decoration:none;
-    font-weight:600;
-    box-shadow:0 6px 12px rgba(0,0,0,.2);
-    transition:.3s;
-}
-
-.btn-agregar:hover{
-    background:#8C1F4B;
-    transform:translateY(-3px);
-}
-
-/* TABLA */
-
-.tabla-contenedor{
-    width:100%;
-    overflow-x:auto;
-}
-
-.tabla-admin{
-    width:100%;
-    border-collapse:collapse;
-}
-
-.tabla-admin th{
-    background:#f1e4dc;
-    color:#4C1930;
-    padding:15px;
-    text-align:center;
-    font-size:14px;
-}
-
-.tabla-admin td{
-    padding:12px;
-    border-top:1px solid #ddd;
-    color:#555;
-    text-align:center;
-    vertical-align:middle;
-}
-
-.tabla-admin tr:hover{
-    background:#fdf7f2;
-}
-
-/* IMAGEN */
-
-.imagen-producto-admin{
-    width:70px;
-    height:70px;
-    object-fit:cover;
-    border-radius:10px;
-}
-
-/* ACCIONES */
-
-.acciones{
-    white-space:nowrap;
-}
-
-.btn-editar,
-.btn-eliminar{
-    display:inline-flex;
-    justify-content:center;
-    align-items:center;
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    text-decoration:none;
-    margin:0 3px;
-    transition:.3s;
-}
-
-.btn-editar{
-    color:#6E0B35;
-}
-
-.btn-eliminar{
-    color:#8C1F4B;
-}
-
-.btn-editar:hover,
-.btn-eliminar:hover{
-    transform:scale(1.15);
-}
-
-/* DESCRIPCIÓN */
-
-.tabla-admin td:nth-child(4){
-    max-width:250px;
-    text-align:left;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:900px){
-    .admin-titulo{
-        flex-direction:column;
-        gap:20px;
-        align-items:flex-start;
-    }
-}
-
 /*================================
         PANEL ADMINISTRADOR
 ================================*/
@@ -1961,6 +1745,7 @@ footer hr{
     font-size:50px;
     color:#4C1930;
     margin:0;
+    font-family: 'great vibes', cursive;
 }
 
 .subcontenedor_panel{
@@ -1991,6 +1776,8 @@ footer hr{
     text-decoration:none;
     font-weight:600;
     transition:.3s;
+    font-style: normal;
+    font-size:16px;
 }
 
 .Tienda_panel:hover{
@@ -2011,6 +1798,7 @@ footer hr{
     border-radius:30px;
     box-shadow:0 8px 20px rgba(0,0,0,.15);
     overflow:hidden;
+    font-style: normal;
 }
 
 /*================================
@@ -2028,12 +1816,12 @@ footer hr{
     background:white;
     color:#6E0B35;
     padding:22px 40px;
-    font-family:'Poppins', sans-serif;
-    font-size:15px;
+    font-size:17px;
     font-weight:600;
     cursor:pointer;
     transition:.3s;
     border-bottom:3px solid transparent;
+    font-family: 'xanh mono';
 }
 
 .pestana:hover{
@@ -2072,7 +1860,7 @@ footer hr{
 
 .admin-titulo h2{
     color:#4C1930;
-    font-size:32px;
+    font-size:23px;
     margin:0;
 }
 
@@ -2092,6 +1880,7 @@ footer hr{
     font-weight:600;
     box-shadow:0 6px 12px rgba(0,0,0,.2);
     transition:.3s;
+    font-size: 14px;
 }
 
 .btn-agregar:hover{
@@ -2118,15 +1907,17 @@ footer hr{
     color:#4C1930;
     padding:15px;
     text-align:center;
-    font-size:14px;
+    font-size:15px;
 }
 
 .tabla-admin td{
-    padding:12px;
+    padding:25px;
     border-top:1px solid #ddd;
     color:#555;
     text-align:center;
     vertical-align:middle;
+    font-size: 16px;
+
 }
 
 .tabla-admin tr:hover{
@@ -2229,17 +2020,20 @@ footer hr{
 
 /* Banner superior con fondo beige */
 .recetas-header {
-    background-color: #e8d5c8; /* Tono beige/marrón claro del fondo */
+    background-color: #DDBFAE; /* Tono beige/marrón claro del fondo */
     text-align: center;
-    padding: 50px 20px;
+    padding: 45px 20px;
     margin-bottom: 40px;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, .13);
+
 }
 
 .tituloNR {
-    font-size: 46px;
+    font-size: 70px;
     font-weight: bold;
     color: #4a1525; /* Tono bordó/marrón oscuro */
     margin-bottom: 10px;
+    font-family: 'great vibes', cursive;
 }
 
 .subtitulo-recetas {
@@ -2262,7 +2056,6 @@ footer hr{
     border-radius: 20px;
     overflow: hidden;
     margin-bottom: 35px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -2299,6 +2092,7 @@ footer hr{
     display: flex;
     align-items: center;
     gap: 10px;
+    font-style: normal;
 }
 
 .columnas {
@@ -2315,6 +2109,7 @@ footer hr{
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 15px;
+    font-style: normal;
 }
 
 .columna p, 
@@ -2385,6 +2180,7 @@ footer hr{
     text-decoration: none;
     font-weight: 600;
     transition: .3s;
+    font-size: 11px;
 }
 
 .btn-cancelar:hover {
@@ -2402,6 +2198,8 @@ footer hr{
     cursor: pointer;
     box-shadow: 0 6px 12px rgba(0,0,0,.25);
     transition: .3s;
+    font-size: 11px;
+
 }
 
 .btn-guardar-receta:hover {
@@ -2415,108 +2213,224 @@ footer hr{
     to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/*==========================
-    EDITAR RECETA
-==========================*/
 
-.editar-receta{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#FDF7F2;
-    padding:20px;
+/* MODAL AGREGAR RECETA - TAMAÑO */
+#modal-receta .agregar-receta-contenedor {
+    width: 90%;
+    max-width: 650px;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 20px 28px;
+    box-sizing: border-box;
 }
 
-.editar-receta-card{
-    width:900px;
-    background:#fff;
-    border-radius:20px;
-    padding:30px 35px;
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
-    animation: entrada .6s ease forwards;
+/* título del formulario */
+#modal-receta .agregar-receta-contenedor h2 {
+    font-size: 23px;
+    margin-top: 5px;
+    margin-bottom: 16px;
+    font-style: normal;
 }
 
-.editar-receta-card h1{
-    text-align:center;
-    color:#6E0B35;
-    font-size:32px;
-    margin-bottom:25px;
+/* espacio entre etiquetas y campos */
+#modal-receta .agregar-receta-contenedor label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-style: normal;
 }
 
-.editar-grupo{
-    display:flex;
-    flex-direction:column;
-    margin-bottom:18px;
+/* campos de texto */
+#modal-receta .agregar-receta-contenedor input,
+#modal-receta .agregar-receta-contenedor textarea {
+    width: 100%;
+    padding: 9px 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
 }
 
-.editar-grupo label{
-    margin-bottom:8px;
-    color:#4C1930;
-    font-weight:600;
+/* altura de las áreas de texto */
+#modal-receta #ingredientes {
+    height: 75px;
+    min-height: 75px;
 }
 
+#modal-receta #preparacion {
+    height: 85px;
+    min-height: 85px;
+}
+
+/* botones */
+#modal-receta .botones-form {
+    margin-top: 8px;
+}
+
+
+
+/* ==========================
+   EDITAR RECETA 
+========================== */
+
+.editar-receta {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 35px 20px;
+    box-sizing: border-box;
+}
+
+.editar-receta-card {
+    width: 100%;
+    max-width: 850px;
+    background: #FFFCF9;
+    border-radius: 8px;
+    padding: 35px 40px;
+    border-top: 5px solid #6E0B35;
+    box-shadow: 0 12px 35px rgba(76, 25, 48, .10);
+    animation: entrada .5s ease forwards;
+    box-sizing: border-box;
+}
+
+/* Título editorial */
+.editar-receta-card h1 {
+    text-align: left;
+    color: #6E0B35;
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0 0 28px;
+    padding-bottom: 15px;
+    font-style: normal;
+}
+
+/* Grupos */
+.editar-grupo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.editar-grupo label {
+    margin-bottom: 8px;
+    color: #6E0B35;
+    font-size: 15px;
+    font-weight: 600;
+    font-style: normal;
+
+}
+
+/* Campos */
 .editar-grupo input,
-.editar-grupo textarea{
-    width:100%;
-    padding:12px;
-    border:2px solid #E7CCBD;
-    border-radius:10px;
-    background:#FDF7F2;
-    font-family:'Poppins',sans-serif;
-    font-size:15px;
-    box-sizing:border-box;
+.editar-grupo textarea {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #DDC5B7;
+    border-radius: 6px;
+    background: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    box-sizing: border-box;
+    transition: border-color .2s, box-shadow .2s;
 }
 
-.editar-grupo textarea{
-    height:220px;
-    resize:none;
+.editar-grupo input:focus,
+.editar-grupo textarea:focus {
+    outline: none;
+    border-color: #6E0B35;
+    box-shadow: 0 0 0 3px rgba(110, 11, 53, .08);
 }
 
-.doble-textarea{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:25px;
-    margin-bottom:18px;
+/* Ingredientes y preparación */
+.doble-textarea {
+    display: grid;
+    gap: 22px;
+    margin-bottom: 20px;
 }
 
-.editar-botones{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:10px;
+.doble-textarea .editar-grupo {
+    background: #F8EFE8;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #EAD8CC;
+    margin-bottom: 0;
 }
 
-.btn-volver-editar{
-    text-decoration:none;
-    background:#d7d7d7;
-    color:#444;
-    padding:12px 24px;
-    border-radius:30px;
-    font-weight:600;
-    transition:.3s;
+.editar-grupo textarea {
+    height: 200px;
+    resize: vertical;
 }
 
-.btn-volver-editar:hover{
-    background:#bfbfbf;
+/* Botones */
+.editar-botones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+    padding-top: 20px;
 }
 
-.btn-actualizar{
-    border:none;
-    background:#6E0B35;
-    color:#fff;
-    padding:12px 28px;
-    border-radius:30px;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
-    box-shadow:0 6px 12px rgba(0,0,0,.2);
-    transition:.3s;
+.btn-volver-editar {
+    text-decoration: none;
+    background: transparent;
+    color: #6E0B35;
+    border: 1.5px solid #6E0B35;
+    padding: 11px 23px;
+    border-radius: 35px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: .25s;
 }
 
-.btn-actualizar:hover{
-    background:#8C1F4B;
-    transform:translateY(-3px);
+.btn-volver-editar:hover {
+    background: #F5EAE1;
+}
+
+.btn-actualizar {
+    border: none;
+    background: #6E0B35;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 35px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.btn-actualizar:hover {
+    background: #8C1F4B;
+    transform: translateY(-2px);
+}
+
+/* Adaptación a celulares */
+@media (max-width: 650px) {
+    .editar-receta {
+        padding: 20px 12px;
+    }
+
+    .editar-receta-card {
+        padding: 25px 18px;
+    }
+
+    .editar-receta-card h1 {
+        font-size: 30px;
+    }
+
+    .doble-textarea {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .editar-grupo textarea {
+        height: 160px;
+    }
+
+    .editar-botones {
+        flex-wrap: wrap;
+    }
 }
 
 
@@ -2594,6 +2508,79 @@ body{
     outline:none;
 }
 
+
+/* FORMULARIO AGREGAR PRODUCTO */
+.agregar-producto-contenedor {
+    width: 650px;
+    max-width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 18px;
+    padding: 22px 28px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    animation: entrada .6s ease forwards;
+}
+
+/* título */
+.agregar-producto-contenedor h2 {
+    text-align: center;
+    color: #6E0B35;
+    font-size: 23px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-style: normal;
+}
+
+/* etiquetas */
+.agregar-producto-contenedor label {
+    display: block;
+    margin-bottom: 5px;
+    color: #4C1930;
+    font-weight: 600;
+    font-size: 14px;
+    font-style: normal;
+
+}
+
+/* campos */
+.agregar-producto-contenedor input,
+.agregar-producto-contenedor textarea,
+.agregar-producto-contenedor select {
+    width: 100%;
+    padding: 9px 12px;
+    margin-bottom: 10px;
+    border: 2px solid #E7CCBD;
+    border-radius: 10px;
+    background: #FDF7F2;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+}
+
+/* descripción más compacta */
+.agregar-producto-contenedor textarea {
+    height: 75px;
+    min-height: 75px;
+    resize: vertical;
+}
+
+/* efecto al seleccionar un campo */
+.agregar-producto-contenedor select:focus,
+.agregar-producto-contenedor input:focus,
+.agregar-producto-contenedor textarea:focus {
+    border-color: #6E0B35;
+    outline: none;
+}
+
+/* botones */
+.agregar-producto-contenedor .botones-form {
+    margin-top: 5px;
+    font-style: normal;
+}
+
+
 /*===============
 EDITAR PRODUCTO
 ==================*/
@@ -2603,9 +2590,9 @@ EDITAR PRODUCTO
     border:2px solid #E7CCBD;
     border-radius:10px;
     background:#FDF7F2;
-    font-family:'Poppins', sans-serif;
     font-size:15px;
     box-sizing:border-box;
+    font-style: normal;
 }
 
 .editar-grupo select:focus{
@@ -2623,16 +2610,6 @@ EDITAR PRODUCTO
     margin:40px auto;
 }
 
-.titulo-carrito{
-    margin-bottom:35px;
-}
-
-.titulo-carrito h1{
-    color:#4C1930;
-    font-size:42px;
-    font-weight:700;
-}
-
 .carrito-contenido{
     display:grid;
     grid-template-columns:2fr 380px;
@@ -2640,32 +2617,27 @@ EDITAR PRODUCTO
     align-items:flex-start;
 }
 
-/*==========================
-      BANNER CARRITO
-==========================*/
 .banner-carrito{
     width:100%;
     background:#DDBFAE;
-    padding:70px 20px;
+    padding:45px 20px;
     text-align:center;
     margin:0;
-    box-shadow:0 8px 18px rgba(0,0,0,.08);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, .13);
 
 }
 
 .banner-carrito h1{
     color:#4C1930;
-    font-size:52px;
+    font-size:70px;
     margin-bottom:10px;
+    font-family: 'great vibes', cursive;
 }
 
 .banner-carrito p{
     color:#6A4A4A;
-    font-size:18px;
+    font-size:19px;
 }
-/*------------------------
-    PRODUCTOS
--------------------------*/
 
 .productos-carrito{
     display:flex;
@@ -2683,12 +2655,13 @@ EDITAR PRODUCTO
     border-radius:20px;
     padding:20px;
 
-    box-shadow:0 8px 18px rgba(0,0,0,.08);
     transition:.3s;
 }
 
 .item-carrito:hover{
     transform:translateY(-4px);
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+
 }
 
 .imagen-carrito img{
@@ -2702,6 +2675,7 @@ EDITAR PRODUCTO
     color:#4C1930;
     font-size:24px;
     margin-bottom:10px;
+    font-style: normal;
 }
 
 .datos-carrito p{
@@ -2715,6 +2689,8 @@ EDITAR PRODUCTO
     color:#6E0B35;
     font-size:22px;
     font-weight:bold;
+    font-style: normal;
+
 }
 
 /*------------------------
@@ -2725,6 +2701,7 @@ EDITAR PRODUCTO
     display:flex;
     align-items:center;
     gap:10px;
+    font-style: normal;
 }
 
 .cantidad-carrito form{
@@ -2761,6 +2738,7 @@ EDITAR PRODUCTO
 .subtotal-carrito strong{
     font-size:22px;
     color:#4C1930;
+    font-style: normal;
 }
 
 /*------------------------
@@ -2770,8 +2748,8 @@ EDITAR PRODUCTO
 .eliminar-carrito button{
     border:none;
     background:none;
-    color:#000000;
-    font-size:22px;
+    color:#4C1930;
+    font-size:18px;
     cursor:pointer;
     transition:.3s;
 }
@@ -2797,6 +2775,8 @@ EDITAR PRODUCTO
 .resumen-carrito h2{
     color:#4C1930;
     margin-bottom:25px;
+    font-style: normal;
+    font-size: 21px;
 }
 
 .resumen-linea,
@@ -2808,8 +2788,9 @@ EDITAR PRODUCTO
 }
 
 .resumen-total{
-    font-size:22px;
+    font-size:20px;
     color:#4C1930;
+    font-style: normal;
 }
 
 .resumen-carrito hr{
@@ -2827,9 +2808,9 @@ EDITAR PRODUCTO
     border:none;
     background:#6E0B35;
     color:white;
-    padding:16px;
+    padding:12px;
     border-radius:35px;
-    font-size:16px;
+    font-size:12px;
     font-weight:600;
     cursor:pointer;
     margin-top:20px;
@@ -2845,13 +2826,14 @@ EDITAR PRODUCTO
     display:block;
     margin-top:15px;
     text-align:center;
-    padding:15px;
+    padding:10px;
     border:2px solid #6E0B35;
     color:#6E0B35;
     border-radius:35px;
     text-decoration:none;
     font-weight:600;
     transition:.3s;
+    font-size:12px;
 }
 
 .btn-seguir:hover{
@@ -2881,6 +2863,7 @@ EDITAR PRODUCTO
     color:#DDBFAE;
     margin-bottom:30px;
     font-size:20px;
+    font-style: normal;
 }
 
 .boton-explorar{
