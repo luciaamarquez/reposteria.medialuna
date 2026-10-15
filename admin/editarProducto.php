@@ -27,7 +27,7 @@ include("../includes/header.php");
 
         <h1>Editar Producto</h1>
 
-        <form action="actualizarProducto.php" method="POST">
+        <form action="actualizarProducto.php" method="POST" enctype="multipart/form-data">
 
             <input type="hidden" name="id" value="<?php echo $producto["id"]; ?>">
 
@@ -47,21 +47,23 @@ include("../includes/header.php");
                 <div class="editar-grupo">
                     <label>Precio</label>
                     <input type="number" step="0.01" name="precio"
-                        value="<?php echo $producto["precio"]; ?>" required>
+                        min="0.01" value="<?php echo $producto["precio"]; ?>" required>
                 </div>
 
                 <div class="editar-grupo">
                     <label>Stock</label>
                     <input type="number" name="stock"
-                        value="<?php echo $producto["stock"]; ?>" required>
+                        min="0" max="30" value="<?php echo $producto["stock"]; ?>" required>
                 </div>
 
             </div>
 
             <div class="editar-grupo">
-                <label>Imagen</label>
-                <input type="text" name="imagen"
-                    value="<?php echo htmlspecialchars($producto["imagen"]); ?>" required>
+                <label>Imagen actual</label>
+                <input type="text" value="<?php echo htmlspecialchars($producto["imagen"]); ?>" disabled>
+                <input type="hidden" name="imagen_actual" value="<?php echo htmlspecialchars($producto["imagen"]); ?>">
+                <label for="imagen">Elegir otra imagen (opcional)</label>
+                <input type="file" id="imagen" name="imagen" accept="image/jpeg,image/png,image/webp,image/gif">
             </div>
 
             <div class="editar-grupo">

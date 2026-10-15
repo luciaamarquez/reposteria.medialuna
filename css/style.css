@@ -8,6 +8,274 @@
     box-sizing:border-box; 
 }
 
+.volver-paginas a,
+.volver-pago{
+    color:#6E0B35;
+    font-weight:600;
+    text-decoration:none;
+}
+
+.volver-paginas a:hover,
+.volver-pago:hover{
+    text-decoration:underline;
+}
+
+.pago{
+    min-height:calc(100vh - 172px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px 18px;
+}
+
+.pago-contenedor{
+    width:100%;
+    max-width:560px;
+    padding:32px;
+    border-radius:22px;
+    background:#fff;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+}
+
+.pago-contenedor h1{
+    margin:10px 0 18px;
+    color:#4C1930;
+    font-size:30px;
+}
+
+.pago-aviso{
+    padding:12px;
+    border-radius:10px;
+    background:#FFF9F2;
+    color:#6D4B4B;
+    line-height:1.5;
+}
+
+.pago-resumen{
+    margin:20px 0;
+    padding:15px 18px;
+    border:1px solid #EAD8CC;
+    border-radius:12px;
+    background:#FDF7F2;
+}
+
+.pago-resumen p{
+    margin:8px 0;
+}
+
+.formulario-pago{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+}
+
+.formulario-pago label{
+    color:#4C1930;
+    font-weight:600;
+}
+
+.formulario-pago input{
+    width:100%;
+    padding:12px 14px;
+    border:1px solid #D9BDAE;
+    border-radius:10px;
+    background:#FFFDFC;
+    box-sizing:border-box;
+}
+
+.pago-contenedor.registro-contenedor{
+    max-width:850px;
+}
+
+.pago-contenedor h1{
+    text-align:center;
+    font-family:'Great Vibes', cursive;
+    font-size:50px;
+}
+
+.pago .formulario-pago{
+    gap:14px;
+}
+
+.pago .formulario-pago input{
+    padding:15px 18px;
+    border:2px solid #E7CCBD;
+    border-radius:12px;
+    background:#FFF9F6;
+    font-family:'xanh mono';
+    font-size:15px;
+}
+
+.pago .pago-campos-cortos{
+    display:flex;
+}
+
+.pago .pago-campos-cortos > div{
+    flex:1;
+    min-width:0;
+}
+
+.pago .formulario-pago button{
+    width:260px;
+    max-width:100%;
+    margin:12px auto 0;
+    padding:15px;
+    font-size:12px;
+}
+
+.agregar-producto-contenedor input[type="file"],
+.agregar-receta-contenedor input[type="file"],
+.editar-grupo input[type="file"]{
+    display:block;
+    width:100%;
+    min-height:48px;
+    padding:8px 10px;
+    border:2px solid #E7CCBD;
+    border-radius:10px;
+    background:#FFF9F6;
+    color:#4C1930;
+    font-family:'Montserrat', sans-serif;
+    font-size:14px;
+    box-sizing:border-box;
+}
+
+.agregar-producto-contenedor input[type="file"]::file-selector-button,
+.agregar-receta-contenedor input[type="file"]::file-selector-button,
+.editar-grupo input[type="file"]::file-selector-button{
+    margin-right:12px;
+    padding:9px 13px;
+    border:0;
+    border-radius:7px;
+    background:#6E0B35;
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.agregar-producto-contenedor input[type="file"]::file-selector-button:hover,
+.agregar-receta-contenedor input[type="file"]::file-selector-button:hover,
+.editar-grupo input[type="file"]::file-selector-button:hover{
+    background:#8C1F4B;
+}
+
+.formulario-pago input:focus{
+    outline:2px solid rgba(110,11,53,.2);
+    border-color:#6E0B35;
+}
+
+.pago-campos-cortos{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.pago-campos-cortos > div{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+}
+
+.formulario-pago button{
+    margin-top:12px;
+    padding:14px 18px;
+    border:0;
+    border-radius:30px;
+    background:#6E0B35;
+    color:#fff;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.formulario-pago button:hover{
+    background:#8C1F4B;
+}
+
+.pago-confirmacion{
+    text-align:center;
+}
+
+.pago-confirmacion > i{
+    color:#2E7D32;
+    font-size:54px;
+}
+
+.pago-confirmacion .btn-principal{
+    display:inline-block;
+    margin-top:18px;
+}
+
+@media(max-width:600px){
+    .pago-contenedor{
+        padding:24px 18px;
+    }
+}
+
+#modal-receta .agregar-receta-contenedor{
+    border:0;
+    outline:0;
+}
+
+#modal-receta .agregar-receta-contenedor form{
+    width:100%;
+}
+
+#modal-receta .agregar-receta-contenedor input,
+#modal-receta .agregar-receta-contenedor textarea{
+    display:block;
+    box-sizing:border-box;
+}
+
+.info-producto form{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.cantidad-producto input{
+    width:48px;
+    height:38px;
+    padding:4px;
+    border:1px solid #D9BDAE;
+    border-radius:10px;
+    color:#4C1930;
+    text-align:center;
+}
+
+.visualmente-oculto{
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+}
+
+.mensaje-carrito{
+    position:fixed;
+    z-index:10001;
+    top:20px;
+    right:20px;
+    max-width:min(420px, calc(100vw - 40px));
+    padding:15px 20px;
+    border-radius:12px;
+    background:#e8f5e9;
+    color:#256029;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+    font-weight:600;
+}
+
+.mensaje-carrito.error{
+    background:#FDECEC;
+    color:#C62828;
+}
+
+.card-producto[hidden]{
+    display:none;
+}
+
 body{ 
     font-family: "Xanh Mono";
     font-weight: 100;
@@ -15,6 +283,25 @@ body{
     margin:0; 
     padding:0; 
     font-style: italic;
+}
+
+.mensaje-login-error{
+    margin:0 0 15px;
+    padding:12px 15px;
+    border:1px solid #e2a4a4;
+    border-radius:10px;
+    background:#FDECEC;
+    color:#B71C1C;
+    font-weight:600;
+}
+
+.login-contenedor .campo-invalido{
+    border:2px solid #C62828;
+    background:#fff7f7;
+}
+
+.login-contenedor .campo-invalido:focus{
+    outline:3px solid rgba(198,40,40,.14);
 }
 
 main{
@@ -1351,26 +1638,42 @@ footer hr{
 .categorias-productos{
     display:flex;
     justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
     margin:45px 0;
+    padding:0 4%;
 }
 
 .categorias-productos button{
-    padding:8px 60px;
+    padding:8px 20px;
     background:white;
     border:1px solid #D9BDAE;
     color:#4C1930;
     font-size:18px;
     cursor:pointer;
     font-family: 'xanh mono';
+    border-radius:30px;
 
+}
+
+.categorias-productos button.activo{
+    background:#6E0B35;
+    color:#fff;
+}
+
+.sin-productos-categoria{
+    width:92%;
+    margin:0 auto;
+    text-align:center;
+    color:#6E0B35;
 }
 
 .categorias-productos button:first-child{
-    border-radius:30px 0 0 30px;
+    border-radius:30px;
 }
 
 .categorias-productos button:last-child{
-    border-radius:0 30px 30px 0;
+    border-radius:30px;
 }
 
 
@@ -1611,6 +1914,60 @@ footer hr{
     margin-top:25px;
 }
 
+.historial-perfil{
+    margin:35px 0;
+    scroll-margin-top:25px;
+}
+
+.historial-lista{
+    display:grid;
+    gap:18px;
+}
+
+.historial-pedido{
+    background:#fff;
+    border:1px solid #ead8cc;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.historial-pedido header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:15px;
+}
+
+.historial-pedido h3{
+    color:#6E0B35;
+    margin:0 0 8px;
+}
+
+.historial-pedido p{
+    margin:5px 0;
+}
+
+.historial-pedido ul{
+    padding-left:22px;
+}
+
+.historial-estado{
+    display:inline-block;
+    padding:7px 12px;
+    border-radius:20px;
+    background:#F5EAE1;
+    color:#6E0B35;
+    font-weight:600;
+    text-transform:capitalize;
+}
+
+.historial-total{
+    text-align:right;
+    color:#4C1930;
+    font-weight:700;
+}
+
 .card-editar h3,
 .card-seguridad h3{
     color:#6E0B35;
@@ -1725,6 +2082,19 @@ footer hr{
 
 .panel-admin{
     width:100%;
+    position:relative;
+    isolation:isolate;
+}
+
+.admin-notificacion{
+    width:86%;
+    max-width:1200px;
+    margin:20px auto 0;
+    padding:12px 18px;
+    border-radius:12px;
+    background:#e8f5e9;
+    color:#256029;
+    font-weight:600;
 }
 
 /* ENCABEZADO */
@@ -1796,7 +2166,7 @@ footer hr{
     background:white;
     border-radius:30px;
     box-shadow:0 8px 20px rgba(0,0,0,.15);
-    overflow:hidden;
+    overflow:visible;
     font-style: normal;
 }
 
@@ -2215,9 +2585,10 @@ footer hr{
 
 /* MODAL AGREGAR RECETA - TAMAÑO */
 #modal-receta .agregar-receta-contenedor {
-    width: 90%;
-    max-width: 650px;
-    max-height: 88vh;
+    width: min(760px, 100%);
+    max-width: 100%;
+    max-height: 85vh;
+    max-height: 85dvh;
     overflow-y: auto;
     padding: 20px 28px;
     box-sizing: border-box;
@@ -2438,22 +2809,21 @@ footer hr{
 ============================*/
 
 /* Overlay */
-body{
-    position: relative;
-}
-
 .overlay-producto,
 .overlay-receta{
     position: absolute;
     inset: 0;
+    z-index: 20;
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     background: rgba(0,0,0,.55);
     display: none;
     justify-content: center;
     overflow-y: auto;
     align-items: flex-start;
-    padding: 40px 0;
+    padding: 45px 20px;
+    box-sizing: border-box;
 
 }
 
@@ -2461,7 +2831,9 @@ body{
 .agregar-producto-contenedor,
 .agregar-receta-contenedor{
     width:800px;
-    max-width:90%;
+    max-width:min(800px, 100%);
+    max-height:calc(100% - 40px);
+    overflow-y:auto;
     background:#fff;
     border-radius:18px;
     padding:30px;
@@ -2597,6 +2969,30 @@ EDITAR PRODUCTO
 .editar-grupo select:focus{
     border-color:#6E0B35;
     outline:none;
+}
+
+/* Selector de imágenes en el formulario de recetas */
+#modal-receta .agregar-receta-contenedor input[type="file"]{
+    display:block;
+    width:100%;
+    min-height:48px;
+    padding:8px 10px;
+    border:2px solid #E7CCBD;
+    border-radius:10px;
+    background:#FFF9F6;
+    color:#4C1930;
+    box-sizing:border-box;
+}
+
+#modal-receta .agregar-receta-contenedor input[type="file"]::file-selector-button{
+    margin-right:12px;
+    padding:9px 13px;
+    border:0;
+    border-radius:7px;
+    background:#6E0B35;
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
 }
 
 /*==========================

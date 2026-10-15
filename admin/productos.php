@@ -24,7 +24,7 @@ $resultado = $conexion->query($sql);
 
         <h1>Productos</h1>
 
-        <a href="agregar_producto.php" class="btn-agregar">
+        <a href="agregarProducto.php" class="btn-agregar">
             <i class="fa-solid fa-plus"></i>
             AGREGAR PRODUCTO
         </a>

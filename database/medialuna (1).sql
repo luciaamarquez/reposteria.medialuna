@@ -54,7 +54,9 @@ INSERT INTO `categoria` (`id`, `nombre`) VALUES
 (2, 'Budines'),
 (3, 'Cookies'),
 (4, 'Facturas'),
-(5, 'Panificados');
+(5, 'Panificados'),
+(6, 'Donuts'),
+(7, 'Muffins');
 
 -- --------------------------------------------------------
 
@@ -78,10 +80,13 @@ CREATE TABLE `detalle_pedidos` (
 
 CREATE TABLE `pedidos` (
   `id` int(11) NOT NULL,
-  `id_ususario` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `fecha` datetime NOT NULL,
   `total` decimal(10,2) NOT NULL,
-  `estado` varchar(30) NOT NULL
+  `estado` varchar(30) NOT NULL,
+  `mercado_pago_preference_id` varchar(100) DEFAULT NULL,
+  `mercado_pago_payment_id` varchar(100) DEFAULT NULL,
+  `email_enviado` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -207,7 +212,7 @@ ALTER TABLE `carrito`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_pedidos`

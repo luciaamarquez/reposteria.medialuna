@@ -31,7 +31,7 @@ include("../includes/header.php");
 
         <h1>Editar Receta</h1>
 
-        <form action="actualizarReceta.php" method="POST">
+        <form action="actualizarReceta.php" method="POST" enctype="multipart/form-data">
 
             <input type="hidden" name="id" value="<?php echo $receta["id"]; ?>">
 
@@ -56,9 +56,11 @@ include("../includes/header.php");
 </div>
 
 <div class="editar-grupo">
-    <label>Imagen</label>
-    <input type="text" name="imagen"
-        value="<?php echo $receta["imagen"]; ?>" required>
+    <label>Imagen actual</label>
+    <input type="text" value="<?php echo htmlspecialchars($receta["imagen"]); ?>" disabled>
+    <input type="hidden" name="imagen_actual" value="<?php echo htmlspecialchars($receta["imagen"]); ?>">
+    <label for="imagen">Elegir otra imagen (opcional)</label>
+    <input type="file" id="imagen" name="imagen" accept="image/jpeg,image/png,image/webp,image/gif">
 </div>
             <div class="editar-botones">
                 <a href="index.php" class="btn-volver-editar">CANCELAR</a>

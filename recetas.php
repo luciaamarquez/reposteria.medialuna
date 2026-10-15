@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "conexion.php";
 
 $sql = "SELECT * FROM recetas";
@@ -6,16 +7,6 @@ $resultado = $conexion->query($sql);
 
 include("includes/header.php");
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Nuestras Recetas</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
 
     <!-- Encabezado con fondo beige -->
     <header class="recetas-header">
@@ -33,7 +24,7 @@ include("includes/header.php");
         <article class="receta">
 
             <div class="receta-imagen">
-                <img src="img/<?php echo htmlspecialchars($receta["imagen"]); ?>" alt="<?php echo htmlspecialchars($receta["titulo"]); ?>">
+                <img src="img/recetas/<?php echo htmlspecialchars($receta["imagen"]); ?>" alt="<?php echo htmlspecialchars($receta["titulo"]); ?>">
             </div>
 
             <div class="receta-contenido">
@@ -72,9 +63,4 @@ include("includes/header.php");
 
     </main>
 
-<?php
-include("includes/footer.php");
-?>
-
-</body>
-</html>
+<?php include("includes/footer.php"); ?>

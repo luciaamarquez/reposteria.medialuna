@@ -59,7 +59,6 @@
                 Iniciá sesión acá <i class="fa-solid fa-right-to-bracket"></i>
             </a>
             </p>
-
     </div>
 
 </main>

@@ -3,6 +3,10 @@
 session_start();
 require_once "conexion.php";
 
+if (empty($_SESSION["csrf_token"])) {
+    $_SESSION["csrf_token"] = bin2hex(random_bytes(32));
+}
+
 // Verificar si el usuario inició sesión
 if (!isset($_SESSION["id"])) {
     header("Location: login.php");
@@ -243,9 +247,14 @@ $total = $subtotal + $envio;
                 </div>
 
                 <form action="confirmarCompra.php" method="POST">
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        value="<?= htmlspecialchars($_SESSION["csrf_token"]) ?>"
+                    >
 
                     <button type="submit" class="btn-confirmar">
-                        CONFIRMAR COMPRA
+                        PAGAR
                     </button>
 
                 </form>

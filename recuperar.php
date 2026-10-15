@@ -11,6 +11,17 @@ if ($conexion->connect_error) {
 $mensaje = "";
 $tipoMensaje = "";
 
+if (($_GET["reiniciar"] ?? "") === "1") {
+    unset(
+        $_SESSION["codigo_recuperacion"],
+        $_SESSION["codigo_expira"],
+        $_SESSION["codigo_intentos"],
+        $_SESSION["recuperacion_id"],
+        $_SESSION["recuperacion_telefono"],
+        $_SESSION["codigo_verificado"]
+    );
+}
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // ==========================================
@@ -31,22 +42,93 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $usuario = $resultado->fetch_assoc();
 
-            // Generar código de 4 números
-            $codigo = random_int(1000, 9999);
+            try {
+                $phoneNumberId = getenv("WHATSAPP_PHONE_NUMBER_ID");
+                $accessToken = getenv("WHATSAPP_ACCESS_TOKEN");
+                $apiVersion = getenv("WHATSAPP_API_VERSION") ?: "v23.0";
+                $templateName = getenv("WHATSAPP_TEMPLATE_NAME");
 
-            // Guardar información en sesión
-            $_SESSION["recuperacion_id"] = $usuario["id"];
-            $_SESSION["recuperacion_telefono"] = $usuario["telefono"];
-            $_SESSION["codigo_recuperacion"] = $codigo;
-            $_SESSION["codigo_verificado"] = false;
+                if (
+                    $phoneNumberId === false || $phoneNumberId === "" ||
+                    $accessToken === false || $accessToken === "" ||
+                    $templateName === false || $templateName === ""
+                ) {
+                    throw new RuntimeException("Falta configurar Meta WhatsApp Cloud API y su plantilla.");
+                }
 
-            /*
-             * POR AHORA MOSTRAMOS EL CÓDIGO PARA PROBAR.
-             * Después acá podemos colocar el envío por WhatsApp.
-             */
+                $destino = preg_replace("/\D+/", "", $usuario["telefono"]);
+                if (strlen($destino) === 10) {
+                    $destino = "549" . $destino;
+                } elseif (strlen($destino) === 11 && str_starts_with($destino, "0")) {
+                    $destino = "549" . substr($destino, 1);
+                }
 
-            $mensaje = "Código enviado correctamente.";
-            $tipoMensaje = "exito";
+                if (strlen($destino) < 11) {
+                    throw new RuntimeException("El teléfono guardado no incluye un código de país válido.");
+                }
+
+                $codigo = (string) random_int(1000, 9999);
+                $payload = [
+                    "messaging_product" => "whatsapp",
+                    "to" => $destino,
+                    "type" => "template",
+                    "template" => [
+                        "name" => $templateName,
+                        "language" => ["code" => "es_AR"],
+                        "components" => [[
+                            "type" => "body",
+                            "parameters" => [[
+                                "type" => "text",
+                                "text" => $codigo,
+                            ]],
+                        ]],
+                    ],
+                ];
+
+                $curl = curl_init(
+                    "https://graph.facebook.com/" . rawurlencode($apiVersion) . "/" .
+                    rawurlencode($phoneNumberId) . "/messages"
+                );
+                curl_setopt_array($curl, [
+                    CURLOPT_POST => true,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_HTTPHEADER => [
+                        "Authorization: Bearer " . $accessToken,
+                        "Content-Type: application/json",
+                    ],
+                    CURLOPT_POSTFIELDS => json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR),
+                    CURLOPT_TIMEOUT => 20,
+                ]);
+
+                $respuesta = curl_exec($curl);
+                if ($respuesta === false) {
+                    $errorCurl = curl_error($curl);
+                    curl_close($curl);
+                    throw new RuntimeException("No se pudo conectar con WhatsApp: " . $errorCurl);
+                }
+
+                $estadoHttp = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                curl_close($curl);
+                $datosRespuesta = json_decode($respuesta, true);
+
+                if ($estadoHttp < 200 || $estadoHttp >= 300) {
+                    $errorWhatsApp = $datosRespuesta["error"]["message"] ?? "Error HTTP " . $estadoHttp;
+                    throw new RuntimeException("WhatsApp rechazó el envío: " . $errorWhatsApp);
+                }
+
+                $_SESSION["recuperacion_id"] = $usuario["id"];
+                $_SESSION["recuperacion_telefono"] = $usuario["telefono"];
+                $_SESSION["codigo_recuperacion"] = $codigo;
+                $_SESSION["codigo_expira"] = time() + 600;
+                $_SESSION["codigo_intentos"] = 0;
+                $_SESSION["codigo_verificado"] = false;
+                $mensaje = "Te enviamos el código por WhatsApp. Vence en 10 minutos.";
+                $tipoMensaje = "exito";
+            } catch (Throwable $e) {
+                error_log("Error enviando código de recuperación por WhatsApp: " . $e->getMessage());
+                $mensaje = "No pudimos enviar el código. Revisá la configuración y el número de teléfono.";
+                $tipoMensaje = "error";
+            }
 
         } else {
 
@@ -70,7 +152,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             isset($_SESSION["recuperacion_id"])
         ) {
 
-            if ($codigoIngresado == $_SESSION["codigo_recuperacion"]) {
+            if (
+                !isset($_SESSION["codigo_expira"]) ||
+                time() > (int) $_SESSION["codigo_expira"]
+            ) {
+                unset(
+                    $_SESSION["codigo_recuperacion"],
+                    $_SESSION["codigo_expira"],
+                    $_SESSION["codigo_intentos"],
+                    $_SESSION["recuperacion_id"],
+                    $_SESSION["recuperacion_telefono"]
+                );
+                $mensaje = "El código venció. Solicitá uno nuevo.";
+                $tipoMensaje = "error";
+            } elseif ((int) ($_SESSION["codigo_intentos"] ?? 0) >= 5) {
+                unset(
+                    $_SESSION["codigo_recuperacion"],
+                    $_SESSION["codigo_expira"],
+                    $_SESSION["codigo_intentos"],
+                    $_SESSION["recuperacion_id"],
+                    $_SESSION["recuperacion_telefono"]
+                );
+                $mensaje = "Se agotaron los intentos. Solicitá un código nuevo.";
+                $tipoMensaje = "error";
+            } elseif (hash_equals((string) $_SESSION["codigo_recuperacion"], $codigoIngresado)) {
 
                 $_SESSION["codigo_verificado"] = true;
 
@@ -79,6 +184,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             } else {
 
+                $_SESSION["codigo_intentos"] = (int) ($_SESSION["codigo_intentos"] ?? 0) + 1;
                 $mensaje = "El código ingresado es incorrecto.";
                 $tipoMensaje = "error";
             }
@@ -140,12 +246,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 Ingresá el código de 4 dígitos enviado a tu teléfono.
             </p>
 
-            <!-- Solo para pruebas -->
-            <div class="codigo-demo">
-                Código de prueba:
-                <strong><?php echo $_SESSION["codigo_recuperacion"]; ?></strong>
-            </div>
-
             <form method="POST">
 
                 <div class="campo-icono">
@@ -167,8 +267,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             </form>
 
+            <p class="subtitulo">
+                Si no recibiste el mensaje, podés <a href="recuperar.php?reiniciar=1">solicitar otro código</a>.
+            </p>
+
         <?php endif; ?>
 
+        <p class="volver-paginas"><a href="login.php">← Volver a iniciar sesión</a></p>
     </div>
 
 </main>

@@ -17,7 +17,7 @@ if (!isset($_SESSION["rol"]) || $_SESSION["rol"] != "admin") {
     <body>
         <h1>Agregar Producto</h1>
 
-        <form action="guardarProducto.php" method="POST">
+        <form action="guardarProducto.php" method="POST" enctype="multipart/form-data">
 
             <label>Nombre</label><br>
             <input type="text" name="nombre" required><br><br>
@@ -26,13 +26,13 @@ if (!isset($_SESSION["rol"]) || $_SESSION["rol"] != "admin") {
             <textarea name="descripcion" required></textarea><br><br>
 
             <label>Precio</label><br>
-            <input type="number" step="0.01" name="precio" required><br><br>
+            <input type="number" step="0.01" min="0.01" name="precio" required><br><br>
 
             <label>Stock</label><br>
-            <input type="number" name="stock" required><br><br>
+            <input type="number" min="0" max="30" name="stock" required><br><br>
 
             <label>Imagen</label><br>
-            <input type="text" name="imagen" placeholder="ej: torta.jpg" required><br><br>
+            <input type="file" name="imagen" accept="image/jpeg,image/png,image/webp,image/gif" required><br><br>
 
             <label>Categoría</label><br>
         <select name="id_categoria" required>

@@ -1,108 +1,91 @@
 <?php
-
 session_start();
 require_once "conexion.php";
 
-// Verificar si el usuario está logueado
-if (!isset($_SESSION["id"])) {
-    header("Location: login.php");
-    exit();
-}
+$esAjax = ($_SERVER["HTTP_ACCEPT"] ?? "") === "application/json";
 
-// Verificar que se recibió el producto
-if (!isset($_POST["id_producto"])) {
-    header("Location: productos.php");
-    exit();
-}
-
-$id_usuario = $_SESSION["id"];
-$id_producto = intval($_POST["id_producto"]);
-
-// Buscar el producto
-$consulta = $conexion->prepare(
-    "SELECT id, stock FROM productos WHERE id = ?"
-);
-
-$consulta->bind_param("i", $id_producto);
-$consulta->execute();
-
-$resultado = $consulta->get_result();
-
-if ($resultado->num_rows === 0) {
-    header("Location: productos.php");
-    exit();
-}
-
-$producto = $resultado->fetch_assoc();
-
-// Verificar stock
-if ($producto["stock"] <= 0) {
-    header("Location: productos.php");
-    exit();
-}
-
-// Verificar si el producto ya está en el carrito
-$consulta_carrito = $conexion->prepare(
-    "SELECT id, cantidad 
-     FROM carrito 
-     WHERE id_usuario = ? AND id_producto = ?"
-);
-
-$consulta_carrito->bind_param(
-    "ii",
-    $id_usuario,
-    $id_producto
-);
-
-$consulta_carrito->execute();
-
-$resultado_carrito = $consulta_carrito->get_result();
-
-if ($resultado_carrito->num_rows > 0) {
-
-    // Ya existe → aumentar cantidad
-    $item = $resultado_carrito->fetch_assoc();
-
-    $nueva_cantidad = $item["cantidad"] + 1;
-
-    // No superar el stock
-    if ($nueva_cantidad <= $producto["stock"]) {
-
-        $actualizar = $conexion->prepare(
-            "UPDATE carrito 
-             SET cantidad = ? 
-             WHERE id = ?"
-        );
-
-        $actualizar->bind_param(
-            "ii",
-            $nueva_cantidad,
-            $item["id"]
-        );
-
-        $actualizar->execute();
+$responder = static function (int $estado, string $mensaje) use ($esAjax): void {
+    if ($esAjax) {
+        http_response_code($estado);
+        header("Content-Type: application/json; charset=utf-8");
+        echo json_encode(["message" => $mensaje], JSON_UNESCAPED_UNICODE);
+        exit();
     }
 
-} else {
+    if ($estado === 401) {
+        header("Location: login.php");
+    } else {
+        header("Location: productos.php");
+    }
+    exit();
+};
 
-    // No existe → crear producto en carrito
-    $cantidad = 1;
-
-    $insertar = $conexion->prepare(
-        "INSERT INTO carrito (id_usuario, id_producto, cantidad)
-         VALUES (?, ?, ?)"
-    );
-
-    $insertar->bind_param(
-        "iii",
-        $id_usuario,
-        $id_producto,
-        $cantidad
-    );
-
-    $insertar->execute();
+if (!isset($_SESSION["id"])) {
+    $responder(401, "Iniciá sesión para agregar productos al carrito.");
 }
 
-// Volver a productos
-header("Location: productos.php");
-exit();
+$token = $_POST["csrf_token"] ?? "";
+if (
+    !isset($_SESSION["csrf_token"]) ||
+    !is_string($token) ||
+    !hash_equals($_SESSION["csrf_token"], $token)
+) {
+    $responder(400, "La sesión venció. Actualizá la página e intentá nuevamente.");
+}
+
+$idUsuario = (int) $_SESSION["id"];
+$idProducto = filter_input(INPUT_POST, "id_producto", FILTER_VALIDATE_INT);
+$cantidadEntrada = filter_input(INPUT_POST, "cantidad", FILTER_VALIDATE_INT);
+$cantidad = $cantidadEntrada === false || $cantidadEntrada === null ? 1 : $cantidadEntrada;
+
+if (!$idProducto || $cantidad < 1 || $cantidad > 30) {
+    $responder(400, "La cantidad solicitada no es válida.");
+}
+
+$conexion->begin_transaction();
+
+try {
+    $consulta = $conexion->prepare("SELECT stock FROM productos WHERE id = ? FOR UPDATE");
+    $consulta->bind_param("i", $idProducto);
+    $consulta->execute();
+    $producto = $consulta->get_result()->fetch_assoc();
+
+    if (!$producto) {
+        throw new RuntimeException("No encontramos ese producto.");
+    }
+
+    $consultaCarrito = $conexion->prepare("
+        SELECT id, cantidad FROM carrito
+        WHERE id_usuario = ? AND id_producto = ?
+        FOR UPDATE
+    ");
+    $consultaCarrito->bind_param("ii", $idUsuario, $idProducto);
+    $consultaCarrito->execute();
+    $item = $consultaCarrito->get_result()->fetch_assoc();
+
+    $cantidadActual = $item ? (int) $item["cantidad"] : 0;
+    $nuevaCantidad = $cantidadActual + $cantidad;
+
+    if ((int) $producto["stock"] < 1 || $nuevaCantidad > (int) $producto["stock"]) {
+        throw new RuntimeException("No hay stock suficiente para esa cantidad.");
+    }
+
+    if ($item) {
+        $actualizar = $conexion->prepare("UPDATE carrito SET cantidad = ? WHERE id = ?");
+        $actualizar->bind_param("ii", $nuevaCantidad, $item["id"]);
+        $actualizar->execute();
+    } else {
+        $insertar = $conexion->prepare("
+            INSERT INTO carrito (id_usuario, id_producto, cantidad)
+            VALUES (?, ?, ?)
+        ");
+        $insertar->bind_param("iii", $idUsuario, $idProducto, $cantidad);
+        $insertar->execute();
+    }
+
+    $conexion->commit();
+    $responder(200, "Se agregó al carrito. Cantidad total: " . $nuevaCantidad . ".");
+} catch (Throwable $e) {
+    $conexion->rollback();
+    $responder(400, $e->getMessage());
+}

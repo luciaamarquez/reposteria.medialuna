@@ -10,9 +10,17 @@ session_start();
 if (
     !isset($_SESSION["codigo_verificado"]) ||
     $_SESSION["codigo_verificado"] !== true ||
-    !isset($_SESSION["recuperacion_id"])
+    !isset($_SESSION["recuperacion_id"]) ||
+    !isset($_SESSION["codigo_expira"]) ||
+    time() > (int) $_SESSION["codigo_expira"]
 ) {
-
+    unset(
+        $_SESSION["codigo_recuperacion"],
+        $_SESSION["codigo_expira"],
+        $_SESSION["codigo_intentos"],
+        $_SESSION["recuperacion_id"],
+        $_SESSION["codigo_verificado"]
+    );
     header("Location: recuperar.php");
     exit();
 }
@@ -101,6 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
              */
 
             unset($_SESSION["codigo_recuperacion"]);
+            unset($_SESSION["codigo_expira"]);
+            unset($_SESSION["codigo_intentos"]);
             unset($_SESSION["recuperacion_id"]);
             unset($_SESSION["recuperacion_telefono"]);
             unset($_SESSION["codigo_verificado"]);
@@ -180,6 +190,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </button>
 
         </form>
+
+        <p class="volver-paginas"><a href="recuperar.php?reiniciar=1">← Volver al inicio de recuperación</a></p>
 
     </div>
 

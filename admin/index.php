@@ -27,11 +27,23 @@ $sqlRecetas = "SELECT * FROM recetas ORDER BY id DESC";
 $resultadoRecetas = $conexion->query($sqlRecetas);
 
 $categorias = $conexion->query("SELECT id, nombre FROM categoria");
+$pestanaInicial = ($_GET["tab"] ?? "") === "recetas" ? "recetas" : "productos";
 
 ?>
 
 <main class="panel-admin">
 
+    <?php if (isset($_GET["actualizado"]) || isset($_GET["creado"])): ?>
+        <p class="admin-notificacion" role="status">
+            <?php if (isset($_GET["actualizado"])): ?>
+                <?= ($_GET["tab"] ?? "") === "recetas" ? "Receta actualizada correctamente." : "Producto actualizado correctamente." ?>
+            <?php elseif (($_GET["tab"] ?? "") === "recetas"): ?>
+                Receta agregada correctamente.
+            <?php else: ?>
+                Producto agregado correctamente.
+            <?php endif; ?>
+        </p>
+    <?php endif; ?>
 
     <!-- ==========================
          ENCABEZADO DEL PANEL
@@ -54,6 +66,10 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria");
                 <i class="fa-solid fa-store"></i>
                 Ir a la tienda
             </a>
+            <a class="Tienda_panel" href="../perfil.php#historial">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                Historial de pedidos
+            </a>
 
         </div>
 
@@ -69,7 +85,7 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria");
         <div class="admin-pestanas">
 
             <button
-                class="pestana activa"
+                class="pestana <?= $pestanaInicial === "productos" ? "activa" : "" ?>"
                 onclick="mostrarSeccion('productos', this)"
             >
                 <i class="fa-solid fa-box"></i>
@@ -78,7 +94,7 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria");
 
 
             <button
-                class="pestana"
+                class="pestana <?= $pestanaInicial === "recetas" ? "activa" : "" ?>"
                 onclick="mostrarSeccion('recetas', this)"
             >
                 <i class="fa-solid fa-utensils"></i>
@@ -92,7 +108,7 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria");
              PRODUCTOS
         =========================== -->
 
-        <section id="productos" class="admin-seccion activa">
+        <section id="productos" class="admin-seccion <?= $pestanaInicial === "productos" ? "activa" : "" ?>">
 
         <div class="admin-titulo">
 
@@ -112,7 +128,7 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria");
 
                 <h2>Agregar Producto</h2>
 
-                <form action="guardarProducto.php" method="POST" display=none;>
+                <form action="guardarProducto.php" method="POST" enctype="multipart/form-data">
 
                     <label for="nombre">Nombre *</label>
                     <input type="text" id="nombre" name="nombre" required>
@@ -121,13 +137,13 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria");
                     <textarea id="descripcion" name="descripcion" rows="5" required></textarea>
 
                     <label for="precio">Precio *</label>
-                    <input type="number" step="0.01" id="precio" name="precio" required>
+                    <input type="number" step="0.01" min="0.01" id="precio" name="precio" required>
 
                     <label for="stock">Stock *</label>
-                    <input type="number" id="stock" name="stock" required>
+                    <input type="number" min="0" max="30" id="stock" name="stock" required>
 
                     <label for="imagen">Imagen *</label>
-                    <input type="text" id="imagen" name="imagen" placeholder="ej: torta.jpg" required>
+                    <input type="file" id="imagen" name="imagen" accept="image/jpeg,image/png,image/webp,image/gif" required>
 
                     <label for="categoria">Categoría *</label>
                     <select id="categoria" name="id_categoria" required>
@@ -251,7 +267,7 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria");
     <!-- ==========================
           RECETAS
     =========================== -->
-    <section id="recetas" class="admin-seccion">
+    <section id="recetas" class="admin-seccion <?= $pestanaInicial === "recetas" ? "activa" : "" ?>">
 
         <div class="admin-titulo">
 
@@ -267,7 +283,7 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria");
         <div id="modal-receta" class="overlay-receta" style="display:none;">
         <div class="agregar-receta-contenedor">
             <h2>Agregar Receta</h2>
-            <form id="form-agregar-receta" action="guardarReceta.php" method="POST">
+            <form id="form-agregar-receta" action="guardarReceta.php" method="POST" enctype="multipart/form-data">
             <label for="titulo">Nombre *</label>
             <input type="text" id="titulo" name="titulo" required>
 
@@ -278,7 +294,7 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria");
             <textarea id="preparacion" name="preparacion" rows="6" required></textarea>
 
             <label for="imagen">URL de imagen</label>
-            <input type="text" id="imagen" name="imagen" placeholder="ej: receta.jpg" required>
+            <input type="file" id="imagen-receta" name="imagen" accept="image/jpeg,image/png,image/webp,image/gif" required>
 
             <div class="botones-form">
                 <a href="#" class="btn-cancelar" onclick="cerrarModalReceta()">CANCELAR</a>

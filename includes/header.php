@@ -2,8 +2,14 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+header("Expires: 0");
+
 $enAdmin = strpos($_SERVER['PHP_SELF'], '/admin/') !== false;
 $raiz = $enAdmin ? '../' : '';
+$sesionAutenticada = isset($_SESSION["id"]);
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +28,15 @@ $raiz = $enAdmin ? '../' : '';
     <link rel="stylesheet" href="<?php echo $raiz; ?>css/style.css">
 </head>
 <body>
+<?php if ($sesionAutenticada): ?>
+<script>
+window.addEventListener("pageshow", (evento) => {
+    if (evento.persisted) {
+        window.location.reload();
+    }
+});
+</script>
+<?php endif; ?>
 <header>
     <div class="header-contenedor">
         <div class="logo">

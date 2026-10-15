@@ -1,4 +1,33 @@
-<?php include("includes/header.php"); ?>
+<?php
+session_start();
+require_once "conexion.php";
+
+$errorLogin = "";
+$campoInvalido = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = trim($_POST["email"] ?? "");
+    $password = $_POST["password"] ?? "";
+    $consulta = $conexion->prepare("SELECT id, nombre, rol, password FROM usuarios WHERE email = ?");
+    $consulta->bind_param("s", $email);
+    $consulta->execute();
+    $usuario = $consulta->get_result()->fetch_assoc();
+
+    if ($usuario && password_verify($password, $usuario["password"])) {
+        session_regenerate_id(true);
+        $_SESSION["id"] = $usuario["id"];
+        $_SESSION["nombre"] = $usuario["nombre"];
+        $_SESSION["rol"] = $usuario["rol"];
+        header("Location: " . ($usuario["rol"] === "admin" ? "admin/index.php" : "index.php"));
+        exit();
+    }
+
+    $errorLogin = "El correo o la contraseña son incorrectos.";
+    $campoInvalido = $usuario ? "password" : "email";
+}
+
+include("includes/header.php");
+?>
 
 <main class="login">
 
@@ -6,11 +35,17 @@
 
         <h2>Iniciar sesión</h2>
 
-<form action="login_usuarios.php" method="POST">
+<form action="login.php" method="POST">
+            <?php if ($errorLogin !== ""): ?>
+                <p class="mensaje-login-error" role="alert"><?= htmlspecialchars($errorLogin) ?></p>
+            <?php endif; ?>
             <input
                 type="email"
                 name="email"
                 placeholder="Email"
+                class="<?= $campoInvalido === "email" ? "campo-invalido" : "" ?>"
+                aria-invalid="<?= $campoInvalido === "email" ? "true" : "false" ?>"
+                value="<?= htmlspecialchars($_POST["email"] ?? "") ?>"
                 required
             >
 
@@ -18,6 +53,8 @@
                 type="password"
                 name="password"
                 placeholder="Contraseña"
+                class="<?= $campoInvalido === "password" ? "campo-invalido" : "" ?>"
+                aria-invalid="<?= $campoInvalido === "password" ? "true" : "false" ?>"
                 required
             >
 
@@ -48,7 +85,6 @@
         <a href="recuperar.php" class="olvide">
             ¿Olvidaste tu contraseña?
         </a>
-
     </div>
 
 </main>
