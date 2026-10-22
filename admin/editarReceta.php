@@ -59,7 +59,7 @@ include("../includes/header.php");
     <label>Imagen actual</label>
     <input type="text" value="<?php echo htmlspecialchars($receta["imagen"]); ?>" disabled>
     <input type="hidden" name="imagen_actual" value="<?php echo htmlspecialchars($receta["imagen"]); ?>">
-    <label for="imagen">Elegir otra imagen (opcional)</label>
+    <label for="imagen"></br>Elegir otra imagen (opcional)</label>
     <input type="file" id="imagen" name="imagen" accept="image/jpeg,image/png,image/webp,image/gif">
 </div>
             <div class="editar-botones">
