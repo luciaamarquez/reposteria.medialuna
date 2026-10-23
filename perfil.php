@@ -275,7 +275,24 @@ include("includes/header.php");
                                     </p>
                                 <?php endif; ?>
                             </div>
-                            <span class="historial-estado"><?= htmlspecialchars($pedido["estado"]) ?></span>
+                            <?php
+                                $estado = $pedido["estado"];
+
+                                if ($estado === "pagado") {
+                                    $textoEstado = "Pagado";
+                                    $claseEstado = "pagado";
+                                } elseif ($estado === "pendiente_pago") {
+                                    $textoEstado = "Pago pendiente";
+                                    $claseEstado = "pendiente";
+                                } else {
+                                    $textoEstado = ucfirst(str_replace("_", " ", $estado));
+                                    $claseEstado = "";
+                                }
+                                ?>
+
+                                <span class="historial-estado <?= $claseEstado ?>">
+                                    <?= htmlspecialchars($textoEstado) ?>
+                                </span>
                         </header>
 
                         <ul>

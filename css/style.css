@@ -1879,21 +1879,30 @@ footer hr{
 
 /* Estado del pedido */
 
-.historial-pedido .historial-estado {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    max-width: 100%;
-    padding: 9px 15px;
-    border-radius: 30px;
-
-    background: #fff0d2;
-    color: #85501e;
+/* Estado de pago: Pagado */
+.historial-estado.pagado {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 20px;
+    color: #286644;
+    background: #e4f3e9;
+    border: 1px solid #c5e5d0;
     font-size: 12px;
-    font-weight: 700;
-    text-align: center;
-    overflow-wrap: anywhere;
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* Estado de pago: Pago pendiente */
+.historial-estado.pendiente {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 20px;
+    color: #920000;
+    background: #eeb6b3;
+    border: 1px solid #eeb6b3;
+    font-size: 12px;
+    font-weight: 600;
+    font-style: normal;
 }
 
 /* Productos */
@@ -2546,16 +2555,16 @@ footer hr{
 
 .columna h4 {
     color: #6E0B35; /* Tono rojizo/marrón de los subtítulos */
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 15px;
     font-style: normal;
 }
 
 .columna p, 
-.columna div {
+.columna div{
     color: #555555;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1;
     text-align: left;
     white-space: pre-line;
@@ -2590,7 +2599,7 @@ footer hr{
 
 .lista-ingredientes li {
     color: #555;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1;
     margin-bottom: 4px;
 }
