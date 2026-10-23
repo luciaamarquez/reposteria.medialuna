@@ -67,7 +67,7 @@ session_start();
     ");
 
     $consulta->bind_param(
-        "ssdisii",
+        "",
         $nombre,
         $descripcion,
         $precio,

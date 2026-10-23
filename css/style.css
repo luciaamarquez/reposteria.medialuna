@@ -8,206 +8,51 @@
     box-sizing:border-box; 
 }
 
-.volver-paginas a,
-.volver-pago{
-    color:#6E0B35;
-    font-weight:600;
-    text-decoration:none;
+/* CONFIRMAR COMPRA */
+
+.confirmacion-compra {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FDF7F2;
+    padding: 20px;
 }
 
-.volver-paginas a:hover,
-.volver-pago:hover{
-    text-decoration:underline;
+.mensaje-compra {
+    text-align: center;
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-.pago{
-    min-height:calc(100vh - 172px);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:30px 18px;
+.mensaje-compra h1 {
+    color: #6E0B35;
+    font-size: 32px;
+    margin-bottom: 20px;
 }
 
-.pago-contenedor{
-    width:100%;
-    max-width:560px;
-    padding:32px;
-    border-radius:22px;
-    background:#fff;
-    box-shadow:0 12px 30px rgba(0,0,0,.12);
+.mensaje-compra p {
+    color: #555;
+    font-size: 18px;
+    margin-bottom: 30px;
 }
 
-.pago-contenedor h1{
-    margin:10px 0 18px;
-    color:#4C1930;
-    font-size:30px;
+.btn-volver {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #6E0B35;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: 0.3s;
 }
 
-.pago-aviso{
-    padding:12px;
-    border-radius:10px;
-    background:#FFF9F2;
-    color:#6D4B4B;
-    line-height:1.5;
-}
-
-.pago-resumen{
-    margin:20px 0;
-    padding:15px 18px;
-    border:1px solid #EAD8CC;
-    border-radius:12px;
-    background:#FDF7F2;
-}
-
-.pago-resumen p{
-    margin:8px 0;
-}
-
-.formulario-pago{
-    display:flex;
-    flex-direction:column;
-    gap:9px;
-}
-
-.formulario-pago label{
-    color:#4C1930;
-    font-weight:600;
-}
-
-.formulario-pago input{
-    width:100%;
-    padding:12px 14px;
-    border:1px solid #D9BDAE;
-    border-radius:10px;
-    background:#FFFDFC;
-    box-sizing:border-box;
-}
-
-.pago-contenedor.registro-contenedor{
-    max-width:850px;
-}
-
-.pago-contenedor h1{
-    text-align:center;
-    font-family:'Great Vibes', cursive;
-    font-size:50px;
-}
-
-.pago .formulario-pago{
-    gap:14px;
-}
-
-.pago .formulario-pago input{
-    padding:15px 18px;
-    border:2px solid #E7CCBD;
-    border-radius:12px;
-    background:#FFF9F6;
-    font-family:'xanh mono';
-    font-size:15px;
-}
-
-.pago .pago-campos-cortos{
-    display:flex;
-}
-
-.pago .pago-campos-cortos > div{
-    flex:1;
-    min-width:0;
-}
-
-.pago .formulario-pago button{
-    width:260px;
-    max-width:100%;
-    margin:12px auto 0;
-    padding:15px;
-    font-size:12px;
-}
-
-.agregar-producto-contenedor input[type="file"],
-.agregar-receta-contenedor input[type="file"],
-.editar-grupo input[type="file"]{
-    display:block;
-    width:100%;
-    min-height:48px;
-    padding:8px 10px;
-    border:2px solid #E7CCBD;
-    border-radius:10px;
-    background:#FFF9F6;
-    color:#4C1930;
-    font-family:'Montserrat', sans-serif;
-    font-size:14px;
-    box-sizing:border-box;
-}
-
-.agregar-producto-contenedor input[type="file"]::file-selector-button,
-.agregar-receta-contenedor input[type="file"]::file-selector-button,
-.editar-grupo input[type="file"]::file-selector-button{
-    margin-right:12px;
-    padding:9px 13px;
-    border:0;
-    border-radius:7px;
-    background:#6E0B35;
-    color:#fff;
-    font-weight:600;
-    cursor:pointer;
-}
-
-.agregar-producto-contenedor input[type="file"]::file-selector-button:hover,
-.agregar-receta-contenedor input[type="file"]::file-selector-button:hover,
-.editar-grupo input[type="file"]::file-selector-button:hover{
-    background:#8C1F4B;
-}
-
-.formulario-pago input:focus{
-    outline:2px solid rgba(110,11,53,.2);
-    border-color:#6E0B35;
-}
-
-.pago-campos-cortos{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-}
-
-.pago-campos-cortos > div{
-    display:flex;
-    flex-direction:column;
-    gap:9px;
-}
-
-.formulario-pago button{
-    margin-top:12px;
-    padding:14px 18px;
-    border:0;
-    border-radius:30px;
-    background:#6E0B35;
-    color:#fff;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.formulario-pago button:hover{
-    background:#8C1F4B;
-}
-
-.pago-confirmacion{
-    text-align:center;
-}
-
-.pago-confirmacion > i{
-    color:#2E7D32;
-    font-size:54px;
-}
-
-.pago-confirmacion .btn-principal{
-    display:inline-block;
-    margin-top:18px;
-}
-
-@media(max-width:600px){
-    .pago-contenedor{
-        padding:24px 18px;
-    }
+.btn-volver:hover {
+    background: #8C1F4B;
+    transform: translateY(-3px);
 }
 
 #modal-receta .agregar-receta-contenedor{
@@ -1465,9 +1310,33 @@ footer hr{
     color:#6E0B35;
 }
 
+.volver-paginas{
+    margin-top:20px;
+    text-align:center;
+    color:#666;
+    line-height:1.6;
+    font-style: normal;
+}
+
+.volver-paginas a{
+    color:#6E0B35;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+    font-style: italic;
+}
+
+.volver-paginas a:hover{
+    color:#8C1F4B;
+}
+
+.volver-paginas i{
+    margin-left:6px;
+}
+
 @media(max-width:768px){
 
-    .recuperar-contenedor{
+    .volver-paginas{
         padding:30px 25px;
     }
 
@@ -1914,59 +1783,252 @@ footer hr{
     margin-top:25px;
 }
 
-.historial-perfil{
-    margin:35px 0;
-    scroll-margin-top:25px;
+
+/* =========================================
+            HISTORIAL
+   ========================================= */
+
+   .historial-perfil {
+    width: min(1210px, 94%);
+    margin: 42px auto 65px;
+    scroll-margin-top: 95px;
+    color: #4e1931;
 }
 
-.historial-lista{
-    display:grid;
-    gap:18px;
+/* Título del historial */
+
+.historial-perfil > .perfil-titulo {
+    margin-bottom: 22px;
 }
 
-.historial-pedido{
-    background:#fff;
-    border:1px solid #ead8cc;
-    border-radius:18px;
-    padding:22px;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
+.historial-perfil > .perfil-titulo h2 {
+    margin: 0 0 5px;
+    color: #541b35;
+    font-style: normal;
+    font-weight: 700;
 }
 
-.historial-pedido header{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:15px;
+.historial-perfil > .perfil-titulo p {
+    margin: 0;
+    color: #89817e;
+    font-size: 15px;
+    font-style: italic;
 }
 
-.historial-pedido h3{
-    color:#6E0B35;
-    margin:0 0 8px;
+/* Lista de pedidos */
+
+.historial-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
 }
 
-.historial-pedido p{
-    margin:5px 0;
+/* Tarjeta de cada pedido */
+
+.historial-pedido {
+    position: relative;
+    min-width: 0;
+    padding: 0;
+    overflow: hidden;
+
+    background: #fff;
+    border: 1px solid #ecd8ce;
+    border-radius: 20px;
+    box-shadow: 0 7px 24px rgba(67, 28, 42, 0.07);
+
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
-.historial-pedido ul{
-    padding-left:22px;
+.historial-lista > .historial-pedido:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(67, 28, 42, 0.12);
 }
 
-.historial-estado{
-    display:inline-block;
-    padding:7px 12px;
-    border-radius:20px;
-    background:#F5EAE1;
-    color:#6E0B35;
-    font-weight:600;
-    text-transform:capitalize;
+/* Encabezado bordó */
+
+.historial-pedido > header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    padding: 21px 25px;
+    background: linear-gradient(120deg, #690b36, #851546);
+    color: #fff;
 }
 
-.historial-total{
-    text-align:right;
-    color:#4C1930;
-    font-weight:700;
+/* Número del pedido */
+
+.historial-pedido > header h3 {
+    margin: 0 0 10px;
+    color: #fff;
+    font-size: 21px;
+    font-weight: 700;
 }
+
+/* Fecha y datos del cliente */
+
+.historial-pedido > header p {
+    margin: 5px 0 0;
+    color: #f6e6ed;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+/* Estado del pedido */
+
+.historial-pedido .historial-estado {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 100%;
+    padding: 9px 15px;
+    border-radius: 30px;
+
+    background: #fff0d2;
+    color: #85501e;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+/* Productos */
+
+.historial-pedido > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    margin: 0;
+    padding: 12px 26px;
+    list-style: none;
+}
+
+.historial-pedido > ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+
+    padding: 13px 0;
+    border-bottom: 1px solid #f2e7e1;
+
+    color: #5b4149;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.historial-pedido > ul li:last-child {
+    border-bottom: none;
+}
+
+/* Total del pedido */
+
+.historial-pedido .historial-total {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+
+    margin: 0;
+    padding: 17px 26px 21px;
+
+    border-top: 1px solid #f0e2da;
+    background: #fffaf7;
+
+    color: #700d3b;
+    font-size: 20px;
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* Mensaje cuando todavía no hay pedidos */
+
+.historial-perfil > .historial-pedido {
+    padding: 30px;
+    text-align: center;
+}
+
+.historial-perfil > .historial-pedido p {
+    color: #75666b;
+    font-size: 16px;
+}
+
+.historial-perfil > .historial-pedido a {
+    display: inline-flex;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 12px 22px;
+
+    border-radius: 30px;
+    background: #720b3b;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.historial-perfil > .historial-pedido a:hover {
+    background: #92194e;
+}
+
+/* =========================================
+   CELULARES
+   ========================================= */
+
+@media (max-width: 480px) {
+    .historial-perfil {
+        width: 94%;
+        margin: 28px auto 40px;
+    }
+
+    .historial-lista {
+        gap: 17px;
+    }
+
+    .historial-pedido {
+        border-radius: 16px;
+    }
+
+    .historial-pedido > header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 13px;
+        padding: 17px;
+    }
+
+    .historial-pedido > header h3 {
+        font-size: 19px;
+    }
+
+    .historial-pedido > header p {
+        font-size: 12px;
+    }
+
+    .historial-pedido > ul {
+        padding: 8px 17px;
+    }
+
+    .historial-pedido > ul li {
+        align-items: flex-start;
+        padding: 12px 0;
+        font-size: 13px;
+        overflow-wrap: anywhere;
+    }
+
+    .historial-pedido .historial-estado {
+        align-self: flex-start;
+    }
+
+    .historial-pedido .historial-total {
+        padding: 15px 17px 18px;
+        font-size: 18px;
+    }
+}
+
 
 .card-editar h3,
 .card-seguridad h3{
@@ -2086,16 +2148,25 @@ footer hr{
     isolation:isolate;
 }
 
-.admin-notificacion{
-    width:86%;
-    max-width:1200px;
-    margin:20px auto 0;
-    padding:12px 18px;
-    border-radius:12px;
-    background:#e8f5e9;
-    color:#256029;
-    font-weight:600;
+.admin-notificacion {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 86%;
+    max-width: 1200px;
+    margin: 0;
+    padding: 12px 18px;
+
+    border-radius: 12px;
+    background: #e8f5e9;
+    color: #256029;
+    font-weight: 600;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
+
 
 /* ENCABEZADO */
 

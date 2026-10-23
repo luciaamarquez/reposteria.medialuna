@@ -463,6 +463,22 @@ function mostrarSeccion(seccion, boton) {
 
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    const mensaje = document.querySelector(".admin-notificacion");
+
+    if (mensaje) {
+        setTimeout(function () {
+            mensaje.style.transition = "opacity 0.5s ease";
+            mensaje.style.opacity = "0";
+
+            setTimeout(function () {
+                mensaje.remove();
+            }, 500);
+        }, 3000);
+    }
+});
+
+
 </script>
 
 

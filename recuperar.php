@@ -273,7 +273,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <?php endif; ?>
 
-        <p class="volver-paginas"><a href="login.php">← Volver a iniciar sesión</a></p>
+        <p class="volver-paginas"><a href="login.php"><i class="fa-solid fa-arrow-left"></i> Volver a iniciar sesión</a></p>
     </div>
 
 </main>
