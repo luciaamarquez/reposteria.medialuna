@@ -84,8 +84,6 @@ CREATE TABLE `pedidos` (
   `fecha` datetime NOT NULL,
   `total` decimal(10,2) NOT NULL,
   `estado` varchar(30) NOT NULL,
-  `mercado_pago_preference_id` varchar(100) DEFAULT NULL,
-  `mercado_pago_payment_id` varchar(100) DEFAULT NULL,
   `email_enviado` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

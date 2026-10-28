@@ -68,7 +68,7 @@ try {
     }
 
     $total = $subtotal + $envio;
-    $estado = "pendiente_pago";
+    $estado = "pendiente";
     $fecha = date("Y-m-d H:i:s");
     $crearPedido = $conexion->prepare("
         INSERT INTO pedidos (id_usuario, fecha, total, estado)
@@ -82,18 +82,33 @@ try {
         INSERT INTO detalle_pedidos (id_pedido, id_producto, cantidad, precio)
         VALUES (?, ?, ?, ?)
     ");
+    $descontarStock = $conexion->prepare("
+        UPDATE productos
+        SET stock = stock - ?
+        WHERE id = ? AND stock >= ?
+    ");
     foreach ($items as $item) {
         $idProducto = (int) $item["id_producto"];
         $cantidad = (int) $item["cantidad"];
         $precio = (float) $item["precio"];
+
+        $descontarStock->bind_param("iii", $cantidad, $idProducto, $cantidad);
+        $descontarStock->execute();
+        if ($descontarStock->affected_rows !== 1) {
+            throw new RuntimeException("No hay stock suficiente de " . $item["nombre"] . ".");
+        }
+
         $detalle->bind_param("iiid", $idPedido, $idProducto, $cantidad, $precio);
         $detalle->execute();
     }
 
+    $vaciarCarrito = $conexion->prepare("DELETE FROM carrito WHERE id_usuario = ?");
+    $vaciarCarrito->bind_param("i", $idUsuario);
+    $vaciarCarrito->execute();
+
     $conexion->commit();
     $transaccionAbierta = false;
-    $_SESSION["pedido_pago"] = $idPedido;
-    header("Location: pago.php?pedido=" . $idPedido);
+    header("Location: perfil.php?pedido=confirmado#historial");
     exit();
 } catch (Throwable $e) {
     if ($transaccionAbierta) {

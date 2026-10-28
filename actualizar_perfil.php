@@ -2,6 +2,25 @@
 session_start();
 require_once "conexion.php";
 
+function responderActualizacionPerfil(string $tipo, string $mensaje, array $datos = []): void
+{
+    $esAjax = strtolower($_SERVER["HTTP_X_REQUESTED_WITH"] ?? "") === "xmlhttprequest";
+
+    if ($esAjax) {
+        http_response_code($tipo === "error" ? 422 : 200);
+        header("Content-Type: application/json; charset=utf-8");
+        echo json_encode(
+            ["ok" => $tipo !== "error", "tipo" => $tipo, "mensaje" => $mensaje] + $datos,
+            JSON_UNESCAPED_UNICODE
+        );
+        exit();
+    }
+
+    $parametro = $tipo === "error" ? "error" : "mensaje";
+    header("Location: perfil.php?" . $parametro . "=" . urlencode($mensaje));
+    exit();
+}
+
 // Verificar que haya un usuario logueado
 if (!isset($_SESSION["id"])) {
     header("Location: login.php");
@@ -14,24 +33,22 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 }
 
 $id = $_SESSION["id"];
-$nombre = trim($_POST["nombre"]);
-$apellido = trim($_POST["apellido"]);
-$email = trim($_POST["email"]);
-$telefono = trim($_POST["telefono"]);
-$direccion = trim($_POST["direccion"]);
-$password = $_POST["password"];
-$confirmar = $_POST["confirmar"];
+$nombre = trim($_POST["nombre"] ?? "");
+$apellido = trim($_POST["apellido"] ?? "");
+$email = trim($_POST["email"] ?? "");
+$telefono = trim($_POST["telefono"] ?? "");
+$direccion = trim($_POST["direccion"] ?? "");
+$password = $_POST["password"] ?? "";
+$confirmar = $_POST["confirmar"] ?? "";
 
 // VALIDAR CAMPOS
 if ($nombre == "" || $apellido == "" || $email == "") {
-    header("Location: perfil.php?error=Completá todos los campos obligatorios.");
-    exit();
+    responderActualizacionPerfil("error", "Completá todos los campos obligatorios.");
 }
 
 // VALIDAR EMAIL
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    header("Location: perfil.php?error=El email no es válido.");
-    exit();
+    responderActualizacionPerfil("error", "El email no es válido.");
 }
 
 // COMPROBAR QUE EL EMAIL NO ESTÉ USADO POR OTRO USUARIO
@@ -44,8 +61,7 @@ $consulta->execute();
 $resultado = $consulta->get_result();
 
 if ($resultado->num_rows > 0) {
-    header("Location: perfil.php?error=Ese email ya está siendo utilizado.");
-    exit();
+    responderActualizacionPerfil("error", "Ese email ya está siendo utilizado.");
 }
 
 // SI QUIERE CAMBIAR LA CONTRASEÑA
@@ -53,14 +69,12 @@ if ($password != "" || $confirmar != "") {
 
 // Comprobar que coincidan
     if ($password != $confirmar) {
-        header("Location: perfil.php?error=Las contraseñas no coinciden.");
-        exit();
+        responderActualizacionPerfil("error", "Las contraseñas no coinciden.");
     }
 
 // Comprobar longitud
     if (strlen($password) < 6) {
-        header("Location: perfil.php?error=La contraseña debe tener al menos 6 caracteres.");
-        exit();
+        responderActualizacionPerfil("error", "La contraseña debe tener al menos 6 caracteres.");
     }
 
 // Encriptar contraseña
@@ -121,13 +135,18 @@ if ($consulta->execute()) {
 // Actualizar nombre que aparece en la sesión
 
 $_SESSION["nombre"] = $nombre;
-    header(
-        "Location: perfil.php?mensaje=¡Tus datos fueron actualizados correctamente!"
-    );
-    exit();
+    $mensaje = $password !== ""
+        ? "Contraseña actualizada."
+        : "¡Tus datos fueron actualizados correctamente!";
+    responderActualizacionPerfil("exito", $mensaje, [
+        "usuario" => [
+            "nombre" => $nombre,
+            "apellido" => $apellido,
+            "email" => $email,
+            "telefono" => $telefono,
+            "direccion" => $direccion,
+        ],
+    ]);
 } else {
-    header(
-        "Location: perfil.php?error=Ocurrió un error al actualizar tus datos."
-    );
-    exit();
+    responderActualizacionPerfil("error", "Ocurrió un error al actualizar tus datos.");
 }

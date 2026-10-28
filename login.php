@@ -82,9 +82,6 @@ include("includes/header.php");
             <a href="registro.php">Registrate acá <i class="fa-solid fa-user-plus"></i></a>
         </p>
 
-        <a href="recuperar.php" class="olvide">
-            ¿Olvidaste tu contraseña?
-        </a>
     </div>
 
 </main>

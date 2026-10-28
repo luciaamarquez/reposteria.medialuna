@@ -13,7 +13,12 @@ include("../includes/header.php");
 
 // OBTENER PRODUCTOS DE LA BASE DE DATOS
 
-$sql = "SELECT * FROM productos ORDER BY id DESC";
+$sql = "
+    SELECT productos.*, categoria.nombre AS categoria_nombre
+    FROM productos
+    LEFT JOIN categoria ON productos.id_categoria = categoria.id
+    ORDER BY productos.id DESC
+";
 $resultado = $conexion->query($sql);
 
 ?>
@@ -34,7 +39,7 @@ $resultado = $conexion->query($sql);
 
     <div class="tabla-contenedor">
 
-        <table class="tabla-admin">
+        <table class="tabla-admin tabla-productos-admin">
 
             <thead>
 
@@ -59,12 +64,12 @@ $resultado = $conexion->query($sql);
 
                     <tr>
 
-                        <td>
+                        <td data-label="ID">
                             <?php echo $producto["id"]; ?>
                         </td>
 
 
-                        <td>
+                        <td data-label="Imagen">
 
                             <?php if (!empty($producto["imagen"])): ?>
 
@@ -83,32 +88,32 @@ $resultado = $conexion->query($sql);
                         </td>
 
 
-                        <td>
+                        <td data-label="Nombre">
                             <?php echo htmlspecialchars($producto["nombre"]); ?>
                         </td>
 
 
-                        <td>
+                        <td data-label="Descripción" class="descripcion-tabla">
                             <?php echo htmlspecialchars($producto["descripcion"]); ?>
                         </td>
 
 
-                        <td>
-                            <?php echo $producto["id_categoria"]; ?>
+                        <td data-label="Categoría">
+                            <?php echo htmlspecialchars($producto["categoria_nombre"] ?? "Sin categoría"); ?>
                         </td>
 
 
-                        <td>
+                        <td data-label="Precio">
                             $<?php echo number_format($producto["precio"], 2, ',', '.'); ?>
                         </td>
 
 
-                        <td>
+                        <td data-label="Stock">
                             <?php echo $producto["stock"]; ?>
                         </td>
 
 
-                        <td class="acciones">
+                        <td class="acciones" data-label="Acciones">
 
                             <a
                                 href="editarProducto.php?id=<?php echo $producto["id"]; ?>"
@@ -123,8 +128,7 @@ $resultado = $conexion->query($sql);
                                 href="eliminarProducto.php?id=<?php echo $producto["id"]; ?>"
                                 class="btn-eliminar"
                                 title="Eliminar"
-                                onclick="return confirm('¿Seguro que querés eliminar este producto?');"
-                            >
+                                data-confirm="¿Seguro que querés eliminar este producto?">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
 

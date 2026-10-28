@@ -62,7 +62,7 @@ include("../includes/header.php");
                 <label>Imagen actual</label>
                 <input type="text" value="<?php echo htmlspecialchars($producto["imagen"]); ?>" disabled>
                 <input type="hidden" name="imagen_actual" value="<?php echo htmlspecialchars($producto["imagen"]); ?>">
-                <label for="imagen"></br>Elegir otra imagen (opcional)</label>
+                <label for="imagen">Elegir otra imagen (opcional)</label>
                 <input type="file" id="imagen" name="imagen" accept="image/jpeg,image/png,image/webp,image/gif">
             </div>
 

@@ -39,12 +39,13 @@ $resultado = $conexion->query("SELECT * FROM recetas");
                 <td>
                     <a href="editarReceta.php?id=<?php echo $receta["id"]; ?>">Editar</a> |
                     <a href="eliminarReceta.php?id=<?php echo $receta["id"]; ?>"
-                    onclick="return confirm('¿Estás seguro de eliminar esta receta?');">
+                    data-confirm="¿Estás seguro de eliminar esta receta?">
                         Eliminar
                     </a>
                 </td>
             </tr>
             <?php } ?>
         </table>
+        <script src="../js/script.js" defer></script>
     </body>
 </html>

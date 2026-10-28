@@ -8,8 +8,8 @@ if (empty($_SESSION["csrf_token"])) {
 include("includes/header.php");
 
 // Obtener todos los productos
-$consulta = $conexion->query("SELECT * FROM productos ORDER BY id DESC");
-$categorias = $conexion->query("SELECT id, nombre FROM categoria ORDER BY nombre");
+$productos = $conexion->query("SELECT * FROM productos ORDER BY id DESC")->fetch_all(MYSQLI_ASSOC);
+$categorias = $conexion->query("SELECT id, nombre FROM categoria ORDER BY nombre")->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <main>
@@ -25,12 +25,13 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria ORDER BY nombre
 
     <section class="categorias-productos">
         <button type="button" class="activo" data-categoria="todas">Todos</button>
-        <?php while ($categoria = $categorias->fetch_assoc()): ?>
+        <?php foreach ($categorias as $categoria): ?>
             <button
                 type="button"
                 data-categoria="<?= (int) $categoria["id"] ?>"
+                data-categoria-slug="<?= htmlspecialchars(strtolower($categoria["nombre"]), ENT_QUOTES) ?>"
             ><?= htmlspecialchars($categoria["nombre"]) ?></button>
-        <?php endwhile; ?>
+        <?php endforeach; ?>
     </section>
 
     <p id="sin-productos-categoria" class="sin-productos-categoria" hidden>
@@ -38,7 +39,7 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria ORDER BY nombre
     </p>
     <section class="productos-grid">
 
-        <?php while ($producto = $consulta->fetch_assoc()): ?>
+        <?php foreach ($productos as $producto): ?>
 
             <?php if ($producto['stock'] > 0): ?>
 
@@ -128,65 +129,10 @@ $categorias = $conexion->query("SELECT id, nombre FROM categoria ORDER BY nombre
 
             <?php endif; ?>
 
-        <?php endwhile; ?>
+        <?php endforeach; ?>
 
     </section>
 
 </main>
-
-<script>
-document.querySelectorAll(".categorias-productos button").forEach((boton) => {
-    boton.addEventListener("click", () => {
-        const categoria = boton.dataset.categoria;
-        let visibles = 0;
-
-        document.querySelectorAll(".categorias-productos button").forEach((item) => {
-            item.classList.toggle("activo", item === boton);
-        });
-
-        document.querySelectorAll(".card-producto").forEach((producto) => {
-            producto.hidden = categoria !== "todas" && producto.dataset.categoria !== categoria;
-            if (!producto.hidden) {
-                visibles++;
-            }
-        });
-
-        document.getElementById("sin-productos-categoria").hidden = visibles > 0;
-    });
-});
-
-const mensajeCarrito = document.getElementById("mensaje-carrito");
-document.querySelectorAll(".productos-grid form").forEach((formulario) => {
-    formulario.addEventListener("submit", async (evento) => {
-        evento.preventDefault();
-        const boton = formulario.querySelector("button[type='submit']");
-        boton.disabled = true;
-
-        try {
-            const respuesta = await fetch(formulario.action, {
-                method: "POST",
-                body: new FormData(formulario),
-                headers: {
-                    "Accept": "application/json",
-                    "X-Requested-With": "XMLHttpRequest"
-                }
-            });
-            const datos = await respuesta.json();
-            mensajeCarrito.textContent = datos.message;
-            mensajeCarrito.classList.toggle("error", !respuesta.ok);
-            mensajeCarrito.hidden = false;
-            window.setTimeout(() => {
-                mensajeCarrito.hidden = true;
-            }, 3500);
-        } catch (error) {
-            mensajeCarrito.textContent = "No se pudo agregar el producto. Intentá nuevamente.";
-            mensajeCarrito.classList.add("error");
-            mensajeCarrito.hidden = false;
-        } finally {
-            boton.disabled = false;
-        }
-    });
-});
-</script>
 
 <?php include("includes/footer.php"); ?>

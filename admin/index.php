@@ -86,7 +86,7 @@ $pestanaInicial = ($_GET["tab"] ?? "") === "recetas" ? "recetas" : "productos";
 
             <button
                 class="pestana <?= $pestanaInicial === "productos" ? "activa" : "" ?>"
-                onclick="mostrarSeccion('productos', this)"
+                data-seccion="productos"
             >
                 <i class="fa-solid fa-box"></i>
                 GESTIONAR PRODUCTOS
@@ -95,7 +95,7 @@ $pestanaInicial = ($_GET["tab"] ?? "") === "recetas" ? "recetas" : "productos";
 
             <button
                 class="pestana <?= $pestanaInicial === "recetas" ? "activa" : "" ?>"
-                onclick="mostrarSeccion('recetas', this)"
+                data-seccion="recetas"
             >
                 <i class="fa-solid fa-utensils"></i>
                 GESTIONAR RECETAS
@@ -114,7 +114,7 @@ $pestanaInicial = ($_GET["tab"] ?? "") === "recetas" ? "recetas" : "productos";
 
             <h2>PRODUCTOS</h2>
 
-            <a href="#" class="btn-agregar" onclick="abrirModalProducto(); return false;">
+            <a href="#" class="btn-agregar" data-abrir-modal="modal-producto">
                 <i class="fa-solid fa-plus"></i>
                 AGREGAR PRODUCTO
             </a>
@@ -162,7 +162,7 @@ $pestanaInicial = ($_GET["tab"] ?? "") === "recetas" ? "recetas" : "productos";
 
                     <div class="botones-form">
 
-                        <a href="#" class="btn-cancelar" onclick="cerrarModalProducto(); return false;">
+                        <a href="#" class="btn-cancelar" data-cerrar-modal="modal-producto">
                             CANCELAR
                         </a>
 
@@ -203,9 +203,9 @@ $pestanaInicial = ($_GET["tab"] ?? "") === "recetas" ? "recetas" : "productos";
 
                     <tr>
 
-                        <td><?php echo $producto["id"]; ?></td>
+                        <td data-label="ID"><?php echo $producto["id"]; ?></td>
 
-                        <td>
+                        <td data-label="Imagen">
 
                             <?php if (!empty($producto["imagen"])): ?>
 
@@ -222,21 +222,21 @@ $pestanaInicial = ($_GET["tab"] ?? "") === "recetas" ? "recetas" : "productos";
 
                         </td>
 
-                        <td><?php echo htmlspecialchars($producto["nombre"]); ?></td>
+                        <td data-label="Nombre"><?php echo htmlspecialchars($producto["nombre"]); ?></td>
 
-                        <td class="descripcion-tabla">
+                        <td class="descripcion-tabla" data-label="Descripción">
                             <?php echo htmlspecialchars($producto["descripcion"]); ?>
                         </td>
 
-                        <td><?php echo $producto["id_categoria"]; ?></td>
+                        <td data-label="Categoría"><?php echo $producto["id_categoria"]; ?></td>
 
-                        <td>
+                        <td data-label="Precio">
                             $<?php echo number_format($producto["precio"],2,',','.'); ?>
                         </td>
 
-                        <td><?php echo $producto["stock"]; ?></td>
+                        <td data-label="Stock"><?php echo $producto["stock"]; ?></td>
 
-                        <td class="acciones">
+                        <td class="acciones" data-label="Acciones">
 
                             <a href="editarProducto.php?id=<?php echo $producto["id"]; ?>" class="btn-editar">
                                 <i class="fa-solid fa-pen"></i>
@@ -244,7 +244,7 @@ $pestanaInicial = ($_GET["tab"] ?? "") === "recetas" ? "recetas" : "productos";
 
                             <a href="eliminarProducto.php?id=<?php echo $producto["id"]; ?>"
                             class="btn-eliminar"
-                            onclick="return confirm('¿Seguro que querés eliminar este producto?');">
+                            data-confirm="¿Seguro que querés eliminar este producto?">
 
                                 <i class="fa-solid fa-trash"></i>
 
@@ -273,7 +273,7 @@ $pestanaInicial = ($_GET["tab"] ?? "") === "recetas" ? "recetas" : "productos";
 
             <h2>RECETAS</h2>
 
-            <a href="#" class="btn-agregar" onclick="abrirModalReceta()">
+            <a href="#" class="btn-agregar" data-abrir-modal="modal-receta">
                 <i class="fa-solid fa-plus"></i>
                     AGREGAR RECETA
             </a>
@@ -293,11 +293,11 @@ $pestanaInicial = ($_GET["tab"] ?? "") === "recetas" ? "recetas" : "productos";
             <label for="preparacion">Preparación *</label>
             <textarea id="preparacion" name="preparacion" rows="6" required></textarea>
 
-            <label for="imagen">URL de imagen</label>
+            <label for="imagen-receta">URL de imagen</label>
             <input type="file" id="imagen-receta" name="imagen" accept="image/jpeg,image/png,image/webp,image/gif" required>
 
             <div class="botones-form">
-                <a href="#" class="btn-cancelar" onclick="cerrarModalReceta()">CANCELAR</a>
+                <a href="#" class="btn-cancelar" data-cerrar-modal="modal-receta">CANCELAR</a>
                 <button type="submit" class="btn-guardar-receta">AGREGAR</button>
             </div>
             </form>
@@ -331,12 +331,12 @@ $pestanaInicial = ($_GET["tab"] ?? "") === "recetas" ? "recetas" : "productos";
 
                             <tr>
 
-                                <td>
+                                <td data-label="ID">
                                     <?php echo $receta["id"]; ?>
                                 </td>
 
 
-                                <td>
+                                <td data-label="Imagen">
 
                                     <?php if (!empty($receta["imagen"])): ?>
 
@@ -355,22 +355,22 @@ $pestanaInicial = ($_GET["tab"] ?? "") === "recetas" ? "recetas" : "productos";
                                 </td>
 
 
-                                <td>
+                                <td data-label="Título">
                                     <?php echo htmlspecialchars($receta["titulo"]); ?>
                                 </td>
 
 
-                                <td class="descripcion-tabla">
+                                <td class="descripcion-tabla" data-label="Ingredientes">
                                     <?php echo htmlspecialchars($receta["ingredientes"]); ?>
                                 </td>
 
 
-                                <td class="descripcion-tabla">
+                                <td class="descripcion-tabla" data-label="Preparación">
                                     <?php echo htmlspecialchars($receta["preparacion"]); ?>
                                 </td>
 
 
-                                <td class="acciones">
+                                <td class="acciones" data-label="Acciones">
 
                                     <a
                                         href="editarReceta.php?id=<?php echo $receta["id"]; ?>"
@@ -385,8 +385,7 @@ $pestanaInicial = ($_GET["tab"] ?? "") === "recetas" ? "recetas" : "productos";
                                         href="eliminarReceta.php?id=<?php echo $receta["id"]; ?>"
                                         class="btn-eliminar"
                                         title="Eliminar"
-                                        onclick="return confirm('¿Estás seguro de eliminar esta receta?');"
-                                    >
+                                        data-confirm="¿Estás seguro de eliminar esta receta?">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
 
@@ -407,79 +406,6 @@ $pestanaInicial = ($_GET["tab"] ?? "") === "recetas" ? "recetas" : "productos";
     </div>
 
 </main>
-
-
-<!-- ==========================
-     CAMBIO DE PESTAÑAS
-=========================== -->
-
-<script>
-
-function abrirModalProducto() {
-    document.getElementById("modal-producto").style.display = "flex";
-}
-
-function cerrarModalProducto() {
-    document.getElementById("modal-producto").style.display = "none";
-}
-
-function abrirModalReceta() {
-  document.getElementById("modal-receta").style.display = "flex";
-}
-
-function cerrarModalReceta() {
-  document.getElementById("modal-receta").style.display = "none";
-}
-
-
-function mostrarSeccion(seccion, boton) {
-
-    // Ocultar todas las secciones
-
-    document.querySelectorAll(".admin-seccion").forEach(function(elemento) {
-
-        elemento.classList.remove("activa");
-
-    });
-
-
-    // Quitar activa de todos los botones
-
-    document.querySelectorAll(".pestana").forEach(function(elemento) {
-
-        elemento.classList.remove("activa");
-
-    });
-
-
-    // Mostrar la sección elegida
-
-    document.getElementById(seccion).classList.add("activa");
-
-
-    // Activar el botón
-
-    boton.classList.add("activa");
-
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    const mensaje = document.querySelector(".admin-notificacion");
-
-    if (mensaje) {
-        setTimeout(function () {
-            mensaje.style.transition = "opacity 0.5s ease";
-            mensaje.style.opacity = "0";
-
-            setTimeout(function () {
-                mensaje.remove();
-            }, 500);
-        }, 3000);
-    }
-});
-
-
-</script>
 
 
 <?php

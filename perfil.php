@@ -23,13 +23,26 @@ if ($resultado->num_rows != 1) {
 }
 
 $usuario = $resultado->fetch_assoc();
+$avisoPerfil = "";
+$tipoAvisoPerfil = "";
+
+if (($_GET["password"] ?? "") === "actualizada") {
+    $avisoPerfil = "Contraseña actualizada.";
+    $tipoAvisoPerfil = "exito";
+} elseif (isset($_GET["mensaje"])) {
+    $avisoPerfil = (string) $_GET["mensaje"];
+    $tipoAvisoPerfil = "exito";
+} elseif (isset($_GET["error"])) {
+    $avisoPerfil = (string) $_GET["error"];
+    $tipoAvisoPerfil = "error";
+}
 
 $esAdmin = isset($_SESSION["rol"]) && $_SESSION["rol"] === "admin";
 
 if ($esAdmin) {
     $historialConsulta = $conexion->prepare("
         SELECT pedidos.id, pedidos.id_usuario, pedidos.fecha, pedidos.total,
-               pedidos.estado, usuarios.nombre, usuarios.apellido, usuarios.email,
+               usuarios.nombre, usuarios.apellido, usuarios.email,
                detalle_pedidos.cantidad, detalle_pedidos.precio,
                productos.nombre AS producto
         FROM pedidos
@@ -42,7 +55,7 @@ if ($esAdmin) {
 } else {
     $historialConsulta = $conexion->prepare("
         SELECT pedidos.id, pedidos.id_usuario, pedidos.fecha, pedidos.total,
-               pedidos.estado, usuarios.nombre, usuarios.apellido, usuarios.email,
+               usuarios.nombre, usuarios.apellido, usuarios.email,
                detalle_pedidos.cantidad, detalle_pedidos.precio,
                productos.nombre AS producto
         FROM pedidos
@@ -94,6 +107,12 @@ include("includes/header.php");
         <p>Administrá la información de tu cuenta.</p>
     </div>
 
+    <?php if ($avisoPerfil !== ""): ?>
+        <p class="perfil-aviso perfil-notificacion <?= htmlspecialchars($tipoAvisoPerfil) ?>" role="status">
+            <?= htmlspecialchars($avisoPerfil) ?>
+        </p>
+    <?php endif; ?>
+
     <div class="perfil-layout">
 
         <!-- CARD IZQUIERDA -->
@@ -103,7 +122,7 @@ include("includes/header.php");
                 <i class="fa-solid fa-user"></i>
             </div>
 
-            <h2>
+            <h2 id="perfil-nombre">
                 <?php echo htmlspecialchars($usuario["nombre"]); ?>
                 <?php echo htmlspecialchars($usuario["apellido"]); ?>
             </h2>
@@ -116,17 +135,17 @@ include("includes/header.php");
 
                 <p>
                     <i class="fa-solid fa-envelope"></i>
-                    <?php echo htmlspecialchars($usuario["email"]); ?>
+                    <span id="perfil-email"><?php echo htmlspecialchars($usuario["email"]); ?></span>
                 </p>
 
                 <p>
                     <i class="fa-solid fa-phone"></i>
-                    <?php echo htmlspecialchars($usuario["telefono"]); ?>
+                    <span id="perfil-telefono"><?php echo htmlspecialchars($usuario["telefono"]); ?></span>
                 </p>
 
                 <p>
                     <i class="fa-solid fa-location-dot"></i>
-                    <?php echo htmlspecialchars($usuario["direccion"]); ?>
+                    <span id="perfil-direccion"><?php echo htmlspecialchars($usuario["direccion"]); ?></span>
                 </p>
 
             </div>
@@ -144,17 +163,16 @@ include("includes/header.php");
         </aside>
 
 
-        <!-- CARD DERECHA -->
         <section>
 
             <div class="card-editar">
 
-                <h3>
-                    <i class="fa-solid fa-pen"></i>
-                    Información personal
-                </h3>
+                <form action="actualizar_perfil.php" method="POST" id="form-perfil">
 
-                <form action="actualizar_perfil.php" method="POST">
+                    <h3>
+                        <i class="fa-solid fa-pen"></i>
+                        Información personal
+                    </h3>
 
                     <div class="fila-form">
 
@@ -194,48 +212,40 @@ include("includes/header.php");
 
                     </div>
 
-            </div>
+                    <h3 class="perfil-seccion-titulo">
+                        <i class="fa-solid fa-lock"></i>
+                        Seguridad
+                    </h3>
 
-            <!-- CARD CONTRASEÑA -->
+                    <p class="ayuda-password">
+                        Dejá estos campos vacíos si no querés cambiar tu contraseña.
+                    </p>
 
-            <div class="card-seguridad">
+                    <div class="fila-form">
 
-                <h3>
-                    <i class="fa-solid fa-lock"></i>
-                    Seguridad
-                </h3>
+                        <div class="campo">
+                            <label>Nueva contraseña</label>
+                            <input type="password" name="password">
+                        </div>
 
-                <p class="ayuda-password">
-                    Dejá estos campos vacíos si no querés cambiar tu contraseña.
-                </p>
-
-                <div class="fila-form">
-
-                    <div class="campo">
-                        <label>Nueva contraseña</label>
-                        <input type="password" name="password">
+                        <div class="campo">
+                            <label>Confirmar contraseña</label>
+                            <input type="password" name="confirmar">
+                        </div>
                     </div>
 
-                    <div class="campo">
-                        <label>Confirmar contraseña</label>
-                        <input type="password" name="confirmar">
+                    <div class="perfil-botones">
+
+                        <a href="index.php" class="btn-volver">
+                            <i class="fa-solid fa-house"></i>
+                            Inicio
+                        </a>
+
+                        <button type="submit" class="btn-guardar">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            GUARDAR CAMBIOS
+                        </button>
                     </div>
-
-                </div>
-
-                <div class="perfil-botones">
-
-                    <a href="index.php" class="btn-volver">
-                        <i class="fa-solid fa-house"></i>
-                        Inicio
-                    </a>
-
-                    <button type="submit" class="btn-guardar">
-                        <i class="fa-solid fa-floppy-disk"></i>
-                        GUARDAR CAMBIOS
-                    </button>
-
-                </div>
 
                 </form>
 
@@ -254,6 +264,10 @@ include("includes/header.php");
                 <p>Revisá tus pedidos y el estado de cada compra.</p>
             <?php endif; ?>
         </div>
+
+        <?php if (($_GET["pedido"] ?? "") === "confirmado"): ?>
+            <p class="pedido-confirmado" role="status">Tu pedido se registró correctamente.</p>
+        <?php endif; ?>
 
         <?php if (count($pedidos) === 0): ?>
             <article class="historial-pedido">
@@ -275,23 +289,8 @@ include("includes/header.php");
                                     </p>
                                 <?php endif; ?>
                             </div>
-                            <?php
-                                $estado = $pedido["estado"];
-
-                                if ($estado === "pagado") {
-                                    $textoEstado = "Pagado";
-                                    $claseEstado = "pagado";
-                                } elseif ($estado === "pendiente_pago") {
-                                    $textoEstado = "Pago pendiente";
-                                    $claseEstado = "pendiente";
-                                } else {
-                                    $textoEstado = ucfirst(str_replace("_", " ", $estado));
-                                    $claseEstado = "";
-                                }
-                                ?>
-
-                                <span class="historial-estado <?= $claseEstado ?>">
-                                    <?= htmlspecialchars($textoEstado) ?>
+                                <span class="historial-estado">
+                                    Pedido recibido
                                 </span>
                         </header>
 

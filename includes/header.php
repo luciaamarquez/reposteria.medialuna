@@ -27,23 +27,23 @@ $sesionAutenticada = isset($_SESSION["id"]);
 
     <link rel="stylesheet" href="<?php echo $raiz; ?>css/style.css">
 </head>
-<body>
-<?php if ($sesionAutenticada): ?>
-<script>
-window.addEventListener("pageshow", (evento) => {
-    if (evento.persisted) {
-        window.location.reload();
-    }
-});
-</script>
-<?php endif; ?>
+<body data-sesion-autenticada="<?php echo $sesionAutenticada ? "true" : "false"; ?>">
 <header>
     <div class="header-contenedor">
         <div class="logo">
             <img src="<?php echo $raiz; ?>img/logo/logo.png" alt="Logo">
             <h1 class="medialuna-logo">Medialuna</h1>
         </div>
-        <nav>
+        <button
+            type="button"
+            class="menu-toggle"
+            aria-label="Abrir menú de navegación"
+            aria-expanded="false"
+            aria-controls="menu-principal"
+        >
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <nav id="menu-principal">
             <ul>
                 <li>
                     <a href="<?php echo $raiz; ?>index.php#inicio">

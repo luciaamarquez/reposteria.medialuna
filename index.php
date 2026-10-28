@@ -6,16 +6,6 @@ include("includes/header.php");
 <a href="#inicio" id="btnSubir">
     <i class="fa-solid fa-arrow-up"></i>
 </a>
-<script>
-        const btnSubir = document.getElementById("btnSubir");
-        window.addEventListener("scroll", () => {
-            if(window.scrollY > 400){
-                btnSubir.classList.add("mostrar");
-            }else{
-                btnSubir.classList.remove("mostrar");
-            }
-        });
-</script>
 
 <main>
     <section class="banner" id="inicio">
@@ -47,7 +37,7 @@ include("includes/header.php");
 
         <div class="fila">
 
-        <div class="categoria">
+        <a href="productos.php?categoria=donuts" class="categoria enlace-categoria">
             <div class="imagen-categoria">
                 <img src="img/categorias/donuts.png" alt="Donuts">
                 <div class="overlay">
@@ -55,9 +45,9 @@ include("includes/header.php");
                 </div>
             </div>
             <p>Donuts</p>
-        </div>
+        </a>
 
-        <div class="categoria">
+        <a href="productos.php?categoria=budines" class="categoria enlace-categoria">
             <div class="imagen-categoria">
                 <img src="img/categorias/budines.png" alt="Budines">
                 <div class="overlay">
@@ -65,9 +55,9 @@ include("includes/header.php");
                 </div>
             </div>
             <p>Budines</p>
-        </div>
+        </a>
 
-        <div class="categoria">
+        <a href="productos.php?categoria=muffins" class="categoria enlace-categoria">
             <div class="imagen-categoria">
                 <img src="img/categorias/muffins.png" alt="Muffins">
                 <div class="overlay">
@@ -75,13 +65,13 @@ include("includes/header.php");
                 </div>
             </div>
             <p>Muffins</p>
-        </div>
+        </a>
 
         </div>
 
         <div class="fila">
 
-        <div class="categoria">
+        <a href="productos.php?categoria=tortas" class="categoria enlace-categoria">
             <div class="imagen-categoria">
                 <img src="img/categorias/tortas.png" alt="Tortas">
                 <div class="overlay">
@@ -89,9 +79,9 @@ include("includes/header.php");
                 </div>
             </div>
             <p>Tortas</p>
-        </div>
+        </a>
 
-        <div class="categoria">
+        <a href="productos.php?categoria=cookies" class="categoria enlace-categoria">
             <div class="imagen-categoria">
                 <img src="img/categorias/cookies.jpg" alt="Cookies">
                 <div class="overlay">
@@ -99,24 +89,9 @@ include("includes/header.php");
                 </div>
             </div>
             <p>Cookies</p>
-        </div>
+        </a>
         </div>
         <a href="productos.php" class="btn-productos">VER TODOS LOS PRODUCTOS</a>
-
-        <script>
-            const categorias = document.querySelectorAll(".categoria");
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-
-                    if(entry.isIntersecting){
-                        entry.target.classList.add("mostrar");
-                    }
-                });
-            });
-            categorias.forEach((categoria)=>{
-                observer.observe(categoria);
-            });
-        </script>
     </section>
 
 <!-- SOBRE NOSOTROS -->
@@ -158,26 +133,6 @@ include("includes/header.php");
                 </p>
             </div>
         </div>
-        <script>
-            const cards = document.querySelectorAll(".nosotros-card");
-            const observerNosotros = new IntersectionObserver((entries) => {
-
-                if (entries[0].isIntersecting) {
-
-                    cards.forEach((card, index) => {
-
-                        setTimeout(() => {
-                            card.classList.add("mostrar");
-                        }, index * 350);
-
-                    });
-                    observerNosotros.disconnect();
-                }
-            },{
-                threshold:0.4
-            });
-            observerNosotros.observe(document.querySelector(".contenedor-nosotros"));
-        </script>
     </section>
 
 <!-- RECETAS (vista previa) -->
@@ -210,49 +165,6 @@ include("includes/header.php");
             </a>
         </div>
     </div>
-        <script>
-
-        const slides = document.querySelectorAll(".slide");
-        let actual = 0;
-
-        setInterval(() => {
-
-            slides[actual].classList.remove("activo");
-
-            actual++;
-
-            if(actual >= slides.length){
-                actual = 0;
-            }
-
-            slides[actual].classList.add("activo");
-
-        }, 3000);
-
-        const texto = "Cada receta guarda una historia, cada aroma crea un recuerdo.";
-        const frase = document.getElementById("frase");
-
-        let i = 0;
-
-        function escribir() {
-            if (i < texto.length) {
-                frase.textContent += texto.charAt(i);
-                i++;
-                setTimeout(escribir, 50); // velocidad
-            }
-        }
-
-        const observerFrase = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                escribir();
-                observerFrase.disconnect();
-            }
-        }, {
-            threshold: 0.5
-        });
-
-        observerFrase.observe(frase);
-        </script>
     </section>
 </main>
 

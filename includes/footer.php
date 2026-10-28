@@ -49,5 +49,6 @@
 
 </footer>
 
+<script src="<?php echo $raiz; ?>js/script.js" defer></script>
 </body>
 </html>

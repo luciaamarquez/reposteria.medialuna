@@ -254,7 +254,7 @@ $total = $subtotal + $envio;
                     >
 
                     <button type="submit" class="btn-confirmar">
-                        PAGAR
+                        CONFIRMAR PEDIDO
                     </button>
 
                 </form>
