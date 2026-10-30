@@ -41,7 +41,7 @@ $esAdmin = isset($_SESSION["rol"]) && $_SESSION["rol"] === "admin";
 
 if ($esAdmin) {
     $historialConsulta = $conexion->prepare("
-        SELECT pedidos.id, pedidos.id_usuario, pedidos.fecha, pedidos.total,
+        SELECT pedidos.id, pedidos.id_usuario, pedidos.fecha, pedidos.total, pedidos.estado,
                usuarios.nombre, usuarios.apellido, usuarios.email,
                detalle_pedidos.cantidad, detalle_pedidos.precio,
                productos.nombre AS producto
@@ -54,7 +54,7 @@ if ($esAdmin) {
     $historialConsulta->execute();
 } else {
     $historialConsulta = $conexion->prepare("
-        SELECT pedidos.id, pedidos.id_usuario, pedidos.fecha, pedidos.total,
+        SELECT pedidos.id, pedidos.id_usuario, pedidos.fecha, pedidos.total, pedidos.estado,
                usuarios.nombre, usuarios.apellido, usuarios.email,
                detalle_pedidos.cantidad, detalle_pedidos.precio,
                productos.nombre AS producto
