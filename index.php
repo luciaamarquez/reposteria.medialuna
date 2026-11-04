@@ -71,7 +71,7 @@ include("includes/header.php");
 
         <div class="fila">
 
-        <a href="productos.php?categoria=tortas" class="categoria enlace-categoria">
+        <a href="productos.php?categoria=Tortas / Tartas" class="categoria enlace-categoria">
             <div class="imagen-categoria">
                 <img src="img/categorias/tortas.png" alt="Tortas">
                 <div class="overlay">
