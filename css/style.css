@@ -3537,3 +3537,31 @@ EDITAR PRODUCTO
     }
 
 }
+
+/* BOTÓN ADMIN DEMO - CELULARES */
+@media (max-width: 768px) {
+
+    .login-contenedor .admin-demo {
+        bottom: 17px;
+        right: 12px;
+    }
+
+    .login-contenedor .admin-demo summary {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+
+}
+
+/* CORREGIR ICONO DE PERFIL DEL HEADER */
+.header-derecha .perfil-icono {
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    color: white;
+    border-radius: 0;
+    margin: 0;
+    font-size: 20px;
+    box-shadow: none;
+}
