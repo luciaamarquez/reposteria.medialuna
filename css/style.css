@@ -55,9 +55,16 @@
     transform: translateY(-3px);
 }
 
-#modal-receta .agregar-receta-contenedor{
-    border:0;
-    outline:0;
+#modal-receta .agregar-receta-contenedor {
+    width: min(760px, 100%);
+    max-width: 100%;
+    max-height: 85vh;
+    max-height: 85dvh;
+    overflow-y: auto;
+    padding: 20px 28px;
+    box-sizing: border-box;
+    border: 0;
+    outline: 0;
 }
 
 #modal-receta .agregar-receta-contenedor form{
@@ -121,12 +128,10 @@
     display:none;
 }
 
-body{ 
+body {
     font-family: "Xanh Mono";
     font-weight: 100;
-    background:#FDF7F2; 
-    margin:0; 
-    padding:0; 
+    background: #FDF7F2;
     font-style: italic;
 }
 
@@ -569,11 +574,12 @@ nav a:hover{
     flex-wrap:wrap;
 }
 
-.categoria{
-    text-align:center;
-    opacity:0;
-    transform:translateY(50px);
-    transition:all .7s ease;
+.categoria {
+    width: 220px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all .7s ease;
 }
 
 .enlace-categoria{
@@ -627,11 +633,6 @@ nav a:hover{
 .btn-productos:hover{
     background:#6E0B35;
     color:white;
-}
-
-.categoria{
-    width:220px;
-    text-align:center;
 }
 
 .imagen-categoria{
@@ -713,10 +714,12 @@ nav a:hover{
     margin-bottom:30px;
 }
 
-.nosotros-card h3{
-    font-size:28px;
-    color:#542236;
-    margin-bottom:25px;
+.nosotros-card h3 {
+    position: relative;
+    display: inline-block;
+    font-size: 28px;
+    color: #542236;
+    margin-bottom: 25px;
 }
 
 .nosotros-card p{
@@ -747,11 +750,6 @@ nav a:hover{
     transform: translateY(0);
 }
 
-
-.nosotros-card h3{
-    position: relative;
-    display: inline-block;
-}
 
 .nosotros-card h3::after{
     content:"";
@@ -846,26 +844,61 @@ nav a:hover{
     margin-bottom:35px;
 }
 
-@media(max-width:900px){
+/* RECETAS - RESPONSIVE CELULAR */
+@media (max-width: 600px) {
 
-    .recetas-contenedor{
-        flex-direction:column;
-        text-align:center;
+    .recetas {
+        padding: 35px 20px;
     }
 
-    .recetas-img{
-        width:min(100%, 320px);
-        margin:0 auto;
+    .recetas-contenedor {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
     }
 
-    .recetas-texto{
-        width:100%;
+    .recetas-img {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 260px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
     }
 
-    .linea{
-        margin:25px auto;
+    .recetas-img .slide {
+        position: absolute;
+        width: 100% !important;
+        max-width: none !important;
+        height: 100% !important;
+        aspect-ratio: auto;
+        object-fit: cover;
+        top: 0;
+        left: 0;
     }
 
+    .recetas-texto {
+        width: 100%;
+        text-align: center;
+    }
+
+    .recetas-texto h2 {
+        font-size: 45px;
+        margin-bottom: 15px;
+    }
+
+    .descripcion {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .linea {
+        margin: 20px auto;
+    }
+
+    .frase {
+        font-size: 15px;
+    }
 }
 
 /*==========================
@@ -1173,11 +1206,6 @@ footer hr{
     gap:16px;
 }
 
-.fila-form{
-    display:flex;
-    gap:16px;
-}
-
 .fila-form input{
     flex:1;
 }
@@ -1239,10 +1267,6 @@ footer hr{
 
 .registro-login a:hover{
     color:#8C1F4B;
-}
-
-.registro-login i{
-    margin-left:6px;
 }
 
 @media(max-width:768px){
@@ -2837,16 +2861,6 @@ footer hr{
 
 
 /* MODAL AGREGAR RECETA - TAMAÑO */
-#modal-receta .agregar-receta-contenedor {
-    width: min(760px, 100%);
-    max-width: 100%;
-    max-height: 85vh;
-    max-height: 85dvh;
-    overflow-y: auto;
-    padding: 20px 28px;
-    box-sizing: border-box;
-}
-
 /* título del formulario */
 #modal-receta .agregar-receta-contenedor h2 {
     font-size: 23px;
@@ -3191,13 +3205,6 @@ footer hr{
 }
 
 /* efecto al seleccionar un campo */
-.agregar-producto-contenedor select:focus,
-.agregar-producto-contenedor input:focus,
-.agregar-producto-contenedor textarea:focus {
-    border-color: #6E0B35;
-    outline: none;
-}
-
 /* botones */
 .agregar-producto-contenedor .botones-form {
     margin-top: 5px;
